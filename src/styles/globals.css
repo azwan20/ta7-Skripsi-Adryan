@@ -137,7 +137,7 @@ aside a {
 
 .sekretaris table {
   width: 98%;
-  margin: 70px 10px;
+  margin: 0px 10px;
 }
 
 .surat-masuk table {
@@ -149,15 +149,19 @@ aside a {
 .surat-masuk thead th {
   background-color: var(--primary-color);
   color: var(--fourth-color);
+  text-align: center;
+  font-size: 15px;
 }
 
 .sekretaris tbody td,
 .surat-masuk tbody td {
   text-align: center;
   background-color: var(--secondary-color);
+  font-size: 13px ;
 }
 
-.surat-masuk article button {
+.surat-masuk article button,
+.sekretaris article button {
   border: none;
   background-color: var(--primary-color);
   color: var(--fourth-color);
@@ -167,6 +171,31 @@ aside a {
   align-items: center;
   justify-content: space-between;
   margin: 20px;
+}
+
+.surat-masuk article a {
+  text-decoration: none;
+}
+
+.popup-content span{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 10px 0;
+
+}
+
+.popup-content span input{
+  width: 60%;
+}
+
+.tambah-arsip form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tambah-arsip article section {
@@ -202,7 +231,7 @@ aside a {
 /* Add this CSS to your stylesheets */
 .popup {
   width: 400px;
-  height: 200px;
+  height: fit-content;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -228,6 +257,7 @@ aside a {
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
+  width: 30%;
   border: none;
   border-radius: 10px;
 

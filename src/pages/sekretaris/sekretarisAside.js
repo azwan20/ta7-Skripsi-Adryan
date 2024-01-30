@@ -27,17 +27,17 @@ export default function SekretarisAside() {
                 </section>
                 <section style={{ height: '75%', paddingTop: '30px' }}>
                     <span style={{ width: '90%' }}>
-                        <Link href="">
+                        <Link href="/sekretaris">
                             <button className={isTransaksiActive ? "active" : ""} onClick={() => handleButtonClick("transaksi")}>
                                 Home
                             </button>
                         </Link>
-                        <Link href="">
+                        <Link href="/sekretaris/surat-masuk">
                             <button className={isProdukActive ? "active" : ""} onClick={() => handleButtonClick("produk")}>
                                 Surat Masuk
                             </button>
                         </Link>
-                        <Link href="">
+                        <Link href="/sekretaris/surat-keluar">
                             <button className={isProdukActive ? "active" : ""} onClick={() => handleButtonClick("produk")}>
                                 Surat Keluar
                             </button>
