@@ -15,6 +15,30 @@ async function fetchDataFromFirestore() {
     return data;
 }
 
+async function updateDataInFirebase(id, updatedData) {
+    try {
+        const suratRef = doc(db, "surat", id);
+        await updateDoc(suratRef, updatedData);
+        console.log("Document successfully updated!");
+        return true;
+    } catch (error) {
+        console.error("Error updating document: ", error);
+        return false;
+    }
+}
+
+async function deleteDataFromFirebase(id) {
+    try {
+        const suratRef = doc(db, "surat", id);
+        await deleteDoc(suratRef);
+        console.log("Document successfully deleted!");
+        return true;
+    } catch (error) {
+        console.error("Error deleting document: ", error);
+        return false;
+    }
+}
+
 
 export default function SuratMasuk() {
     const [dataSurat, SetDataSurat] = useState([]);
@@ -53,6 +77,8 @@ export default function SuratMasuk() {
         location.reload();
     };
 
+    const [editedData, setEditedData] = useState({});
+
     const handleCheckboxChange = (id) => {
         const updatedSelectedRows = [...selectedRows];
         const index = updatedSelectedRows.indexOf(id);
@@ -64,8 +90,20 @@ export default function SuratMasuk() {
         }
 
         setSelectedRows(updatedSelectedRows);
-        setEditPopupRow(id); // Update the row to be edited
+
+        // Update the state for each selected row with default values
+        const updatedDataForSelectedRows = updatedSelectedRows.reduce((acc, rowId) => {
+            acc[rowId] = { ...dataSurat.find((row) => row.id === rowId) }; // Use existing data if available
+            return acc;
+        }, {});
+
+        setEditedDataForSelectedRows(updatedDataForSelectedRows);
+
+        // Remove the line below to allow editing multiple rows
+        setEditPopupRow(updatedSelectedRows.length === 1 ? updatedSelectedRows[0] : null);
     };
+
+    const [editedDataForSelectedRows, setEditedDataForSelectedRows] = useState({});
 
     useEffect(() => {
         async function fetchData() {
@@ -82,6 +120,68 @@ export default function SuratMasuk() {
 
         fetchData();
     }, []);
+
+
+    const [idSementara, setIdSementara] = useState('');
+    const [editedFile, setEditedFile] = useState('');
+    const [editedTanggal_masuk, setEditTanggal_masuk] = useState('');
+    const [editedAlamat, setEditedAlamat] = useState('');
+    const [editedNama, setEditNama] = useState('');
+    const [editedNo_surat, setEditNo_surat] = useState('');
+    const [editedJenia, setEditJenis] = useState('');
+    const [editedTanggal_surat, setEditTanggal_surat] = useState('');
+    const [editedSifat_surat, setEditSifat_surat] = useState('');
+    const [editedPerihal, setEditPerihal] = useState('');
+    const [editedNo_wa, setEditNo_wa] = useState('');
+
+
+    // fungsi edit, digunakan untuk mengedit data di Firebase
+    const handleEdit = async (id, updatedData) => {
+        const edited = await updateDataInFirebase(id, updatedData);
+        if (edited) {
+            // alert("Data edited in Firebase DB");
+            location.reload();
+        }
+    };
+
+    // fungsi hapus, digunakan untuk menghapus data di Firebase
+    const handleDelete = async () => {
+        for (const id of selectedRows) {
+            const deleted = await deleteDataFromFirebase(id);
+            if (deleted) {
+                // alert("Data deleted from Firebase DB");
+                location.reload();
+            }
+        }
+    };
+
+    const popups = async (id, file, tanggal_masuk, alamat, no_surat, jenis_surat, tanggal_surat, sifat_surat, perihal) => {
+        setIdSementara(id);
+        setEditedFile(file);
+        setEditTanggal_masuk(tanggal_masuk);
+        setEditedAlamat(alamat);
+        setEditNo_surat(no_surat);
+        setEditJenis(jenis_surat);
+        setEditTanggal_surat(tanggal_surat);
+        setEditSifat_surat(sifat_surat);
+        setEditPerihal(perihal);
+        // setPopupOpen(!isPopupOpen);
+    };
+
+    const getEditedFieldValue = (rowId, fieldName) => {
+        return editedDataForSelectedRows[rowId] ? editedDataForSelectedRows[rowId][fieldName] : '';
+    };
+
+    // Helper function to handle changes in field values
+    const handleFieldChange = (rowId, fieldName, value) => {
+        setEditedDataForSelectedRows((prevData) => ({
+            ...prevData,
+            [rowId]: {
+                ...prevData[rowId],
+                [fieldName]: value,
+            },
+        }));
+    };
 
     return (
         <>
@@ -100,7 +200,7 @@ export default function SuratMasuk() {
                                     </button>
                                 </>
                             ) : (
-                                <button onClick={handleEditClick}>
+                                <button onClick={handleEditClick} >
                                     <svg style={{ marginRight: '10px' }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M18.988 2.01196L21.988 5.01196L19.701 7.29996L16.701 4.29996L18.988 2.01196ZM8 16H11L18.287 8.71296L15.287 5.71296L8 13V16Z" fill="white" />
                                         <path d="M19 19H8.158C8.132 19 8.105 19.01 8.079 19.01C8.046 19.01 8.013 19.001 7.979 19H5V5H11.847L13.847 3H5C3.897 3 3 3.896 3 5V19C3 20.104 3.897 21 5 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V10.332L19 12.332V19Z" fill="white" />
@@ -139,28 +239,30 @@ export default function SuratMasuk() {
                         </thead>
                         <tbody>
                             {dataSurat.map((value, index) => (
-                            <tr >
-                                <td style={{ display: 'none' }}></td>
-                                <td>
-                                    {isEditMode && (
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedRows.includes(1)} // Use includes to check if the ID is in the selectedRows array
-                                            onChange={() => handleCheckboxChange(1)}
-                                        />
-                                    )}
-                                </td>
-                                <td>{index +1}</td>
-                                <td>{value.file}</td>
-                                <td>{value.tanggal_masuk}</td>
-                                <td>{value.alamat}</td>
-                                <td>{value.no_surat}</td>
-                                <td>{value.jenis_surat}</td>
-                                <td>{value.tanggal_surat}</td>
-                                <td>{value.sifat_surat}</td>
-                                <td>{value.prihal}</td>
-                                <td></td>
-                            </tr>
+                                <tr key={value.id}>
+                                    <td style={{ display: 'none' }}>{value.id}</td>
+                                    <td>
+                                        {isEditMode && (
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedRows.includes(value.id)}
+                                                onChange={() => handleCheckboxChange(value.id)}
+                                                onClick={() => popups(value.id, value.file, value.tanggal_masuk,
+                                                    value.alamat, value.no_surat, value.jenis_surat, value.tanggal_surat, value.sifat_surat, value.prihal)}
+                                            />
+                                        )}
+                                    </td>
+                                    <td>{index + 1}</td>
+                                    <td>{value.file}</td>
+                                    <td>{value.tanggal_masuk}</td>
+                                    <td>{value.alamat}</td>
+                                    <td>{value.no_surat}</td>
+                                    <td>{value.jenis_surat}</td>
+                                    <td>{value.tanggal_surat}</td>
+                                    <td>{value.sifat_surat}</td>
+                                    <td>{value.prihal}</td>
+                                    <td>{value.no_wa}</td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>
@@ -187,33 +289,78 @@ export default function SuratMasuk() {
                                 <input type="file" name="file" />
                             </span>
                             <span>
-                                <p>No. WhatsApp</p>
-                                <input type="text" placeholder="+62" />
+                                <p>Tanggal Ajukan</p>
+                                <input type="date"
+                                    id="editedTanggal_masuk"
+                                    name="editedTanggal_masuk"
+                                    value={getEditedFieldValue(editPopupRow, 'tanggal_masuk')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_masuk', e.target.value)}
+                                />
+                            </span>
+                            <span>
+                                <p>Alamat Pengiriman</p>
+                                <input type="text"
+                                    id="editedAlamat"
+                                    name="editedAlamat"
+                                    // value={editedAlamat}
+                                    // onChange={(e) => setEditedAlamat(e.target.value)}
+                                    value={getEditedFieldValue(editPopupRow, 'alamat')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'alamat', e.target.value)}
+                                />
+                            </span>
+                            <span>
+                                <p>No Surat</p>
+                                <input type="text"
+                                    id="editedAlamat"
+                                    name="editedAlamat"
+                                    value={getEditedFieldValue(editPopupRow, 'no_surat')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'no_surat', e.target.value)}
+                                />
                             </span>
                             <span>
                                 <p>Jenis Surat</p>
-                                <input type="text" />
-                            </span>
-                            <span>
-                                <p>Tanggal Ajukan</p>
-                                <input type="date" />
+                                <input type="text"
+                                    id="editedJenis_surat"
+                                    name="editedJenis_surat"
+                                    value={getEditedFieldValue(editPopupRow, 'jenis_surat')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'jenis_surat', e.target.value)}
+                                />
                             </span>
                             <span>
                                 <p>Tanggal Surat</p>
-                                <input type="date" />
+                                <input type="date"
+                                    id="editedTanggal_surat"
+                                    name="editedTanggal_surat"
+                                    value={getEditedFieldValue(editPopupRow, 'tanggal_surat')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_surat', e.target.value)}
+                                />
                             </span>
                             <span>
                                 <p>Sifat Surat</p>
-                                <input type="text" />
+                                <input type="text"
+                                    id="editedSifat_surat"
+                                    name="editedSifat_surat"
+                                    value={getEditedFieldValue(editPopupRow, 'sifat_surat')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'sifat_surat', e.target.value)}
+                                />
                             </span>
                             <span>
                                 <p>Perihal Lampiran</p>
-                                <input type="text" />
+                                <input type="text"
+                                    id="editedPerihal"
+                                    name="editedPerihal"
+                                    value={getEditedFieldValue(editPopupRow, 'prihal')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'perihal', e.target.value)}
+                                />
                             </span>
                         </div>
                         <span className="d-flex">
-                            <button style={{ backgroundColor: 'green' }} >Update</button>
-                            <button>Delete</button>
+                            {/* <button onClick={() => handleEdit(idSementara, {
+                                file: editedFile, tanggal_masuk: editedTanggal_masuk, alamat: editedAlamat,
+                                no_surat: editedNo_surat, jenis_surat: editedNo_surat, tanggal_surat: editedTanggal_surat, sifat_surat: editedSifat_surat, perihal: editedPerihal
+                            })} style={{ backgroundColor: 'green' }}>Update</button> */}
+                            <button onClick={() => handleEdit(idSementara, editedDataForSelectedRows[editPopupRow])} style={{ backgroundColor: 'green' }}>Update</button>
+                            <button onClick={handleDelete}>Delete</button>
                             <button style={{ backgroundColor: '27323A' }} onClick={handlePopupClose}>Tutup</button>
                         </span>
                     </div>

@@ -150,13 +150,18 @@ export default function Home() {
   const [editedAlamat, setEditedAlamat] = useState('');
 
   // fungsi edit, digunakan untuk mengedit data di Firebase
-  const handleEdit = async (id, updatedData) => {
-    const edited = await updateDataInFirebase(id, updatedData);
-    if (edited) {
-      alert("Data edited in Firebase DB");
-      setPopupOpen(false);
+  const handleEdit = async () => {
+    if (selectedRows.length === 1) {
+        const id = selectedRows[0];
+        const updatedData = { alamat: editedAlamat }; // Update this with other fields as needed
+        const edited = await updateDataInFirebase(id, updatedData);
+        
+        if (edited) {
+            alert("Data edited in Firebase DB");
+            setPopupVisible(false); // Close the popup after editing
+        }
     }
-  };
+};
 
   // fungsi hapus, digunakan untuk menghapus data di Firebase
   const handleDelete = async (id) => {
@@ -226,8 +231,8 @@ export default function Home() {
         <style jsx>{`
         .popup {
           position: fixed;
-          top: 0;
-          left: 0;
+          top: 30%;
+          left: 50%;
           width: 100%;
           height: 100%;
           background: rgba(0, 0, 0, 0.5);

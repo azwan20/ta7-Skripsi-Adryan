@@ -1,6 +1,39 @@
+import { useEffect, useState } from "react";
 import SekretarisAside from "./sekretarisAside";
+import { db } from "../../../public/firebaseConfig";
+import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+
+async function fetchDataFromFirestore() {
+    const querySnapshot = await getDocs(collection(db, "surat"));
+
+    const data = [];
+
+    querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+    });
+    return data;
+}
 
 export default function Home() {
+    const [dataSurat, SetDataSurat] = useState([]);
+    const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
+    const [dataSuratKeluar, SetDataSuratKeluar] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await fetchDataFromFirestore();
+            SetDataSurat(data);
+
+            // Pisahkan data berdasarkan jenis surat
+            const suratMasuk = data.filter((surat) => surat.jenis_surat === "surat masuk");
+            const suratKeluar = data.filter((surat) => surat.jenis_surat === "surat keluar");
+
+            SetDataSuratMasuk(suratMasuk);
+            SetDataSuratKeluar(suratKeluar);
+        }
+
+        fetchData();
+    }, []);
     return (
         <>
             <div className="sekretaris d-flex">
@@ -25,23 +58,23 @@ export default function Home() {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {data.map((value, index) => ( */}
-                                <tr>
+                        {dataSurat.map((value, index) => (
+                                <tr key={value.id}>
                                     <td style={{ display: 'none' }}></td>
-                                    <td>index + 1</td>
-                                    <td>value.file</td>
-                                    <td>value.tanggl_masuk</td>
-                                    <td>value.tanggal_ajukan</td>
-                                    <td>value.nama_penerima</td>
-                                    <td>value.alamat_pengirim</td>
-                                    <td>value.no_surat</td>
-                                    <td>value.jenis</td>
-                                    <td>value.tanggal_surat</td>
-                                    <td>value.sifat</td>
-                                    <td>value.perihal</td>
-                                    <td>value.no_wa</td>
+                                    <td>{index + 1}</td>
+                                    <td>{value.file}</td>
+                                    <td>{value.tanggal_masuk}</td>
+                                    <td>{value.tanggal_ajukan}</td>
+                                    <td>{value.nama_penerima}</td>
+                                    <td>{value.alamat}</td>
+                                    <td>{value.no_surat}</td>
+                                    <td>{value.jenis_surat}</td>
+                                    <td>{value.tanggal_surat}</td>
+                                    <td>{value.sifat_surat}</td>
+                                    <td>{value.perihal}</td>
+                                    <td>{value.no_wa}</td>
                                 </tr>
-                            {/* ))} */}
+                            ))}
                         </tbody>
                     </table>
                 </article>
