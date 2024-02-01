@@ -64,11 +64,11 @@ export default function Home() {
                                     <td>{index + 1}</td>
                                     <td>{value.file}</td>
                                     <td>{value.tanggal_masuk}</td>
-                                    <td>{value.tanggal_ajukan}</td>
-                                    <td>{value.nama_penerima}</td>
+                                    <td>{value.tanggal_keluar}</td>
+                                    <td>{value.nama}</td>
                                     <td>{value.alamat}</td>
                                     <td>{value.no_surat}</td>
-                                    <td>{value.jenis_surat}</td>
+                                    <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.tanggal_surat}</td>
                                     <td>{value.sifat_surat}</td>
                                     <td>{value.perihal}</td>
