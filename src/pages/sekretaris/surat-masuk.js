@@ -238,7 +238,7 @@ export default function SuratMasuk() {
                             </tr>
                         </thead>
                         <tbody>
-                            {dataSurat.map((value, index) => (
+                            {dataSuratMasuk.map((value, index) => (
                                 <tr key={value.id}>
                                     <td style={{ display: 'none' }}>{value.id}</td>
                                     <td>
@@ -257,11 +257,12 @@ export default function SuratMasuk() {
                                     <td>{value.tanggal_masuk}</td>
                                     <td>{value.alamat}</td>
                                     <td>{value.no_surat}</td>
-                                    <td>{value.jenis_surat}</td>
+                                    <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.tanggal_surat}</td>
                                     <td>{value.sifat_surat}</td>
                                     <td>{value.prihal}</td>
                                     <td>{value.no_wa}</td>
+
                                 </tr>
                             ))}
                         </tbody>
@@ -286,7 +287,7 @@ export default function SuratMasuk() {
                         <div>
                             <span>
                                 <p>File Arsip</p>
-                                <input type="file" name="file" />
+                                <input type="text" name="file" value={getEditedFieldValue(editPopupRow, 'file')} readOnly />
                             </span>
                             <span>
                                 <p>Tanggal Ajukan</p>
@@ -353,15 +354,20 @@ export default function SuratMasuk() {
                                     onChange={(e) => handleFieldChange(editPopupRow, 'perihal', e.target.value)}
                                 />
                             </span>
+                            <span>
+                                <p>No. WhatsApp</p>
+                                <input type="text"
+                                    id="editedNo_wa"
+                                    name="editedNo_wa"
+                                    value={getEditedFieldValue(editPopupRow, 'no_wa')}
+                                    onChange={(e) => handleFieldChange(editPopupRow, 'no_wa', e.target.value)}
+                                />
+                            </span>
                         </div>
-                        <span className="d-flex">
-                            {/* <button onClick={() => handleEdit(idSementara, {
-                                file: editedFile, tanggal_masuk: editedTanggal_masuk, alamat: editedAlamat,
-                                no_surat: editedNo_surat, jenis_surat: editedNo_surat, tanggal_surat: editedTanggal_surat, sifat_surat: editedSifat_surat, perihal: editedPerihal
-                            })} style={{ backgroundColor: 'green' }}>Update</button> */}
+                        <span className="d-flex button-edit">
                             <button onClick={() => handleEdit(idSementara, editedDataForSelectedRows[editPopupRow])} style={{ backgroundColor: 'green' }}>Update</button>
                             <button onClick={handleDelete}>Delete</button>
-                            <button style={{ backgroundColor: '27323A' }} onClick={handlePopupClose}>Tutup</button>
+                            <button style={{ backgroundColor: '#27323A' }} onClick={handlePopupClose}>Tutup</button>
                         </span>
                     </div>
                 </div>
