@@ -137,12 +137,12 @@ aside a {
 
 .sekretaris table {
   width: 98%;
-  margin: 0px 10px;
+  margin: 20px 10px;
 }
 
 .surat-masuk table {
   width: 98%;
-  margin: 0px 10px;
+  margin: 0px 10px 20px;
 }
 
 .sekretaris thead th,
@@ -203,7 +203,8 @@ aside a {
   margin-top: 20px;
 }
 
-.tambah-arsip article input {
+.tambah-arsip article input,
+.tambah-arsip article select {
   width: 70%;
   height: 40px;
   margin-bottom: 15px;
@@ -257,7 +258,7 @@ aside a {
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
-  width: 30%;
+  width: 100%;
   border: none;
   border-radius: 10px;
 
@@ -265,4 +266,8 @@ aside a {
 
 .popup button:hover {
   background-color: #1a2328;
+}
+
+.popup-content .button-edit button{
+  width: 30%;
 }
