@@ -1,195 +1,111 @@
-import { useEffect, useState } from "react";
-import Aside from "./aside";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { db } from "../../public/firebaseConfig";
-import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 
-async function addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa) {
-  try {
-    const docRefSurat = await addDoc(collection(db, "surat"), {
-      file: file,
-      nama: nama,
-      alamat: alamat,
-      tanggal_masuk: tanggal_masuk,
-      tanggal_surat: tanggal_surat,
-      jenis_surat: jenis_surat,
-      sifat_surat: sifat_surat,
-      prihal: prihal,
-      no_wa: no_wa,
-    })
-    console.log("Document input document ID : ", docRefSurat.id);
-    return true;
+async function fetchDataLoginFromFirestore() {
+    const querySnapshot = await getDocs(collection(db, "login"));
 
-  } catch (error) {
-    console.error("error input document", error);
-    return false;
-  }
+    const data = [];
+
+    querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+    });
+    return data;
 }
 
-async function fetchDataFromFirestore() {
-  const querySnapshot = await getDocs(collection(db, "surat"));
+async function fetchDataLoginSekretaris() {
+    const querySnapshot = await getDocs(collection(db, "loginSekretaris"));
 
-  const data = [];
+    const dataSekretaris = [];
 
-  querySnapshot.forEach((doc) => {
-    data.push({ id: doc.id, ...doc.data() });
-  });
-  return data;
+    querySnapshot.forEach((doc) => {
+        dataSekretaris.push({ id: doc.id, ...doc.data() });
+    });
+    return dataSekretaris;
 }
 
-export default function Home() {
-  const [isPopupVisible, setPopupVisible] = useState(false);
+export default function Login() {
+    const [dataLogin, SetDataLogin] = useState([]);
+    const [dataLoginSekretaris, SetDataLoginSekretaris] = useState([]);
+    const router = useRouter();
 
-  const handleSimpanClick = () => {
-    // Lakukan aksi simpan data di sini
+    useEffect(() => {
+        async function fetchData() {
+            const data = await fetchDataLoginSekretaris();
+            SetDataLogin(data);
+        }
+        fetchData();
+    }, []);
 
-    // Set state untuk menampilkan pop-up
-    setPopupVisible(true);
+    useEffect(() => {
+        async function fetchData() {
+            const dataSekretaris = await fetchDataLoginFromFirestore();
+            SetDataLoginSekretaris(dataSekretaris);
+        }
+        fetchData();
+    }, []);
 
-    // Reset form atau lakukan aksi lain jika diperlukan
-    // resetForm();
-  };
+    const [emailInput, setEmailInput] = useState("");
+    const [passwordInput, setPasswordInput] = useState("");
 
-  const handlePopupClose = () => {
-    // Set state untuk menyembunyikan pop-up
-    setPopupVisible(false);
-  };
+    const handleLogin = () => {
+        // Memeriksa apakah nilai input sama dengan salah satu email di dataLogin
+        const loginSekretaris = dataLogin.some((user) => user.email === emailInput && user.password === passwordInput);
+        const isLoginSuccessful = dataLoginSekretaris.some((user) => user.email === emailInput && user.password === passwordInput);
 
-  const [dataSurat, SetDataSurat] = useState([]);
-  const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
-  const [dataSuratKeluar, SetDataSuratKeluar] = useState([]);
-
-  const [dataLogin, SetDataLogin] = useState([]);
-  // const [jenis, Setjenis] = useState("");
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchDataFromFirestore();
-      SetDataSurat(data);
-
-      // Pisahkan data berdasarkan jenis surat
-      const suratMasuk = data.filter((surat) => surat.jenis_surat === "surat masuk");
-      const suratKeluar = data.filter((surat) => surat.jenis_surat === "surat keluar");
-
-      SetDataSuratMasuk(suratMasuk);
-      SetDataSuratKeluar(suratKeluar);
-    }
-
-    fetchData();
-  }, []);
-
-  // useEffect(() => {
-  //     async function fetchData() {
-  //         const data = await fetchDataLoginFromFirestore();
-  //         SetDataLogin(data);
-  //     }
-  //     fetchData();
-  // }, []);
-
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    // Fungsi ini akan dijalankan setiap kali komponen di-mount
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000); // Setiap detik, perbarui waktu
-
-    // Fungsi ini akan dijalankan ketika komponen di-unmount
-    return () => {
-      clearInterval(intervalId);
+        if (isLoginSuccessful) {
+            alert("Login berhasil");
+            // Navigasi ke halaman lain setelah login berhasil
+            router.push('/user');  // Ganti dengan path halaman yang diinginkan
+        } else if (loginSekretaris) {
+            alert("Login berhasil sebagai sekretaris");
+            router.push('/sekretaris');  // Ganti dengan path halaman yang diinginkan
+        } else {
+            alert("Login gagal");
+        }
     };
-  }, []); // Menggunakan array kosong agar useEffect hanya dijalankan sekali saat komponen di-mount
 
-  const [file, setFile] = useState('');
-  const [alamat, setAlamat] = useState('');
-  const [nama, setNama] = useState('');
-  const [no_surat, setNo_surat] = useState('');
-  const [jenis_surat, setJenis] = useState('');
-  const [tanggal_masuk, setTanggal_masuk] = useState('');
-  const [tanggal_surat, setTanggal_surat] = useState('');
-  const [sifat_surat, setSifat] = useState('');
-  const [prihal, setPerihal] = useState('');
-  const [no_wa, setNo_wa] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const added = await addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa);
-    if (added) {
-      setFile("");
-      setNama("");
-      setAlamat("");
-      setTanggal_masuk("");
-      setTanggal_surat("");
-      setJenis("");
-      setSifat("");
-      setPerihal("");
-      setNo_wa("");
-
-      alert("Data berhasil di upload");
-    }
-  }
-  return (
-    <>
-      <div className="tambah-arsip d-flex">
-        <Aside />
-        <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-          <form onSubmit={handleSubmit} method="post" action="">
-            <section>
-              <span>
-                <p style={{ width: '20%' }}>File Arsip</p>
-                <div className="d-flex flex-column align-items-end" style={{ width: '100%' }}>
-                  <input style={{ width: '85%', marginBottom: '0' }} type="text" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
-                  <p style={{ fontSize: '15px' }}>input link google drive (atau penyimpanan cloud lainnya), <br /> pastikan sudah bisa di akses untuk umum.</p>
+    return (
+        <>
+            <div className="login d-flex flex-column">
+                <div className="d-flex " style={{ height: "20%" }}>
+                    <img src="/logo-umi.svg" alt="logo-umi" />
                 </div>
-              </span>
-              <span>
-                <p>Nama Pengirim</p>
-                <input type="text" name="nama" id="nama" value={nama} onChange={(e) => setNama(e.target.value)} />
-              </span>
-              <span>
-                <p>Alamat Pengirim</p>
-                <input type="text" name="alamat" id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
-              </span>
-              <span>
-                <p>Tanggal Ajukan</p>
-                <input type="date" name="tanggal_masuk" id="nama" value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
-              </span>
-              <span>
-                <p>Tanggal Surat</p>
-                <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
-              </span>
-              <span>
-                <p>Jenis Surat</p>
-                <input type="text" name="jenis" id="nama" value={jenis_surat} onChange={(e) => setJenis(e.target.value)} />
-              </span>
-              <span>
-                <p>Sifat Surat</p>
-                <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
-              </span>
-              <span>
-                <p>Perihal Lampiran</p>
-                <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
-              </span>
-              <span>
-                <p>No. WhatsApp</p>
-                <input type="text" name="no_wa" id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
-              </span>
-            </section>
-            <section className="d-flex justify-content-between">
-              <button type="submit"  onClick={handleSimpanClick} style={{ backgroundColor: '#27323A' }}>Simpan</button>
-              <button style={{ backgroundColor: '#900000' }}>Batal</button>
-            </section>
-          </form>
-        </article>
-      </div>
-      {/* Pop-up component */}
-      {isPopupVisible && (
-        <div className="popup">
-          <div className="popup-content">
-            <h2>Input Data Selesai</h2>
-            <button onClick={handlePopupClose}>Tutup</button>
-          </div>
-        </div>
-      )}
-    </>
-  )
+                <div
+                    className="cards d-flex justify-content-center align-items-center"
+                    style={{ height: "80%" }}
+                >
+                    <div className="card justify-content-between align-items-center">
+                        <span>
+                            <h3>Login</h3>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                onChange={(e) => setEmailInput(e.target.value)}
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                onChange={(e) => setPasswordInput(e.target.value)}
+                            />
+                            {/* <Link href="#">Forget Password</Link> */}
+                        </span>
+                        <span>
+                            {/* <button style={{ color: '#000' }} >Login With Google</button> */}
+                            <button
+                                style={{ backgroundColor: "#239843" }}
+                                onClick={handleLogin}
+                            >
+                                Login
+                            </button>
+                            {/* <p style={{ textAlign: 'center' }}>Don't have an account? <Link href="#">Register</Link></p> */}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
