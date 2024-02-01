@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SekretarisAside from "./sekretarisAside";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import Navbar from "./navbar";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -39,6 +40,10 @@ export default function Home() {
             <div className="sekretaris d-flex">
                 <SekretarisAside />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+                    <div className="d-flex align-items-center p-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
+                        <h1 style={{textAlign: 'center', margin: 'auto'}}>Kantor Desa Pao</h1>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -58,7 +63,7 @@ export default function Home() {
                             </tr>
                         </thead>
                         <tbody>
-                        {dataSurat.map((value, index) => (
+                            {dataSurat.map((value, index) => (
                                 <tr key={value.id}>
                                     <td style={{ display: 'none' }}></td>
                                     <td>{index + 1}</td>
@@ -78,51 +83,8 @@ export default function Home() {
                         </tbody>
                     </table>
                 </article>
+                <Navbar />
             </div>
-            {/* {isEditMode && editPopupRow && (
-                <div className="popup newPop">
-                    <div className="popup-content">
-                        {/* Render the edit form with data from the selected row */}
-            {/* <h2>Edit Row ID: {editPopupRow}</h2>
-            <div>
-                <span>
-                    <p>File Arsip</p>
-                    <input type="file" name="file" onChange={(e) => setEditFormData({ ...editFormData, file: e.target.files[0] })} />
-                </span>
-                <span>
-                    <p>No. WhatsApp</p>
-                    <input type="text" placeholder="+62" name="no_wa" value={editFormData.no_wa} onChange={(e) => setEditFormData({ ...editFormData, no_wa: e.target.value })} />
-                </span>
-                <span>
-                    <p>Jenis Surat</p>
-                    <input type="text" name="jenis" value={editFormData.jenis} onChange={(e) => setEditFormData({ ...editFormData, jenis: e.target.value })} />
-                </span>
-                <span>
-                    <p>Tanggal Ajukan</p>
-                    <input type="date" name="tanggal_ajukan" value={editFormData.tanggal_ajukan} onChange={(e) => setEditFormData({ ...editFormData, tanggal_ajukan: e.target.value })} />
-                </span>
-                <span>
-                    <p>Tanggal Surat</p>
-                    <input type="date" name="tanggal_surat" value={editFormData.tanggal_surat} onChange={(e) => setEditFormData({ ...editFormData, tanggal_surat: e.target.value })} />
-                </span>
-                <span>
-                    <p>Sifat Surat</p>
-                    <input type="text" name="sifat" value={editFormData.sifat} onChange={(e) => setEditFormData({ ...editFormData, sifat: e.target.value })} />
-                </span>
-                <span>
-                    <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" value={editFormData.perihal} onChange={(e) => setEditFormData({ ...editFormData, perihal: e.target.value })} />
-                </span>
-            </div>
-            <span className="d-flex">
-                <button style={{ backgroundColor: 'green', color: '#000' }} onClick={handleSaveClick}>Update</button>
-                <button>Delete</button>
-                <button onClick={handlePopupClose}>Tutup</button>
-            </span>
-        </div >
-                </div >
-            )
-} * /} */}
         </>
     )
 }

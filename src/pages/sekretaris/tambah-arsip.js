@@ -2,6 +2,7 @@ import SekretarisAside from "./sekretarisAside";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 async function addDataToFirebase(file, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal) {
     try {
@@ -39,6 +40,11 @@ async function fetchDataFromFirestore() {
 
 export default function TambahArsip() {
     const [isPopupVisible, setPopupVisible] = useState(false);
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.push('/sekretaris/surat-keluar');
+    }
 
     const handleSimpanClick = () => {
         setPopupVisible(true);
@@ -152,7 +158,7 @@ export default function TambahArsip() {
                         <section>
                             <span>
                                 <p>File Arsip</p>
-                                <input type="file" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
+                                <input type="text" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
                             </span>
                             <span>
                                 <p>Tanggal Masuk</p>
@@ -196,8 +202,8 @@ export default function TambahArsip() {
                             </span>
                         </section>
                         <section className="d-flex justify-content-between">
-                            <button type="submit" onClick={handleSimpanClick} style={{ backgroundColor: '#27323A' }}>Simpan</button>
-                            <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                            <button type="submit" onClick={handleSimpanClick} style={{ backgroundColor: '#BBA482' }}>Simpan</button>
+                            <button onClick={handleBack} style={{ backgroundColor: '#900000' }}>Batal</button>
                         </section>
                     </form>
                 </article>

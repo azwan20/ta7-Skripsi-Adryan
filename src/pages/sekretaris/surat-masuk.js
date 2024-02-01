@@ -3,6 +3,7 @@ import SekretarisAside from "./sekretarisAside";
 import { useEffect, useState } from "react";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import Navbar from "./navbar";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -209,16 +210,17 @@ export default function SuratMasuk() {
                                 </button>
                             )}
                         </div>
-
-                        <Link href="/sekretaris/tambah-arsip">
-                            <button>
-                                <svg style={{ marginRight: '1rem' }} xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
-                                    <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
-                                </svg>
-                                Tambah Arsip
-                            </button>
-                        </Link>
+                        <div className="button-arsip">
+                            <Link href="/sekretaris/tambah-arsip">
+                                <button>
+                                    <svg style={{ marginRight: '1rem' }} xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                        <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
+                                        <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
+                                    </svg>
+                                    <p style={{margin: '0'}}>Tambah Arsip</p>
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                     <table className="table">
                         <thead>
@@ -268,6 +270,7 @@ export default function SuratMasuk() {
                         </tbody>
                     </table>
                 </article>
+                <Navbar />
             </div>
             {isPopupVisible && (
                 <div className="popup newPop">
