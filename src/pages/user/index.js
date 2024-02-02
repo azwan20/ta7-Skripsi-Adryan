@@ -105,12 +105,6 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validasi input
-    // if (!file || !nama || !tanggal_masuk || !tanggal_surat || !jenis_surat || !sifat_surat || !prihal || !no_wa) {
-    //   alert("Isi semua inputan!");
-    //   return;
-    // }
-
     const added = await addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa);
 
     if (added) {
