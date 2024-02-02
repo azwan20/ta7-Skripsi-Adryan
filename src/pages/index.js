@@ -12,7 +12,7 @@ async function addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_sura
       alamat: alamat,
       tanggal_masuk: tanggal_masuk,
       tanggal_surat: tanggal_surat,
-      jenis_surat: jenis_surat,
+      jenis_surat: "surat masuk",
       sifat_surat: sifat_surat,
       prihal: prihal,
       no_wa: no_wa,
@@ -90,7 +90,7 @@ export default function Home() {
     return () => {
       clearInterval(intervalId);
     };
-  }, []); 
+  }, []);
 
   const [file, setFile] = useState('');
   const [alamat, setAlamat] = useState('');
@@ -114,7 +114,7 @@ export default function Home() {
       setAlamat("");
       setTanggal_masuk("");
       setTanggal_surat("");
-      setJenis("");
+      "surat masuk";
       setSifat("");
       setPerihal("");
       setNo_wa("");
@@ -130,13 +130,13 @@ export default function Home() {
       <div className="tambah-arsip d-flex">
         <Aside />
         <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-          <h1 className="p-4">Silakan Input Request Surat Anda</h1>
+          <h1 className="p-4" style={{textAlign: 'center'}}>Silakan Input Request Surat Anda</h1>
           <form onSubmit={handleSubmit} method="post" action="">
             <section>
               <span>
-                <p style={{ width: '20%' }}>File Arsip</p>
-                <div className="d-flex flex-column align-items-end" style={{ width: '100%' }}>
-                  <input style={{ width: '85%', marginBottom: '0' }} type="text" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
+                <p style={{ width: '30%' }}>File Arsip</p>
+                <div className="d-flex flex-column align-items-end mobileInput" style={{ width: '70%' }}>
+                  <input style={{ width: '100%', marginBottom: '0' }} type="text" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
                   <p style={{ fontSize: '15px' }}>input link google drive (atau penyimpanan cloud lainnya), <br /> pastikan sudah bisa di akses untuk umum.</p>
                 </div>
               </span>
@@ -150,7 +150,7 @@ export default function Home() {
               </span>
               <span>
                 <p>Tanggal Ajukan</p>
-                <input type="date" name="tanggal_masuk" id="nama" value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
               </span>
               <span>
                 <p>Tanggal Surat</p>
@@ -158,15 +158,11 @@ export default function Home() {
               </span>
               <span>
                 <p>Jenis Surat</p>
-                <select
-                  value={jenis_surat}
+                <input
+                  value={"surat masuk"}
                   onChange={(e) => setJenis(e.target.value)}
-                  required  // Tambahkan atribut required di sini
-                >
-                  <option value="" disabled>Pilih Jenis Surat</option>
-                  <option value="surat masuk">Surat Masuk</option>
-                  <option value="surat keluar">Surat Keluar</option>
-                </select>
+                  readOnly
+                />
               </span>
               <span>
                 <p>Sifat Surat</p>
@@ -190,7 +186,7 @@ export default function Home() {
       </div>
       {/* Pop-up component */}
       {isPopupVisible && (
-        <div className="popup" style={{backgroundColor: '#009933'}}>
+        <div className="popup" style={{ backgroundColor: '#009933' }}>
           <div className="popup-content">
             <h2>Data Anda Berhasil Terkirim</h2>
             <button onClick={handlePopupClose}>Tutup</button>
