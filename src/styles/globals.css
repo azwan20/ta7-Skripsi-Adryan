@@ -147,7 +147,7 @@ aside a {
 
 .sekretaris thead th,
 .surat-masuk thead th {
-  background-color: var(--primary-color);
+  background-color: #968368;
   color: var(--fourth-color);
   text-align: center;
   font-size: 15px;
@@ -231,25 +231,32 @@ aside a {
 
 /* Add this CSS to your stylesheets */
 .popup {
-  width: 400px;
-  height: fit-content;
+  width: 100%;
+  height: 100vh;
   position: fixed;
   top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--secondary-color);
-  padding: 20px;
-  border: 1px solid #ccc;
+  background: rgba(34, 37, 39, 0.8);
   z-index: 999;
-  border-radius: 10px;
 }
 
 .popup-content {
+  border-radius: 10px;
+  border: 1px solid #ccc;
   text-align: center;
+  width: 400px;
+  padding: 20px;
+  padding-top: 120px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height: 100%;
+  height: 90vh;
+  background-color: var(--secondary-color);
+  z-index: 9999;
 }
 
 .popup button {
@@ -304,6 +311,17 @@ aside a {
   margin: auto;
 }
 
+.sekretaris .title-mobile {
+  width: 100%;
+  display: none;
+  margin-bottom: 20px;
+}
+
+.sekretaris .imgProfile {
+  display: none;
+  color: #fff;
+}
+
 @media screen and (min-width: 321px) and (max-width: 480px) {
   .login .card {
     width: 80%;
@@ -325,9 +343,18 @@ aside a {
     width: 100%;
   }
 
+  .tambah-arsip .mobileInput{
+    width: 60% !important;
+  }
+
   .navbars {
     display: block;
   }
+
+  .sekretaris table {
+    margin: 0 10px 70px 0;
+  }
+
 
   .surat-masuk .button-arsip button {
     padding: 16px;
@@ -376,6 +403,22 @@ aside a {
 
   .popup {
     z-index: 999;
+  }
+
+  .sekretaris .title-mobile {
+    background-color: #968368;
+    display: block;
+  }
+
+  .sekretaris .imgProfile {
+    display: block;
+  }
+
+  .title-mobile button{
+    width: 40px;
+    padding: 7px !important;
+    margin: 0 !important;
+    background-color: var(--third-color) !important;
   }
 
 }
