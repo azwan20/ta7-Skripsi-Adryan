@@ -108,12 +108,12 @@ export default function SuratMasuk() {
     useEffect(() => {
         async function fetchData() {
             const data = await fetchDataFromFirestore();
-            SetDataSurat(data);
+            const sortedData = data.sort((a, b) => new Date(b.tanggal_surat) - new Date(a.tanggal_surat));
+            SetDataSurat(sortedData);
 
             // Pisahkan data berdasarkan jenis surat
-            const suratMasuk = data.filter((surat) => surat.jenis_surat === "surat masuk");
-            const suratKeluar = data.filter((surat) => surat.jenis_surat === "surat keluar");
-
+            const suratMasuk = sortedData.filter((surat) => surat.jenis_surat === "surat masuk");
+            const suratKeluar = sortedData.filter((surat) => surat.jenis_surat === "surat keluar");
 
             SetDataSuratMasuk(suratMasuk);
             SetDataSuratKeluar(suratKeluar);
@@ -217,7 +217,7 @@ export default function SuratMasuk() {
                                         <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
                                         <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
                                     </svg>
-                                    <p style={{margin: '0'}}>Tambah Arsip</p>
+                                    <p style={{ margin: '0' }}>Tambah Arsip</p>
                                 </button>
                             </Link>
                         </div>
@@ -284,9 +284,9 @@ export default function SuratMasuk() {
             {/* Edit Popup */}
             {isEditMode && editPopupRow && (
                 <div className="popup newPop">
-                    <div className="popup-content">
+                    <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
                         {/* Render the edit form with data from the selected row */}
-                        <h2>Edit ID: {editPopupRow}</h2>
+                        <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
                         <div>
                             <span>
                                 <p>File Arsip</p>
@@ -319,6 +319,7 @@ export default function SuratMasuk() {
                                     name="editedAlamat"
                                     value={getEditedFieldValue(editPopupRow, 'nama')}
                                     onChange={(e) => handleFieldChange(editPopupRow, 'nama', e.target.value)}
+                                    required
                                 />
                             </span>
                             <span>

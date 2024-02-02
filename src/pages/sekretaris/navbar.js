@@ -47,13 +47,13 @@ export default function Navbar() {
                 span {
                     background-color: #ffffff;
                     border: none;
+                    color : #000;
                     padding: 10px;
                     cursor: pointer;
                 }
 
                 span.active {
-                    background-color: #BBA482
-                    ;
+                    background-color: #BBA482;
                     color: #ffffff;
                 }
 

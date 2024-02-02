@@ -15,28 +15,6 @@ async function fetchDataLoginFromFirestore() {
     return data;
 }
 
-async function fetchDataLoginSekretaris() {
-    const querySnapshot = await getDocs(collection(db, "loginSekretaris"));
-
-    const dataSekretaris = [];
-
-    querySnapshot.forEach((doc) => {
-        dataSekretaris.push({ id: doc.id, ...doc.data() });
-    });
-    return dataSekretaris;
-}
-
-async function fetchDataLoginKepalaDesa() {
-    const querySnapshot = await getDocs(collection(db, "loginKades"));
-
-    const dataKades = [];
-
-    querySnapshot.forEach((doc) => {
-        dataKades.push({ id: doc.id, ...doc.data() });
-    });
-    return dataKades;
-}
-
 export default function Login() {
     const [dataLogin, SetDataLogin] = useState([]);
     const [dataLoginSekretaris, SetDataLoginSekretaris] = useState([]);
@@ -51,31 +29,12 @@ export default function Login() {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        async function fetchData() {
-            const dataSekretaris = await fetchDataLoginSekretaris();
-            SetDataLoginSekretaris(dataSekretaris);
-        }
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        async function fetchData() {
-            const dataKades = await fetchDataLoginKepalaDesa();
-            SetDataLoginKades(dataKades);
-        }
-        fetchData();
-    }, []);
-
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
 
     const handleLogin = () => {
-        // Memeriksa apakah nilai input sama dengan salah satu email di dataLogin
         const isLoginSuccessful = dataLogin.some((user) => user.email === emailInput && user.password === passwordInput);
-        // const loginKades = dataLoginKades.some((user) => user.email === emailInput && user.password === passwordInput);
         const loginSekretaris = dataLoginSekretaris.some((user) => user.email === emailInput && user.password === passwordInput);
-        const kades = emailInput === "kades1" && passwordInput === "1234";
 
         if (emailInput == "sekretaris@gmail.com" && passwordInput == "1234567") {
             alert("Login berhasil");
@@ -112,17 +71,14 @@ export default function Login() {
                                 placeholder="Password"
                                 onChange={(e) => setPasswordInput(e.target.value)}
                             />
-                            {/* <Link href="#">Forget Password</Link> */}
                         </span>
                         <span>
-                            {/* <button style={{ color: '#000' }} >Login With Google</button> */}
                             <button
                                 style={{ backgroundColor: "#239843" }}
                                 onClick={handleLogin}
                             >
                                 Login
                             </button>
-                            {/* <p style={{ textAlign: 'center' }}>Don't have an account? <Link href="#">Register</Link></p> */}
                         </span>
                     </div>
                 </div>

@@ -109,11 +109,12 @@ export default function SuratMasuk() {
     useEffect(() => {
         async function fetchData() {
             const data = await fetchDataFromFirestore();
-            SetDataSurat(data);
+            const sortedData = data.sort((a, b) => new Date(b.tanggal_surat) - new Date(a.tanggal_surat));
+            SetDataSurat(sortedData);
 
             // Pisahkan data berdasarkan jenis surat
-            const suratMasuk = data.filter((surat) => surat.jenis_surat === "surat masuk");
-            const suratKeluar = data.filter((surat) => surat.jenis_surat === "surat keluar");
+            const suratMasuk = sortedData.filter((surat) => surat.jenis_surat === "surat masuk");
+            const suratKeluar = sortedData.filter((surat) => surat.jenis_surat === "surat keluar");
 
             SetDataSuratMasuk(suratMasuk);
             SetDataSuratKeluar(suratKeluar);
@@ -217,7 +218,7 @@ export default function SuratMasuk() {
                                         <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
                                         <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
                                     </svg>
-                                    <p style={{margin: '0'}}>Tambah Arsip</p>
+                                    <p style={{ margin: '0' }}>Tambah Arsip</p>
                                 </button>
                             </Link>
                         </div>
@@ -230,6 +231,7 @@ export default function SuratMasuk() {
                                 <th scope="col">No</th>
                                 <th scope="col">File Arsip</th>
                                 <th scope="col">Tanggal Masuk</th>
+                                <th scope="col">Nama Pengirim</th>
                                 <th scope="col">Alamat Pengirim</th>
                                 <th scope="col">No.Surat</th>
                                 <th scope="col">Jenis Surat</th>
@@ -257,6 +259,7 @@ export default function SuratMasuk() {
                                     <td>{index + 1}</td>
                                     <td>{value.file}</td>
                                     <td>{value.tanggal_masuk}</td>
+                                    <td>{value.nama}</td>
                                     <td>{value.alamat}</td>
                                     <td>{value.no_surat}</td>
                                     <td><b>{value.jenis_surat}</b></td>
@@ -284,9 +287,9 @@ export default function SuratMasuk() {
             {/* Edit Popup */}
             {isEditMode && editPopupRow && (
                 <div className="popup newPop">
-                    <div className="popup-content">
+                    <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
                         {/* Render the edit form with data from the selected row */}
-                        <h2>Edit ID: {editPopupRow}</h2>
+                        <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
                         <div>
                             <span>
                                 <p>File Arsip</p>
@@ -306,8 +309,6 @@ export default function SuratMasuk() {
                                 <input type="text"
                                     id="editedAlamat"
                                     name="editedAlamat"
-                                    // value={editedAlamat}
-                                    // onChange={(e) => setEditedAlamat(e.target.value)}
                                     value={getEditedFieldValue(editPopupRow, 'alamat')}
                                     onChange={(e) => handleFieldChange(editPopupRow, 'alamat', e.target.value)}
                                 />

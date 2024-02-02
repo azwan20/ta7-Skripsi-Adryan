@@ -4,10 +4,11 @@ import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-async function addDataToFirebase(file, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal) {
+async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal) {
     try {
         const docRefSurat = await addDoc(collection(db, "surat"), {
             file: file,
+            nama: nama,
             alamat: alamat,
             no_surat: no_surat,
             jenis_surat: jenis_surat,
@@ -101,6 +102,7 @@ export default function TambahArsip() {
     }, []); // Menggunakan array kosong agar useEffect hanya dijalankan sekali saat komponen di-mount
 
     const [file, setFile] = useState('');
+    const [nama, setNama] = useState('');
     const [alamat, setAlamat] = useState('');
     const [no_surat, setNo_surat] = useState('');
     const [jenis_surat, setJenis] = useState('');
@@ -112,9 +114,10 @@ export default function TambahArsip() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const added = await addDataToFirebase(file, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal);
+        const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal);
         if (added) {
             setFile("");
+            setNama("");
             setAlamat("");
             setNo_surat("");
             setTanggal_masuk("");
@@ -130,25 +133,6 @@ export default function TambahArsip() {
         }
     }
 
-    // fungsi input, fungsi ini di pake di setiap halaman yg perlu input ke firebase
-    // const handleSubmit = async (element) => {
-    //     element.preventDefault();
-    //     const added = await addDataToFirebase(
-    //         "1file",
-    //         "1alamat",
-    //         "1no_surat",
-    //         "surat keluar",
-    //         currentTime.toLocaleString(),
-    //         currentTime.toLocaleString(),
-    //         currentTime.toLocaleString(),
-    //         currentTime.toLocaleString(),
-    //         "1sifat_surat",
-    //         "1prihal",
-    //     );
-    //     if (added) {
-    //         alert("Data added to firebase DB")
-    //     }
-    // }
     return (
         <>
             <div className="tambah-arsip d-flex">
@@ -163,6 +147,10 @@ export default function TambahArsip() {
                             <span>
                                 <p>Tanggal Masuk</p>
                                 <input type="date" name="tanggal_masuk" id="nama" value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                            </span>
+                            <span>
+                                <p>Nama</p>
+                                <input type="text" name="alamat" id="nama" value={nama} onChange={(e) => setNama(e.target.value)} />
                             </span>
                             <span>
                                 <p>Alamat Pengirim</p>
@@ -194,11 +182,11 @@ export default function TambahArsip() {
                             </span>
                             <span>
                                 <p>Perihal Lampiran</p>
-                                <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                                <input type="text" name="perihal" id="nama" required value={prihal} onChange={(e) => setPerihal(e.target.value)} />
                             </span>
                             <span>
                                 <p>No. WhatsApp</p>
-                                <input type="text" name="no_wa" id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                                <input type="text" name="no_wa" id="nama" required value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                             </span>
                         </section>
                         <section className="d-flex justify-content-between">
