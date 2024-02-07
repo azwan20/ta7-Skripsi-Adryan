@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Aside from "./aside";
+import { useRouter } from "next/router";
 
 import { db } from "../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
@@ -39,6 +40,28 @@ async function fetchDataFromFirestore() {
 
 export default function Home() {
   const [isPopupVisible, setPopupVisible] = useState(false);
+  // ... (state dan fungsi lainnya)
+
+  // Menambahkan useRouter untuk mendapatkan instance router
+  const router = useRouter();
+
+  useEffect(() => {
+    // Fungsi untuk memeriksa apakah pengguna sudah login
+    const checkLoginStatus = async () => {
+      // Lakukan pengambilan data login atau sesuaikan dengan metode autentikasi yang Anda gunakan
+      // Misalnya, Anda bisa menggunakan cookies atau token untuk menentukan status login
+
+      // Contoh: Mendapatkan data login dari localStorage
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      // Jika pengguna tidak login, redirect ke halaman login
+      if (!isLoggedIn) {
+        router.push("/login"); // Sesuaikan dengan path halaman login Anda
+      }
+    };
+
+    checkLoginStatus();
+  }, []); // useEffect hanya dijalankan sekali setelah komponen mount
 
   const handleSimpanClick = () => {
     // Lakukan aksi simpan data di sini
@@ -130,7 +153,11 @@ export default function Home() {
       <div className="tambah-arsip d-flex">
         <Aside />
         <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-          <h1 className="p-4" style={{textAlign: 'center'}}>Silakan Input Request Surat Anda</h1>
+          <div className="d-flex f-width align-items-center justify-content-left p-2 title-mobile">
+            <img className="imgProfile" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
+            <h3 className="imgProfile" style={{ textAlign: 'center', margin: 'auto' }}>Kantor Desa Pao</h3>
+          </div>
+          <h1 className="p-3" style={{ textAlign: 'center' }}>Silakan Input Request Surat Anda</h1>
           <form onSubmit={handleSubmit} method="post" action="">
             <section>
               <span>
