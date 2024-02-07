@@ -311,15 +311,23 @@ aside a {
   margin: auto;
 }
 
-.sekretaris .title-mobile {
+.sekretaris .title-mobile,
+.tambah-arsip .title-mobile {
   width: 100%;
   display: none;
   margin-bottom: 20px;
+  color: #fff;
 }
 
-.sekretaris .imgProfile {
+.sekretaris .imgProfile,
+.tambah-arsip .imgProfile {
   display: none;
   color: #fff;
+}
+
+.pops .popup-content{
+  height: fit-content !important;
+  padding: 10px;
 }
 
 @media screen and (min-width: 321px) and (max-width: 480px) {
@@ -343,7 +351,7 @@ aside a {
     width: 100%;
   }
 
-  .tambah-arsip .mobileInput{
+  .tambah-arsip .mobileInput {
     width: 60% !important;
   }
 
@@ -405,16 +413,18 @@ aside a {
     z-index: 999;
   }
 
-  .sekretaris .title-mobile {
+  .sekretaris .title-mobile,
+  .tambah-arsip .title-mobile {
     background-color: #968368;
     display: block;
   }
 
-  .sekretaris .imgProfile {
+  .sekretaris .imgProfile,
+  .tambah-arsip .imgProfile {
     display: block;
   }
 
-  .title-mobile button{
+  .title-mobile button {
     width: 40px;
     padding: 7px !important;
     margin: 0 !important;
