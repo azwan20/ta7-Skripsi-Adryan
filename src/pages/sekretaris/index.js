@@ -33,19 +33,21 @@ export default function Login() {
     const [passwordInput, setPasswordInput] = useState("");
 
     const handleLogin = () => {
-        const isLoginSuccessful = dataLogin.some((user) => user.email === emailInput && user.password === passwordInput);
-        const loginSekretaris = dataLoginSekretaris.some((user) => user.email === emailInput && user.password === passwordInput);
-
-        if (emailInput == "sekretaris@gmail.com" && passwordInput == "1234567") {
+        if (emailInput === "sekretaris@gmail.com" && passwordInput === "1234567") {
             alert("Login berhasil");
+            // Simpan status login sebagai sekretaris di localStorage
+            localStorage.setItem("role", "sekretaris");
             router.push('/sekretaris/home');
-        } else if (emailInput == "kades@gmail.com" && passwordInput == "123") {
+        } else if (emailInput === "kades@gmail.com" && passwordInput === "123") {
             alert("Selamat Datang Kepala Desa");
+            // Simpan status login sebagai kepala desa di localStorage
+            localStorage.setItem("role", "kades");
             router.push('/kepala-desa');
         } else {
             alert("Email atau Password Salah!!!");
         }
     };
+    
 
 
     return (

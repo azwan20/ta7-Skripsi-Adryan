@@ -41,19 +41,45 @@ async function fetchDataFromFirestore() {
 
 export default function TambahArsip() {
     const [isPopupVisible, setPopupVisible] = useState(false);
+    const [isKurang, setKurang] = useState(false);
     const router = useRouter();
+
+    const [isHomeActive, setIsHomeActive] = useState(false);
+    const [isMasukActive, setIsMasukActive] = useState(false);
+    const [isKeluarActive, setIsKeluarActive] = useState(false);
+
+    const handleButtonClick = (buttonType) => {
+        if (buttonType === "home") {
+            setIsHomeActive(true);
+            setIsMasukActive(false);
+            setIsKeluarActive(false);
+        } else if (buttonType === "masuk") {
+            setIsHomeActive(false);
+            setIsMasukActive(true);
+            setIsKeluarActive(false);
+        } else if (buttonType === "keluar") {
+            setIsHomeActive(false);
+            setIsMasukActive(false);
+            setIsKeluarActive(true);
+        }
+    };
 
     const handleBack = () => {
         router.push('/sekretaris/surat-keluar');
     }
 
     const handleSimpanClick = () => {
-        setPopupVisible(true);
+        if (jenis_surat == "", prihal == "", no_wa == "") {
+            setKurang(true);
+        } else {
+            setPopupVisible(true);
+        }
     };
 
     const handlePopupClose = () => {
         // Set state untuk menyembunyikan pop-up
         setPopupVisible(false);
+        setKurang(false);
     };
 
     const [dataSurat, SetDataSurat] = useState([]);
@@ -129,14 +155,14 @@ export default function TambahArsip() {
             setJenis("");
             // setNo_wa("");
 
-            alert("Data berhasil di upload");
+            // alert("Data berhasil di upload");
         }
     }
 
     return (
         <>
             <div className="tambah-arsip d-flex">
-                <SekretarisAside />
+                <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <form onSubmit={handleSubmit} method="post" action="">
                         <section>
@@ -166,7 +192,7 @@ export default function TambahArsip() {
                                     value={jenis_surat}
                                     onChange={(e) => setJenis(e.target.value)}
                                     required  // Tambahkan atribut required di sini
-                                    >
+                                >
                                     <option value="" disabled>Pilih Jenis Surat</option>
                                     <option value="surat masuk">Surat Masuk</option>
                                     <option value="surat keluar">Surat Keluar</option>
@@ -198,9 +224,18 @@ export default function TambahArsip() {
             </div>
             {/* Pop-up component */}
             {isPopupVisible && (
-                <div className="popup">
+                <div className="popup pops">
                     <div className="popup-content">
                         <h2>Input Data Selesai</h2>
+                        <button onClick={handlePopupClose}>Tutup</button>
+                    </div>
+                </div>
+            )}
+            {isKurang && (
+                <div className="popup pops">
+                    <div className="popup-content" style={{ backgroundColor: 'red' }}>
+                        <h2 style={{ color: '#fff' }}>Lengkapi Data !</h2>
+                        <p style={{ color: '#fff' }}>Jenis surat, Perihal, dan No WhatsApp</p>
                         <button onClick={handlePopupClose}>Tutup</button>
                     </div>
                 </div>

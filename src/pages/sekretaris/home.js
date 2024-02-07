@@ -4,9 +4,21 @@ import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc, orderBy } from "firebase/firestore";
 import Navbar from "./navbar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
+
+    const data = [];
+
+    querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+    });
+    return data;
+}
+
+async function fetchDataLoginFromFirestore() {
+    const querySnapshot = await getDocs(collection(db, "login"));
 
     const data = [];
 
@@ -20,6 +32,46 @@ export default function Home() {
     const [dataSurat, SetDataSurat] = useState([]);
     const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
     const [dataSuratKeluar, SetDataSuratKeluar] = useState([]);
+    const router = useRouter();
+
+    const [isHomeActive, setIsHomeActive] = useState(true);
+    const [isMasukActive, setIsMasukActive] = useState(false);
+    const [isKeluarActive, setIsKeluarActive] = useState(false);
+
+    const handleButtonClick = (buttonType) => {
+        if (buttonType === "home") {
+            setIsHomeActive(true);
+            setIsMasukActive(false);
+            setIsKeluarActive(false);
+        } else if (buttonType === "masuk") {
+            setIsHomeActive(false);
+            setIsMasukActive(true);
+            setIsKeluarActive(false);
+        } else if (buttonType === "keluar") {
+            setIsHomeActive(false);
+            setIsMasukActive(false);
+            setIsKeluarActive(true);
+        }
+    };
+
+    useEffect(() => {
+        // Baca status login dari localStorage
+        const role = localStorage.getItem("role");
+
+        // Periksa apakah pengguna sudah login
+        if (!role) {
+            // Jika tidak, kembalikan ke halaman login
+            router.push('/sekretaris');
+        } else {
+            // Lakukan sesuatu berdasarkan peran pengguna
+            if (role === "sekretaris") {
+                // Lakukan sesuatu jika pengguna adalah sekretaris
+            } else if (role === "kades") {
+                // Lakukan sesuatu jika pengguna adalah kepala desa
+            }
+        }
+    }, []);
+
 
     useEffect(() => {
         async function fetchData() {
@@ -41,7 +93,7 @@ export default function Home() {
     return (
         <>
             <div className="sekretaris d-flex">
-                <SekretarisAside />
+                <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <div className="d-flex align-items-center justify-content-between p-2 title-mobile">
                         <img className="imgProfile" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
@@ -93,7 +145,7 @@ export default function Home() {
                         </tbody>
                     </table>
                 </article>
-                <Navbar />
+                <Navbar isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
             </div>
         </>
     )

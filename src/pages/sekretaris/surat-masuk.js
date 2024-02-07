@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Navbar from "./navbar";
+import { useRouter } from "next/router";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -49,6 +50,45 @@ export default function SuratMasuk() {
     const [isEditMode, setEditMode] = useState(false);
     const [isPopupVisible, setPopupVisible] = useState(false);
     const [editPopupRow, setEditPopupRow] = useState(null);
+    const router = useRouter();
+
+    const [isHomeActive, setIsHomeActive] = useState(false);
+    const [isMasukActive, setIsMasukActive] = useState(true);
+    const [isKeluarActive, setIsKeluarActive] = useState(false);
+
+    const handleButtonClick = (buttonType) => {
+        if (buttonType === "home") {
+            setIsHomeActive(true);
+            setIsMasukActive(false);
+            setIsKeluarActive(false);
+        } else if (buttonType === "masuk") {
+            setIsHomeActive(false);
+            setIsMasukActive(true);
+            setIsKeluarActive(false);
+        } else if (buttonType === "keluar") {
+            setIsHomeActive(false);
+            setIsMasukActive(false);
+            setIsKeluarActive(true);
+        }
+    };
+
+    // useEffect(() => {
+    //     // Fungsi untuk memeriksa apakah pengguna sudah login
+    //     const checkLoginStatus = async () => {
+    //         // Lakukan pengambilan data login atau sesuaikan dengan metode autentikasi yang Anda gunakan
+    //         // Misalnya, Anda bisa menggunakan cookies atau token untuk menentukan status login
+
+    //         // Contoh: Mendapatkan data login dari localStorage
+    //         const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    //         // Jika pengguna tidak login, redirect ke halaman login
+    //         if (!isLoggedIn) {
+    //             router.push("/sekretaris"); // Sesuaikan dengan path halaman login Anda
+    //         }
+    //     };
+
+    //     checkLoginStatus();
+    // }, [router]); // useEffect hanya dijalankan ketika nilai router berubah
 
     const handleEditClick = () => {
         setEditMode(true);
@@ -188,7 +228,7 @@ export default function SuratMasuk() {
     return (
         <>
             <div className="surat-masuk d-flex">
-                <SekretarisAside />
+            <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <div className="d-flex justify-content-between">
                         <div className="d-flex">
@@ -273,7 +313,7 @@ export default function SuratMasuk() {
                         </tbody>
                     </table>
                 </article>
-                <Navbar />
+                <Navbar isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
             </div>
             {isPopupVisible && (
                 <div className="popup newPop">

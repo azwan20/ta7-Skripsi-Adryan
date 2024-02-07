@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Navbar from "./navbar";
+import { useRouter } from "next/router";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -48,6 +49,27 @@ export default function SuratMasuk() {
     const [isEditMode, setEditMode] = useState(false);
     const [isPopupVisible, setPopupVisible] = useState(false);
     const [editPopupRow, setEditPopupRow] = useState(null);
+    const router = useRouter();
+
+    const [isHomeActive, setIsHomeActive] = useState(false);
+    const [isMasukActive, setIsMasukActive] = useState(false);
+    const [isKeluarActive, setIsKeluarActive] = useState(true);
+
+    const handleButtonClick = (buttonType) => {
+        if (buttonType === "home") {
+            setIsHomeActive(true);
+            setIsMasukActive(false);
+            setIsKeluarActive(false);
+        } else if (buttonType === "masuk") {
+            setIsHomeActive(false);
+            setIsMasukActive(true);
+            setIsKeluarActive(false);
+        } else if (buttonType === "keluar") {
+            setIsHomeActive(false);
+            setIsMasukActive(false);
+            setIsKeluarActive(true);
+        }
+    };
 
     const handleEditClick = () => {
         setEditMode(true);
@@ -187,7 +209,7 @@ export default function SuratMasuk() {
     return (
         <>
             <div className="surat-masuk d-flex">
-                <SekretarisAside />
+                <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <div className="d-flex justify-content-between">
                         <div className="d-flex">
@@ -270,7 +292,7 @@ export default function SuratMasuk() {
                     </table>
 
                 </article>
-                <Navbar />
+                <Navbar isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
             </div>
             {isPopupVisible && (
                 <div className="popup newPop">
