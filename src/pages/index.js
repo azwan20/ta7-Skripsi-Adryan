@@ -40,41 +40,13 @@ async function fetchDataFromFirestore() {
 
 export default function Home() {
   const [isPopupVisible, setPopupVisible] = useState(false);
-  // ... (state dan fungsi lainnya)
-
-  // Menambahkan useRouter untuk mendapatkan instance router
   const router = useRouter();
 
-  useEffect(() => {
-    // Fungsi untuk memeriksa apakah pengguna sudah login
-    const checkLoginStatus = async () => {
-      // Lakukan pengambilan data login atau sesuaikan dengan metode autentikasi yang Anda gunakan
-      // Misalnya, Anda bisa menggunakan cookies atau token untuk menentukan status login
-
-      // Contoh: Mendapatkan data login dari localStorage
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-      // Jika pengguna tidak login, redirect ke halaman login
-      if (!isLoggedIn) {
-        router.push("/login"); // Sesuaikan dengan path halaman login Anda
-      }
-    };
-
-    checkLoginStatus();
-  }, []); // useEffect hanya dijalankan sekali setelah komponen mount
-
   const handleSimpanClick = () => {
-    // Lakukan aksi simpan data di sini
-
-    // Set state untuk menampilkan pop-up
     setPopupVisible(true);
-
-    // Reset form atau lakukan aksi lain jika diperlukan
-    // resetForm();
   };
 
   const handlePopupClose = () => {
-    // Set state untuk menyembunyikan pop-up
     setPopupVisible(false);
   };
 
@@ -85,14 +57,12 @@ export default function Home() {
 
 
   const [dataLogin, SetDataLogin] = useState([]);
-  // const [jenis, Setjenis] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       const data = await fetchDataFromFirestore();
       SetDataSurat(data);
 
-      // Pisahkan data berdasarkan jenis surat
       const suratMasuk = data.filter((surat) => surat.jenis_surat === "surat masuk");
       const suratKeluar = data.filter((surat) => surat.jenis_surat === "surat keluar");
 
