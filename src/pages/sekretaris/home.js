@@ -55,25 +55,6 @@ export default function Home() {
     };
 
     useEffect(() => {
-        // Baca status login dari localStorage
-        const role = localStorage.getItem("role");
-
-        // Periksa apakah pengguna sudah login
-        if (!role) {
-            // Jika tidak, kembalikan ke halaman login
-            router.push('/sekretaris');
-        } else {
-            // Lakukan sesuatu berdasarkan peran pengguna
-            if (role === "sekretaris") {
-                // Lakukan sesuatu jika pengguna adalah sekretaris
-            } else if (role === "kades") {
-                // Lakukan sesuatu jika pengguna adalah kepala desa
-            }
-        }
-    }, []);
-
-
-    useEffect(() => {
         async function fetchData() {
             const data = await fetchDataFromFirestore();
             const sortedData = data.sort((a, b) => new Date(b.tanggal_surat) - new Date(a.tanggal_surat));

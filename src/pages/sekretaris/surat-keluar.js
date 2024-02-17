@@ -54,20 +54,29 @@ export default function SuratMasuk() {
     const [isHomeActive, setIsHomeActive] = useState(false);
     const [isMasukActive, setIsMasukActive] = useState(false);
     const [isKeluarActive, setIsKeluarActive] = useState(true);
+    const [isBuatActive, setIsBuatActive] = useState(false);
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {
             setIsHomeActive(true);
             setIsMasukActive(false);
             setIsKeluarActive(false);
+            setIsBuatActive(false);
         } else if (buttonType === "masuk") {
             setIsHomeActive(false);
             setIsMasukActive(true);
             setIsKeluarActive(false);
+            setIsBuatActive(false);
         } else if (buttonType === "keluar") {
             setIsHomeActive(false);
             setIsMasukActive(false);
             setIsKeluarActive(true);
+            setIsBuatActive(false);
+        } else if (buttonType === "buat") {
+            setIsHomeActive(false);
+            setIsMasukActive(false);
+            setIsKeluarActive(false);
+            setIsBuatActive(true);
         }
     };
 
@@ -81,21 +90,11 @@ export default function SuratMasuk() {
     };
 
     const handleSimpanClick = () => {
-        // Lakukan aksi simpan data di sini
-
-        // Set state untuk menampilkan pop-up
         setPopupVisible(true);
-
-        // Reset form atau lakukan aksi lain jika diperlukan
     };
 
     const handlePopupClose = () => {
-        // Set state untuk menyembunyikan pop-up
         setPopupVisible(false);
-
-        // Redirect to another page or handle success after closing the pop-up
-        // router.push('/success');
-        // resetForm();
         location.reload();
     };
 

@@ -4,7 +4,17 @@ import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal) {
+async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal,
+    nama_kades,
+    jabatan,
+    nik,
+    ttl,
+    jenis_kelamin,
+    status_perkawinan,
+    agama,
+    pekerjaan,
+    isi_surat,
+    penutup_surat,) {
     try {
         const docRefSurat = await addDoc(collection(db, "surat"), {
             file: file,
@@ -18,6 +28,16 @@ async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tang
             tanggal_keluar: tanggal_keluar,
             sifat_surat: sifat_surat,
             prihal: prihal,
+            nama_kades: nama_kades,
+            jabatan: jabatan,
+            nik: nik,
+            ttl: ttl,
+            jenis_kelamin: jenis_kelamin,
+            status_perkawinan: status_perkawinan,
+            agama: agama,
+            pekerjaan: pekerjaan,
+            isi_surat: isi_surat,
+            penutup_surat: penutup_surat,
         })
         console.log("Document input document ID : ", docRefSurat.id);
         return true;
@@ -105,23 +125,13 @@ export default function TambahArsip() {
         fetchData();
     }, []);
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const data = await fetchDataLoginFromFirestore();
-    //         SetDataLogin(data);
-    //     }
-    //     fetchData();
-    // }, []);
-
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
-        // Fungsi ini akan dijalankan setiap kali komponen di-mount
         const intervalId = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000); // Setiap detik, perbarui waktu
 
-        // Fungsi ini akan dijalankan ketika komponen di-unmount
         return () => {
             clearInterval(intervalId);
         };
@@ -140,7 +150,18 @@ export default function TambahArsip() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal);
+        const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        );
         if (added) {
             setFile("");
             setNama("");
@@ -153,6 +174,16 @@ export default function TambahArsip() {
             setPerihal("");
             setSifat("");
             setJenis("");
+            "";
+            "";
+            "";
+            "";
+            "";
+            "";
+            "";
+            "";
+            "";
+            "";
             // setNo_wa("");
 
             // alert("Data berhasil di upload");

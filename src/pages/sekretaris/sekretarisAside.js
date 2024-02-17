@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SekretarisAside({isHomeActive, isMasukActive, isKeluarActive, handleButtonClick }) {
-    
+export default function SekretarisAside({ isHomeActive, isMasukActive, isKeluarActive, isBuatActive, handleButtonClick }) {
+
 
     return (
         <>
@@ -31,6 +31,11 @@ export default function SekretarisAside({isHomeActive, isMasukActive, isKeluarAc
                                 Surat Keluar
                             </button>
                         </Link>
+                        {/* <Link href="/sekretaris/buat-surat">
+                            <button className={isBuatActive ? "active" : ""} onClick={() => handleButtonClick("buat")}>
+                                Buat Surat
+                            </button>
+                        </Link> */}
                     </span>
                     <Link href="/sekretaris">
                         <span style={{ width: '80%' }}>

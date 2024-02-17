@@ -72,24 +72,6 @@ export default function SuratMasuk() {
         }
     };
 
-    // useEffect(() => {
-    //     // Fungsi untuk memeriksa apakah pengguna sudah login
-    //     const checkLoginStatus = async () => {
-    //         // Lakukan pengambilan data login atau sesuaikan dengan metode autentikasi yang Anda gunakan
-    //         // Misalnya, Anda bisa menggunakan cookies atau token untuk menentukan status login
-
-    //         // Contoh: Mendapatkan data login dari localStorage
-    //         const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    //         // Jika pengguna tidak login, redirect ke halaman login
-    //         if (!isLoggedIn) {
-    //             router.push("/sekretaris"); // Sesuaikan dengan path halaman login Anda
-    //         }
-    //     };
-
-    //     checkLoginStatus();
-    // }, [router]); // useEffect hanya dijalankan ketika nilai router berubah
-
     const handleEditClick = () => {
         setEditMode(true);
     };
@@ -109,12 +91,7 @@ export default function SuratMasuk() {
     };
 
     const handlePopupClose = () => {
-        // Set state untuk menyembunyikan pop-up
         setPopupVisible(false);
-
-        // Redirect to another page or handle success after closing the pop-up
-        // router.push('/success');
-        // resetForm();
         location.reload();
     };
 
@@ -162,6 +139,20 @@ export default function SuratMasuk() {
 
         fetchData();
     }, []);
+
+    const [cartItems, setCartItems] = useState([]);
+
+    const handleAddClick = (id) => {
+        setCartItems((prevItems) => Array.isArray(prevItems) ? [...prevItems, id] : [prevItems, id]);
+    };
+
+    const handleTambahTemplate = () => {
+        const newDatas = Array.isArray(cartItems) ? cartItems.map((id) => ({ id: id })) : [];
+
+        newData.push(newDatas);
+        // Do something with newData, e.g., set it to state or send it to an API
+        console.log("new data templlate", newDatas);
+    };
 
 
     const [idSementara, setIdSementara] = useState('');
@@ -225,10 +216,15 @@ export default function SuratMasuk() {
         }));
     };
 
+    const handleDetailTransaksi = (id) => {
+        // Redirect to /detail-transaksi/[id]
+        router.push(`template-surat/${id}`);
+    };
+
     return (
         <>
             <div className="surat-masuk d-flex">
-            <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
+                <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <div className="d-flex justify-content-between">
                         <div className="d-flex">
@@ -297,7 +293,9 @@ export default function SuratMasuk() {
                                         )}
                                     </td>
                                     <td>{index + 1}</td>
-                                    <td>{value.file}</td>
+                                    <td>
+                                        <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
+                                    </td>
                                     <td>{value.tanggal_masuk}</td>
                                     <td>{value.nama}</td>
                                     <td>{value.alamat}</td>
@@ -419,3 +417,11 @@ export default function SuratMasuk() {
         </>
     );
 }
+
+const newData = [];
+
+console.log("new data", newData);
+
+export const getNewData = () => {
+    return newData;
+};
