@@ -25,7 +25,11 @@ export default function BuatSuart() {
     const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
     const [formFields, setFormFields] = useState({
         namaKades: '',
-        jabatan: '',
+        jabatanKades: '',
+        nip_penanggungJawab: '',
+        jabatan_penerima: '',
+        nip_penerima: '',
+        nama_desa: '',
         nik: '',
         ttl: '',
         jenis_kelamin: '',
@@ -52,8 +56,12 @@ export default function BuatSuart() {
 
                     // Set form fields based on the existing data
                     setFormFields({
-                        namaKades: suratMasuk[0].nama_kades || '',
-                        jabatan: suratMasuk[0].jabatan || '',
+                        namaKades: suratMasuk[0].nama_penanggungJawab || '',
+                        jabatanKades: suratMasuk[0].jabatan_penanggungJawab || '',
+                        nip_penanggungJawab: suratMasuk[0].nip_penanggungJawab || '',
+                        jabatan_penerima: suratMasuk[0].jabatan_penerima || '',
+                        nip_penerima: suratMasuk[0].nip_penerima || '',
+                        nama_desa: suratMasuk[0].nama_desa || '',
                         nik: suratMasuk[0].nik || '',
                         ttl: suratMasuk[0].ttl || '',
                         jenis_kelamin: suratMasuk[0].jenis_kelamin || '',
@@ -123,8 +131,12 @@ export default function BuatSuart() {
 
         const updatedData = {
             // Existing fields
-            nama_kades: formFields.namaKades,
-            jabatan: formFields.jabatan,
+            nama_penanggungJawab: formFields.namaKades,
+            jabatan_penanggungJawab: formFields.jabatanKades,
+            nip_penanggungJawab: formFields.nip_penanggungJawab,
+            jabatan_penerima: formFields.jabatan_penerima,
+            nip_penerima: formFields.nip_penerima,
+            nama_desa: formFields.nama_desa,
             nik: formFields.nik,
             ttl: formFields.ttl,
             jenis_kelamin: formFields.jenis_kelamin,
@@ -152,69 +164,163 @@ export default function BuatSuart() {
     //     router.push("")
     // }
 
+    const [isVisible, setIsVisible] = useState(true);
+    const [visibleSku, setVisibleSku] = useState(false);
+    const [visibleSt, setVisibleSt] = useState(false);
+
+    const handleSKU = () => {
+        setIsVisible(false);
+        setVisibleSku(true);
+        setVisibleSt(false);
+    }
+
+    const handleST = () => {
+        setIsVisible(false);
+        setVisibleSku(false);
+        setVisibleSt(true);
+    }
+
+    const handleBatal = () => {
+        setIsVisible(true);
+        setVisibleSku(false);
+        setVisibleSt(false);
+    }
+
+
 
     return (
         <>
             <div className="d-flex buatSurat">
                 <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article>
-                    {dataSuratMasuk.map((value) => (
-                        <form onSubmit={handleSubmit} method="post" action="">
-                            <span>
-                                <p>No Surat</p>
-                                <p>Nama Kades</p>
-                                <p>Jabatan</p>
-                                <p>Nama Penerima</p>
-                                <p>Nik</p>
-                                <p>Tempat/Tanggal Lahir</p>
-                                <p>Jenis Kelamin</p>
-                                <p>Status perkawinan</p>
-                                <p>Agama</p>
-                                <p>Pekerjaan</p>
-                                <p>Alamat</p>
-                                <p>Isi surat</p>
-                                <p>Penutup Surat</p>
-                                <p>Tanggal Surat</p>
-                            </span>
-                            <span>
-                                <input type="number" value={value.no_surat} />
-                                <input type="text" value={formFields.namaKades}
-                                    onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                <input type="text" value={formFields.jabatan}
-                                    onChange={(e) => handleFieldChange('jabatan', e.target.value)} />
-                                <input type="text" value={value.nama} />
-                                <input type="number" value={formFields.nik}
-                                    onChange={(e) => handleFieldChange('nik', e.target.value)} />
-                                <input type="text" value={formFields.ttl}
-                                    onChange={(e) => handleFieldChange('ttl', e.target.value)} />
-                                <input type="text" value={formFields.jenis_kelamin}
-                                    onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)} />
-                                <input type="text" value={formFields.status_perkawinan}
-                                    onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)} />
-                                <input type="text" value={formFields.agama}
-                                    onChange={(e) => handleFieldChange('agama', e.target.value)} />
-                                <input type="text" value={formFields.pekerjaan}
-                                    onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
-                                <input type="text" value={value.alamat} />
-                                <textarea value={formFields.isi_surat}
-                                    onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
-                                <textarea value={formFields.penutup_surat}
-                                    onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
-                                <input type="date" value={value.tanggal_surat} />
-                            </span>
-                            <span className="d-flex buttonBuatSurat justify-content-between">
-                                <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                <button style={{ backgroundColor: '#900000' }}>Batal</button>
-                                <Link
-                                    href={{
-                                        pathname: '/sekretaris/surat-keterangan-usaha',
-                                        query: { id: id },
-                                    }} >
-                                    <button>Cetak surat</button>
-                                </Link>
-                            </span>
-                        </form>
-                    ))}
+                    <div>
+                        {isVisible && (
+                            <div className="buttons">
+                                <h1>Silakan Pilih Jenis Surat</h1>
+                                <button onClick={handleSKU}>Surat Keterangan Usaha</button>
+                                <button onClick={handleST}>Surat Tugas</button>
+                                <button>Surat Keterangan Tidak Mampu</button>
+                                <button>Surat Keterangan Domisili</button>
+                                <button>Surat keterangan penghasilan orang tua</button>
+                            </div>
+                        )}
+                    </div>
+                    {visibleSku && (
+                        <div>
+                            {dataSuratMasuk.map((value) => (
+                                <form onSubmit={handleSubmit} method="post" action="">
+                                    <span>
+                                        <p>No Surat</p>
+                                        <p>Nama Kades</p>
+                                        <p>Jabatan</p>
+                                        <p>Nama Penerima</p>
+                                        <p>Nik</p>
+                                        <p>Tempat/Tanggal Lahir</p>
+                                        <p>Jenis Kelamin</p>
+                                        <p>Status perkawinan</p>
+                                        <p>Agama</p>
+                                        <p>Pekerjaan</p>
+                                        <p>Alamat</p>
+                                        <p>Isi surat</p>
+                                        <p>Penutup Surat</p>
+                                        <p>Tanggal Surat</p>
+                                    </span>
+                                    <span>
+                                        <input type="number" value={value.no_surat} />
+                                        <input type="text" value={formFields.namaKades}
+                                            onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                        <input type="text" value={formFields.jabatanKades}
+                                            onChange={(e) => handleFieldChange('jabatanKades', e.target.value)} />
+                                        <input type="text" value={value.nama} />
+                                        <input type="number" value={formFields.nik}
+                                            onChange={(e) => handleFieldChange('nik', e.target.value)} />
+                                        <input type="text" value={formFields.ttl}
+                                            onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                        <input type="text" value={formFields.jenis_kelamin}
+                                            onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)} />
+                                        <input type="text" value={formFields.status_perkawinan}
+                                            onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)} />
+                                        <input type="text" value={formFields.agama}
+                                            onChange={(e) => handleFieldChange('agama', e.target.value)} />
+                                        <input type="text" value={formFields.pekerjaan}
+                                            onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                        <input type="text" value={value.alamat} />
+                                        <textarea value={formFields.isi_surat}
+                                            onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
+                                        <textarea value={formFields.penutup_surat}
+                                            onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
+                                        <input type="date" value={value.tanggal_surat} />
+                                    </span>
+                                    <span className="d-flex buttonBuatSurat justify-content-between">
+                                        <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
+                                        <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                        <Link
+                                            href={{
+                                                pathname: '/sekretaris/surat-keterangan-usaha',
+                                                query: { id: id },
+                                            }} >
+                                            <button>Cetak surat</button>
+                                        </Link>
+                                    </span>
+                                </form>
+                            ))}
+                        </div>
+                    )}
+                    <div>
+                        {visibleSt && (
+                            <div>
+                                {dataSuratMasuk.map((value) => (
+                                    <form onSubmit={handleSubmit} method="post" action="">
+                                        <span>
+                                            <p>No Surat</p>
+                                            <p>Nama Penanggung Jawab</p>
+                                            <p>Jabatan Penanggung Jawab</p>
+                                            <p>Nama Penerima</p>
+                                            <p>Nip Penanggung Jawab</p>
+                                            <p>Jabatan Penerima</p>
+                                            <p>Nip Penerima</p>
+                                            <p>Nama Desa</p>
+                                            <p>Isi surat</p>
+                                            <p>Penutup Surat</p>
+                                            <p>Tanggal Surat</p>
+                                        </span>
+                                        <span>
+                                            <input type="number" value={value.no_surat} />
+                                            <input type="text" value={formFields.namaKades}
+                                                onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                            <input type="text" value={formFields.jabatanKades}
+                                                onChange={(e) => handleFieldChange('jabatanKades', e.target.value)} />
+                                            <input type="text" value={value.nama} />
+                                            <input type="number" value={formFields.nip_penanggungJawab}
+                                                onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
+                                            <input type="text" value={formFields.jabatan_penerima}
+                                                onChange={(e) => handleFieldChange('jabatan_penerima', e.target.value)} />
+                                            <input type="text" value={formFields.nip_penerima}
+                                                onChange={(e) => handleFieldChange('nip_penerima', e.target.value)} />
+                                            <input type="text" value={formFields.nama_desa}
+                                                onChange={(e) => handleFieldChange('nama_desa', e.target.value)} />
+                                            <textarea value={formFields.isi_surat}
+                                                onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
+                                            <textarea value={formFields.penutup_surat}
+                                                onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
+                                            <input type="date" value={value.tanggal_surat} />
+                                        </span>
+                                        <span className="d-flex buttonBuatSurat justify-content-between">
+                                            <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
+                                            <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            <Link
+                                                href={{
+                                                    pathname: '/sekretaris/surat-tugas',
+                                                    query: { id: id },
+                                                }} >
+                                                <button>Cetak surat</button>
+                                            </Link>
+                                        </span>
+                                    </form>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </article>
             </div >
         </>

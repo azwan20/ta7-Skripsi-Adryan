@@ -5,8 +5,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal,
-    nama_kades,
-    jabatan,
+    nama_penanggungJawab,
+    jabatan_penanggungJawab,
+    nip_penanggungJawab,
+    jabatan_penerima,
+    nip_penerima,
+    nama_desa,
     nik,
     ttl,
     jenis_kelamin,
@@ -28,8 +32,12 @@ async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tang
             tanggal_keluar: tanggal_keluar,
             sifat_surat: sifat_surat,
             prihal: prihal,
-            nama_kades: nama_kades,
-            jabatan: jabatan,
+            nama_penanggungJawab: nama_penanggungJawab,
+            jabatan_penanggungJawab: jabatan_penanggungJawab,
+            nip_penanggungJawab: nip_penanggungJawab,
+            jabatan_penerima: jabatan_penerima,
+            nip_penerima: nip_penerima,
+            nama_desa: nama_desa,
             nik: nik,
             ttl: ttl,
             jenis_kelamin: jenis_kelamin,
@@ -151,16 +159,20 @@ export default function TambahArsip() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal,
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
         );
         if (added) {
             setFile("");
@@ -174,6 +186,10 @@ export default function TambahArsip() {
             setPerihal("");
             setSifat("");
             setJenis("");
+            "";
+            "";
+            "";
+            "";
             "";
             "";
             "";
