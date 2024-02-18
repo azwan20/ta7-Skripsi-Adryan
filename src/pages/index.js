@@ -5,10 +5,29 @@ import { useRouter } from "next/router";
 import { db } from "../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-async function addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa) {
+async function addDataToFirebase(nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa,
+  nama_penanggungJawab,
+  jabatan_penanggungJawab,
+  nip_penanggungJawab,
+  jabatan_penerima,
+  nip_penerima,
+  nama_desa,
+  nik,
+  ttl,
+  jenis_kelamin,
+  status_perkawinan,
+  agama,
+  pekerjaan,
+  isi_surat,
+  penutup_surat,
+  rtRw,
+  kelurahan,
+  kecamatan,
+  kabupaten,
+  penghasilan,
+  namaOrangTua,) {
   try {
     const docRefSurat = await addDoc(collection(db, "surat"), {
-      file: file,
       nama: nama,
       alamat: alamat,
       tanggal_masuk: tanggal_masuk,
@@ -17,6 +36,26 @@ async function addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_sura
       sifat_surat: sifat_surat,
       prihal: prihal,
       no_wa: no_wa,
+      nama_penanggungJawab: nama_penanggungJawab,
+      jabatan_penanggungJawab: jabatan_penanggungJawab,
+      nip_penanggungJawab: nip_penanggungJawab,
+      jabatan_penerima: jabatan_penerima,
+      nip_penerima: nip_penerima,
+      nama_desa: "Desa Pao",
+      nik: nik,
+      ttl: ttl,
+      jenis_kelamin: jenis_kelamin,
+      status_perkawinan: status_perkawinan,
+      agama: agama,
+      pekerjaan: pekerjaan,
+      isi_surat: isi_surat,
+      penutup_surat: penutup_surat,
+      rtRw: rtRw,
+      kelurahan: kelurahan,
+      kecamatan: kecamatan,
+      kabupaten: kabupaten,
+      penghasilan: penghasilan,
+      namaOrangTua: namaOrangTua,
     })
     console.log("Document input document ID : ", docRefSurat.id);
     return true;
@@ -41,6 +80,95 @@ async function fetchDataFromFirestore() {
 export default function Home() {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const router = useRouter();
+
+  const [visibleSku, setVisibleSku] = useState(true);
+  const [visibleSt, setVisibleSt] = useState(false);
+  const [visibleSktm, setVisibleSktm] = useState(false);
+  const [visibleSkd, setVisibleSkd] = useState(false);
+  const [visibleSkpo, setVisibleSkpo] = useState(false);
+
+  const [isSku, setIsSku] = useState(true);
+  const [isSt, setIsSt] = useState(false);
+  const [isSktm, setIsSktm] = useState(false);
+  const [isSkd, setIsSkd] = useState(false);
+  const [isSkp, setIsSkp] = useState(false);
+  const [islainnya, setIsLainnya] = useState(false);
+
+  const handleButtonClick = (buttonType) => {
+    if (buttonType === "sku") {
+      setIsSku(true);
+      setIsSt(false);
+      setIsSktm(false);
+      setIsSkd(false);
+      setIsSkp(false);
+      setIsLainnya(false);
+      setVisibleSku(true);
+      setVisibleSt(false);
+      setVisibleSktm(false);
+      setVisibleSkd(false);
+      setVisibleSkpo(false);
+    } else if (buttonType === "st") {
+      setIsSku(false);
+      setIsSt(true);
+      setIsSktm(false);
+      setIsSkd(false);
+      setIsSkp(false);
+      setIsLainnya(false);
+      setVisibleSku(false);
+      setVisibleSt(true);
+      setVisibleSktm(false);
+      setVisibleSkd(false);
+      setVisibleSkpo(false);
+    } else if (buttonType === "sktm") {
+      setIsSku(false);
+      setIsSt(false);
+      setIsSktm(true);
+      setIsSkd(false);
+      setIsSkp(false);
+      setIsLainnya(false);
+      setVisibleSku(false);
+      setVisibleSt(false);
+      setVisibleSktm(true);
+      setVisibleSkd(false);
+      setVisibleSkpo(false);
+    } else if (buttonType === "skd") {
+      setIsSku(false);
+      setIsSt(false);
+      setIsSktm(false);
+      setIsSkd(true);
+      setIsSkp(false);
+      setIsLainnya(false);
+      setVisibleSku(false);
+      setVisibleSt(false);
+      setVisibleSktm(false);
+      setVisibleSkd(true);
+      setVisibleSkpo(false);
+    } else if (buttonType === "skp") {
+      setIsSku(false);
+      setIsSt(false);
+      setIsSktm(false);
+      setIsSkd(false);
+      setIsSkp(true);
+      setIsLainnya(false);
+      setVisibleSku(false);
+      setVisibleSt(false);
+      setVisibleSktm(false);
+      setVisibleSkd(false);
+      setVisibleSkpo(true);
+    } else if (buttonType === "lainnya") {
+      setIsSku(false);
+      setIsSt(false);
+      setIsSktm(false);
+      setIsSkd(false);
+      setIsSkp(false);
+      setIsLainnya(true);
+      setVisibleSku(false);
+      setVisibleSt(false);
+      setVisibleSktm(false);
+      setVisibleSkd(false);
+      setVisibleSkpo(false);
+    }
+  };
 
   const handleSimpanClick = () => {
     setPopupVisible(true);
@@ -85,24 +213,53 @@ export default function Home() {
     };
   }, []);
 
-  const [file, setFile] = useState('');
-  const [alamat, setAlamat] = useState('');
   const [nama, setNama] = useState('');
-  const [no_surat, setNo_surat] = useState('');
-  const [jenis_surat, setJenis] = useState('');
+  const [nik, setNik] = useState('');
+  const [nip, setNip] = useState('');
+  const [ttl, setTtl] = useState('');
+  const [agama, setAgama] = useState('');
+  const [alamat, setAlamat] = useState('');
+  const [jenis_kelamin, setJenis_kelamin] = useState('');
   const [tanggal_masuk, setTanggal_masuk] = useState('');
   const [tanggal_surat, setTanggal_surat] = useState('');
+  const [jenis_surat, setJenis] = useState('');
   const [sifat_surat, setSifat] = useState('');
+  const [status, setStatus] = useState('');
+  const [pekerjaan, setPekerjaan] = useState('');
   const [prihal, setPerihal] = useState('');
   const [no_wa, setNo_wa] = useState('');
+  const [rtRw, setRtRw] = useState('');
+  const [kelurahan, setKelurahan] = useState('');
+  const [kecamatan, setKecamatan] = useState('');
+  const [kabupaten, setKabupaten] = useState('');
+  const [penghasilan, setPenghasilan] = useState('');
+  const [namaOrangTua, setNamaOrangTua,] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const added = await addDataToFirebase(file, nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa);
+    const added = await addDataToFirebase(nama, alamat, tanggal_masuk, tanggal_surat, jenis_surat, sifat_surat, prihal, no_wa,
+      "",
+      "",
+      "",
+      "",
+      nip,
+      "",
+      nik,
+      ttl,
+      jenis_kelamin,
+      status,
+      agama,
+      pekerjaan,
+      "",
+      "",
+      rtRw,
+      kelurahan,
+      kecamatan,
+      kabupaten,
+      penghasilan,
+      namaOrangTua,);
 
     if (added) {
-      setFile("");
       setNama("");
       setAlamat("");
       setTanggal_masuk("");
@@ -111,6 +268,27 @@ export default function Home() {
       setSifat("");
       setPerihal("");
       setNo_wa("");
+      "";
+      "";
+      "";
+      "";
+      "";
+      "";
+      setNik("");
+      setTtl("");
+      setNip("");
+      setJenis_kelamin("");
+      setStatus("");
+      setAgama("");
+      setPekerjaan("");
+      "";
+      "";
+      setRtRw("")
+      setKelurahan("")
+      setKecamatan("")
+      setKabupaten("")
+      setPenghasilan("")
+      setNamaOrangTua("")
 
       setPopupVisible(true);
     } else {
@@ -121,64 +299,468 @@ export default function Home() {
   return (
     <>
       <div className="tambah-arsip d-flex">
-        <Aside />
+        <Aside isSku={isSku} isSt={isSt} isSktm={isSktm} isSkd={isSkd} isSkp={isSkp} islainnya={islainnya} handleButtonClick={handleButtonClick} />
         <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
           <div className="d-flex f-width align-items-center justify-content-left p-2 title-mobile">
             <img className="imgProfile" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
             <h3 className="imgProfile" style={{ textAlign: 'center', margin: 'auto' }}>Kantor Desa Pao</h3>
           </div>
-          <h1 className="p-3" style={{ textAlign: 'center' }}>Silakan Input Request Surat Anda</h1>
-          <form onSubmit={handleSubmit} method="post" action="">
-            <section>
-              <span>
-                <p style={{ width: '30%' }}>File Arsip</p>
-                <div className="d-flex flex-column align-items-end mobileInput" style={{ width: '70%' }}>
-                  <input style={{ width: '100%', marginBottom: '0' }} type="text" name="file" id="nama" value={file} onChange={(e) => setFile(e.target.value)} />
-                  <p style={{ fontSize: '15px' }}>input link google drive (atau penyimpanan cloud lainnya), <br /> pastikan sudah bisa di akses untuk umum.</p>
-                </div>
-              </span>
-              <span>
-                <p>Nama Pengirim</p>
-                <input type="text" name="nama" id="nama" value={nama} onChange={(e) => setNama(e.target.value)} required />
-              </span>
-              <span>
-                <p>Alamat Pengirim</p>
-                <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
-              </span>
-              <span>
-                <p>Tanggal Ajukan</p>
-                <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
-              </span>
-              <span>
-                <p>Tanggal Surat</p>
-                <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
-              </span>
-              <span>
-                <p>Jenis Surat</p>
-                <input
-                  value={"surat masuk"}
-                  onChange={(e) => setJenis(e.target.value)}
-                  readOnly
-                />
-              </span>
-              <span>
-                <p>Sifat Surat</p>
-                <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
-              </span>
-              <span>
-                <p>Perihal Lampiran</p>
-                <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
-              </span>
-              <span>
-                <p>No. WhatsApp</p>
-                <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
-              </span>
-            </section>
-            <section className="d-flex justify-content-between">
-              <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
-              <button style={{ backgroundColor: '#900000' }}>Batal</button>
-            </section>
-          </form>
+          <h1 className="p-3" style={{ textAlign: 'center' }}>Silakan Input Data Anda</h1>
+          <div className="inputUser">
+            {visibleSku && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="Makassar, 12 Agustus 2007" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Agama</p>
+                    <select
+                      value={agama}
+                      onChange={(e) => setAgama(e.target.value)}>
+                      <option>Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen Protestan">Kristen Protestan</option>
+                      <option value="Kristen Katolik">Kristen Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghuchu">Konghuchu</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
+          <div className="inputUser">
+            {visibleSt && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nip</p>
+                    <input type="number" name="" placeholder="Isi jika perlu" id="" value={nip} onChange={(e) => setNip(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="Makassar, 12 Agustus 2007" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Agama</p>
+                    <select
+                      value={agama}
+                      onChange={(e) => setAgama(e.target.value)}>
+                      <option>Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen Protestan">Kristen Protestan</option>
+                      <option value="Kristen Katolik">Kristen Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghuchu">Konghuchu</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
+          <div className="inputUser">
+            {visibleSktm && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="Makassar, 12 Agustus 2007" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Agama</p>
+                    <select
+                      value={agama}
+                      onChange={(e) => setAgama(e.target.value)}>
+                      <option>Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen Protestan">Kristen Protestan</option>
+                      <option value="Kristen Katolik">Kristen Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghuchu">Konghuchu</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
+          <div className="inputUser">
+            {visibleSkd && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="Makassar, 12 Agustus 2007" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Agama</p>
+                    <select
+                      value={agama}
+                      onChange={(e) => setAgama(e.target.value)}>
+                      <option>Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen Protestan">Kristen Protestan</option>
+                      <option value="Kristen Katolik">Kristen Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghuchu">Konghuchu</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>RT/RW</p>
+                    <input type="text" name="" id="" required value={rtRw} onChange={(e) => setRtRw(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kelurahan</p>
+                    <input type="text" name="" id="" required value={kelurahan} onChange={(e) => setKelurahan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kecamatan</p>
+                    <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kabupaten</p>
+                    <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
+          <div className="inputUser">
+            {visibleSkpo && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Nama Orang Tua</p>
+                    <input type="text" name="" id="" value={namaOrangTua} onChange={(e) => setNamaOrangTua(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Penghasilan Orang Tua</p>
+                    <input type="text" name="" id="" required value={penghasilan} onChange={(e) => setPenghasilan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kecamatan</p>
+                    <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kabupaten</p>
+                    <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
         </article>
       </div>
       {/* Pop-up component */}

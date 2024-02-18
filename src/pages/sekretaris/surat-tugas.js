@@ -48,11 +48,19 @@ export default function Template() {
         }
         fetchData();
     }, [id]);
+
+    const currentDate = new Date();
+
+    const formatDate = (inputDate) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(inputDate).toLocaleDateString('id-ID', options);
+    };
+
     return (
         <>
             {dataSuratMasuk.map((value) => (
                 <div className="template">
-                <button className="print-button" onClick={() => window.print()}>Cetak</button>
+                    <button className="print-button" onClick={() => window.print()}>Cetak</button>
                     <div className="d-flex flex-row header">
                         <span style={{ marginRight: '30px' }}>
                             <img id="logo"
@@ -83,7 +91,7 @@ export default function Template() {
                                         <p>Nip</p>
                                         <p>Jabatan</p>
                                     </span>
-                                    <span style={{ paddingLeft: '120px' }}>
+                                    <span style={{ paddingLeft: '60px' }}>
                                         <p>: {value.nama_penanggungJawab}</p>
                                         <p>: {value.nip_penanggungJawab}</p>
                                         <p>: {value.jabatan_penanggungJawab}</p>
@@ -119,7 +127,7 @@ export default function Template() {
                             <span>
                                 <div className="names">
                                     <p>Ditetapkan : {value.nama_desa}</p>
-                                    <p>Pada tanggal, {value.tanggal_surat}</p>
+                                    <p>Pada tanggal, {formatDate(currentDate)}</p>
                                     <p><b>a.n Kepala Desa Pao</b></p>
                                     <p style={{ textAlign: 'left' }}>{value.jabatan_penanggungJawab}</p>
                                 </div>

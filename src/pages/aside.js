@@ -1,23 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Aside() {
-    const [isTransaksiActive, setIsTransaksiActive] = useState(true);
-    const [isProdukActive, setIsProdukActive] = useState(false);
-
-    const handleButtonClick = (buttonType) => {
-        if (buttonType === "transaksi") {
-            setIsTransaksiActive(true);
-            setIsProdukActive(false);
-        } else if (buttonType === "produk") {
-            setIsTransaksiActive(false);
-            setIsProdukActive(true);
-        }
-    };
-
+export default function Aside({isSku, isSt, isSktm, isSkd, isSkp, islainnya, handleButtonClick}) {
     return (
         <>
-            <aside>
+            <aside className="asideIndex">
                 <section style={{ height: '25%' }}>
                     <div className="container-fluid text-light d-flex flex-column align-items-center">
                         <h5>Kantor Desa Pao</h5>
@@ -27,11 +14,24 @@ export default function Aside() {
                 </section>
                 <section style={{ height: '75%', paddingTop: '30px' }}>
                     <span style={{ width: '90%' }}>
-                        <Link href="">
-                            <button className={isTransaksiActive ? "active" : ""} onClick={() => handleButtonClick("transaksi")}>
-                                Input Surat
-                            </button>
-                        </Link>
+                        <button className={isSku ? "active" : ""} onClick={() => handleButtonClick("sku")}>
+                            Surat Keteranagan Usaha
+                        </button>
+                        <button className={isSt ? "active" : ""} onClick={() => handleButtonClick("st")}>
+                            Surat Tugas
+                        </button>
+                        <button className={isSktm ? "active" : ""} onClick={() => handleButtonClick("sktm")}>
+                            Surat Keterangan Tidak Mampu
+                        </button>
+                        <button className={isSkd ? "active" : ""} onClick={() => handleButtonClick("skd")}>
+                            Surat Keterangan Domisili
+                        </button>
+                        <button className={isSkp ? "active" : ""} onClick={() => handleButtonClick("skp")}>
+                            Surat Keteranagan Penghasilan
+                        </button>
+                        <button className={islainnya ? "active" : ""} onClick={() => handleButtonClick("lainnya")}>
+                            Lainnya
+                        </button>
                     </span>
                 </section>
             </aside>

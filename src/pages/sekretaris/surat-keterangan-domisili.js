@@ -74,56 +74,65 @@ export default function Template() {
                     </div>
                     <div className="">
                         <div className="d-flex title">
-                            <b>SURAT KETERANGAN USAHA</b>
+                            <b>SURAT KETERANGAN DOMISILI</b>
                             <div className="hr2" />
                             <p>Nomor : {value.no_surat} </p>
                         </div>
                         <div>
-                            <div>
-                                <p>Yang bertanda tangan di bawah ini : </p>
-                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
-                                    <span>
-                                        <p>Nama</p>
-                                        <p>Jabatan</p>
-                                    </span>
-                                    <span style={{ paddingLeft: '120px' }}>
-                                        <p>: {value.nama_penanggungJawab}</p>
-                                        <p>: {value.jabatan_penanggungJawab}</p>
-                                    </span>
-                                </section>
-                                <p>Menerangkan dengan sebenarnya bahwa : </p>
+                            <div className="d-flex">
+                                <span>
+                                    <p>Lampiran Surat</p>
+                                    <p>Tanggal</p>
+                                </span>
+                                <span>
+                                    <p>: {value.prihal} </p>
+                                    <p>: {formatDate(currentDate)}</p>
+                                </span>
                             </div>
                             <div>
+                                <p>Yang bertanda tangan di bawah ini {value.jabatan_penanggungJawab} :  <b>{value.nama_penanggungJawab}</b>, menerangkan dengan sesungguhnya bahwa : </p>
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
                                         <p>Nama</p>
                                         <p>Nik</p>
                                         <p>Tempat/tgl lahir</p>
+                                        <p>Pekerjaan</p>
                                         <p>Jenis kelamin</p>
                                         <p>Status perkawinan</p>
                                         <p>Agama</p>
-                                        <p>Pekerjaan</p>
                                         <p>Alamat</p>
+                                    </span>
+                                    <span style={{ paddingLeft: '120px' }}>
+                                        <p>: {value.nama} </p>
+                                        <p>: {value.nik} </p>
+                                        <p>: {value.ttl} </p>
+                                        <p>: {value.pekerjaan}</p>
+                                        <p>: {value.jenis_kelamin}</p>
+                                        <p>: {value.status_perkawinan}</p>
+                                        <p>: {value.agama}</p>
+                                        <p>: {value.alamat} </p>
+                                    </span>
+                                </section>
+                                <p>Adalah benar yang bersangkutan merupkan penduduk yang tinggal dan berdomisili di lingkungan wilayah : </p>
+                            </div>
+                            <div>
+                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
+                                    <span>
+                                        <p>RT/RW</p>
+                                        <p>Kelurahan</p>
+                                        <p>Kecamatan</p>
+                                        <p>Kabupaten</p>
                                     </span>
                                     <span style={{ paddingLeft: '50px' }}>
                                         <p>: {value.nama} </p>
                                         <p>: {value.nik} </p>
                                         <p>: {value.ttl} </p>
-                                        <p>: {value.jenis_kelamin} </p>
-                                        <p>: {value.status_perkawinan} </p>
-                                        <p>: {value.agama} </p>
-                                        <p>: {value.pekerjaan} </p>
                                         <p>: {value.alamat} </p>
                                     </span>
                                 </section>
                             </div>
                         </div>
-                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Menindak lanjuti surat dari Sekretariat Daerah Kabupaten
-                            Semarang Nomor : 005/001819/2018 perihal Peraturan Baru mengenai Badan Permusyawaratan Desa (BPD) berdasarkan
-                            Perda Nomor 4 Tahun 2018 dan Perbup Nomor 21 Tahun 2018 serta Tahapan Pengisian Anggota BPD, bersama ini kami
-                            mengharap atas kehadiran saudara besok pada :</p>
-                        </div>
-                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian untuk menjadikan perhatian dan atas kehadirannya diucapkan terimakasih.</p></div>
+                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian surat ini dibuat supaya dapat digunakan sebagimana mestinya.</p></div>
                         <div className="d-flex footer">
                             <span>
                                 <p>Yang bermohon,</p>

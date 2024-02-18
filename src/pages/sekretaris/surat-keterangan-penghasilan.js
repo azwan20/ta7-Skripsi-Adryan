@@ -74,7 +74,7 @@ export default function Template() {
                     </div>
                     <div className="">
                         <div className="d-flex title">
-                            <b>SURAT KETERANGAN USAHA</b>
+                            <b>SURAT KETERANGAN PENGHASILAN</b>
                             <div className="hr2" />
                             <p>Nomor : {value.no_surat} </p>
                         </div>
@@ -84,57 +84,56 @@ export default function Template() {
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
                                         <p>Nama</p>
+                                        <p>Nip</p>
                                         <p>Jabatan</p>
                                     </span>
                                     <span style={{ paddingLeft: '120px' }}>
                                         <p>: {value.nama_penanggungJawab}</p>
+                                        <p>: {value.nip_penanggungJawab}</p>
                                         <p>: {value.jabatan_penanggungJawab}</p>
                                     </span>
                                 </section>
-                                <p>Menerangkan dengan sebenarnya bahwa : </p>
                             </div>
+                            <p>Dengan ini menerangkan bahwa : </p>
                             <div>
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
                                         <p>Nama</p>
-                                        <p>Nik</p>
-                                        <p>Tempat/tgl lahir</p>
-                                        <p>Jenis kelamin</p>
-                                        <p>Status perkawinan</p>
-                                        <p>Agama</p>
-                                        <p>Pekerjaan</p>
                                         <p>Alamat</p>
+                                        <p>Pekerjaan</p>
+                                        <p>Jenis kelamin</p>
+                                        <p>Orang tua/wali dari</p>
                                     </span>
                                     <span style={{ paddingLeft: '50px' }}>
-                                        <p>: {value.nama} </p>
-                                        <p>: {value.nik} </p>
-                                        <p>: {value.ttl} </p>
-                                        <p>: {value.jenis_kelamin} </p>
-                                        <p>: {value.status_perkawinan} </p>
-                                        <p>: {value.agama} </p>
-                                        <p>: {value.pekerjaan} </p>
+                                        <p>: {value.namaOrangTua} </p>
                                         <p>: {value.alamat} </p>
+                                        <p>: {value.pekerjaan} </p>
+                                        <p>: {value.jenis_kelamin} </p>
+                                        <p>: {value.nama} </p>
                                     </span>
                                 </section>
                             </div>
                         </div>
-                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Menindak lanjuti surat dari Sekretariat Daerah Kabupaten
-                            Semarang Nomor : 005/001819/2018 perihal Peraturan Baru mengenai Badan Permusyawaratan Desa (BPD) berdasarkan
-                            Perda Nomor 4 Tahun 2018 dan Perbup Nomor 21 Tahun 2018 serta Tahapan Pengisian Anggota BPD, bersama ini kami
-                            mengharap atas kehadiran saudara besok pada :</p>
+                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Saudara tersebut di atas adalah benar-benar warga dari kelurahan/desa {value.nama_desa} Kecamatan {value.kecamatan}, 
+                        Kabupaten/Kota {value.kabupaten} dengan jumlah penghasilan kotor per bulan sebesar Rp {value.penghasilan} </p>
                         </div>
-                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian untuk menjadikan perhatian dan atas kehadirannya diucapkan terimakasih.</p></div>
+                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian surat keterangan ini dibuat dengan sebenar-benarnya, dan apabila ternyata keterangan tersebut tidak benar,
+                            maka surat ini dinyatakan batal/tidak sah.</p></div>
                         <div className="d-flex footer">
                             <span>
-                                <p>Yang bermohon,</p>
-                                <p><b>{value.nama}</b></p>
+                                {/* <p>Yang bermohon,</p> */}
+                                {/* <p><b>{value.nama}</b></p> */}
                             </span>
                             <span>
                                 <div className="names">
                                     <p>{value.nama_desa}, {formatDate(currentDate)}</p>
                                     <p>{value.jabatan_penanggungJawab},</p>
                                 </div>
-                                <p><b>{value.nama_penanggungJawab}</b></p>
+                                <div>
+                                    <p style={{ textAlign: 'left' }}><b>{value.nama_penanggungJawab}</b></p>
+                                    <hr style={{ margin: '0' }} />
+                                    <p style={{ textAlign: 'left' }}>Nip: {value.nip_penanggungJawab}</p>
+                                </div>
                             </span>
                         </div>
                     </div>
