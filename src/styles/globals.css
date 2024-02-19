@@ -454,7 +454,7 @@ h6 {
   background-color: rgb(101, 208, 101);
 }
 
-.buatSurat form {
+.buatSurat .inputanUsers {
   display: flex;
   width: 60%;
   justify-content: space-between;
@@ -462,20 +462,20 @@ h6 {
   margin: auto;
 }
 
-.buatSurat form span {
+.buatSurat .inputanUsers span {
   display: flex;
   flex-direction: column;
 }
 
-.buatSurat form span textarea,
-.buatSurat form span select,
-.buatSurat form span input {
+.buatSurat .inputanUsers span textarea,
+.buatSurat .inputanUsers span select,
+.buatSurat .inputanUsers span input {
   margin: 7px 0;
   height: 27px;
   width: 150%;
 }
 
-.buatSurat form span p {
+.buatSurat .inputanUsers span p {
   margin: 10px 0;
   font-size: 14px;
 }
@@ -484,15 +484,26 @@ h6 {
   margin-left: 30px;
 }
 
-.buatSurat .buttonBuatSurat button {
+.buatSurat .buttonBuatSurat button,
+.buatSurat .buttonBuatSurat a button,
+.buatSurat .buttonBuatSurat a {
   margin: 20px;
   border: none;
-  padding: 10px;
-  border: none;
   border-radius: 10px;
-  background-color: rgb(89, 206, 89);
+  background-color: #27323A;
   color: #fff;
   font-weight: 500;
+  height: fit-content;
+  width: 20%;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buatSurat .buttonBuatSurat a button {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .buatSurat h1 {
