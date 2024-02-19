@@ -86,6 +86,7 @@ export default function Home() {
   const [visibleSktm, setVisibleSktm] = useState(false);
   const [visibleSkd, setVisibleSkd] = useState(false);
   const [visibleSkpo, setVisibleSkpo] = useState(false);
+  const [visibleLainnya, setVisibleLainnya] = useState(false);
 
   const [isSku, setIsSku] = useState(true);
   const [isSt, setIsSt] = useState(false);
@@ -107,6 +108,7 @@ export default function Home() {
       setVisibleSktm(false);
       setVisibleSkd(false);
       setVisibleSkpo(false);
+      setVisibleLainnya(false);
     } else if (buttonType === "st") {
       setIsSku(false);
       setIsSt(true);
@@ -119,6 +121,7 @@ export default function Home() {
       setVisibleSktm(false);
       setVisibleSkd(false);
       setVisibleSkpo(false);
+      setVisibleLainnya(false);
     } else if (buttonType === "sktm") {
       setIsSku(false);
       setIsSt(false);
@@ -131,6 +134,7 @@ export default function Home() {
       setVisibleSktm(true);
       setVisibleSkd(false);
       setVisibleSkpo(false);
+      setVisibleLainnya(false);
     } else if (buttonType === "skd") {
       setIsSku(false);
       setIsSt(false);
@@ -143,6 +147,7 @@ export default function Home() {
       setVisibleSktm(false);
       setVisibleSkd(true);
       setVisibleSkpo(false);
+      setVisibleLainnya(false);
     } else if (buttonType === "skp") {
       setIsSku(false);
       setIsSt(false);
@@ -155,6 +160,7 @@ export default function Home() {
       setVisibleSktm(false);
       setVisibleSkd(false);
       setVisibleSkpo(true);
+      setVisibleLainnya(false);
     } else if (buttonType === "lainnya") {
       setIsSku(false);
       setIsSt(false);
@@ -167,6 +173,7 @@ export default function Home() {
       setVisibleSktm(false);
       setVisibleSkd(false);
       setVisibleSkpo(false);
+      setVisibleLainnya(true);
     }
   };
 
@@ -352,7 +359,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Tanggal Surat</p>
-                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                    <input type="date" name="tanggal_surat" id="nama" required value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
                   </span>
                   <span>
                     <p>Tanggal Ajukan</p>
@@ -368,12 +375,12 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Pekerjaan</p>
-                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
                   </span>
                   <span>
                     <p>Status Perkawinan</p>
                     <select
-                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      value={status} onChange={(e) => setStatus(e.target.value)} required>
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
@@ -381,7 +388,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
                       <option>Pilih Perihal Surat</option>
                       <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
                       <option value="Surat Tugas">Surat Tugas</option>
@@ -413,7 +420,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Nip</p>
-                    <input type="number" name="" placeholder="Isi jika perlu" id="" value={nip} onChange={(e) => setNip(e.target.value)} />
+                    <input type="number" name="" required placeholder="Isi jika perlu" id="" value={nip} onChange={(e) => setNip(e.target.value)} />
                   </span>
                   <span>
                     <p>Tempat Tanggal Lahir</p>
@@ -423,7 +430,7 @@ export default function Home() {
                     <p>Agama</p>
                     <select
                       value={agama}
-                      onChange={(e) => setAgama(e.target.value)}>
+                      onChange={(e) => setAgama(e.target.value)} required>
                       <option>Pilih Agama</option>
                       <option value="Islam">Islam</option>
                       <option value="Kristen Protestan">Kristen Protestan</option>
@@ -441,7 +448,7 @@ export default function Home() {
                     <p>Jenis Kelamin</p>
                     <select
                       value={jenis_kelamin}
-                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      onChange={(e) => setJenis_kelamin(e.target.value)} required>
                       <option>Pilih jenis kelamin</option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
@@ -465,12 +472,12 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Pekerjaan</p>
-                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
                   </span>
                   <span>
                     <p>Status Perkawinan</p>
                     <select
-                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      value={status} onChange={(e) => setStatus(e.target.value)} required>
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
@@ -478,7 +485,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
                       <option>Pilih Perihal Surat</option>
                       <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
                       <option value="Surat Tugas">Surat Tugas</option>
@@ -510,7 +517,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Nik</p>
-                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} required />
+                    <input type="number" name="" id="" required value={nik} onChange={(e) => setNik(e.target.value)} />
                   </span>
                   <span>
                     <p>Tempat Tanggal Lahir</p>
@@ -520,7 +527,7 @@ export default function Home() {
                     <p>Agama</p>
                     <select
                       value={agama}
-                      onChange={(e) => setAgama(e.target.value)}>
+                      onChange={(e) => setAgama(e.target.value)} required>
                       <option>Pilih Agama</option>
                       <option value="Islam">Islam</option>
                       <option value="Kristen Protestan">Kristen Protestan</option>
@@ -538,7 +545,7 @@ export default function Home() {
                     <p>Jenis Kelamin</p>
                     <select
                       value={jenis_kelamin}
-                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      onChange={(e) => setJenis_kelamin(e.target.value)} required>
                       <option>Pilih jenis kelamin</option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
@@ -562,12 +569,12 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Pekerjaan</p>
-                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
                   </span>
                   <span>
                     <p>Status Perkawinan</p>
                     <select
-                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      value={status} onChange={(e) => setStatus(e.target.value)} required>
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
@@ -575,7 +582,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
                       <option>Pilih Perihal Surat</option>
                       <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
                       <option value="Surat Tugas">Surat Tugas</option>
@@ -607,7 +614,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Nik</p>
-                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} required />
+                    <input type="number" name="" id="" required value={nik} onChange={(e) => setNik(e.target.value)} />
                   </span>
                   <span>
                     <p>Tempat Tanggal Lahir</p>
@@ -617,7 +624,7 @@ export default function Home() {
                     <p>Agama</p>
                     <select
                       value={agama}
-                      onChange={(e) => setAgama(e.target.value)}>
+                      onChange={(e) => setAgama(e.target.value)} required>
                       <option>Pilih Agama</option>
                       <option value="Islam">Islam</option>
                       <option value="Kristen Protestan">Kristen Protestan</option>
@@ -635,7 +642,7 @@ export default function Home() {
                     <p>Jenis Kelamin</p>
                     <select
                       value={jenis_kelamin}
-                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      onChange={(e) => setJenis_kelamin(e.target.value)} required>
                       <option>Pilih jenis kelamin</option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
@@ -654,7 +661,7 @@ export default function Home() {
                     <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
                   </span>
                   <span>
-                    <p>Kabupaten</p>
+                    <p>Kabupaten / Kota</p>
                     <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
                   </span>
                   <span>
@@ -675,12 +682,12 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Pekerjaan</p>
-                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
                   </span>
                   <span>
                     <p>Status Perkawinan</p>
                     <select
-                      value={status} onChange={(e) => setStatus(e.target.value)}>
+                      value={status} onChange={(e) => setStatus(e.target.value)} required>
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
@@ -688,7 +695,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
                       <option>Pilih Perihal Surat</option>
                       <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
                       <option value="Surat Tugas">Surat Tugas</option>
@@ -726,7 +733,7 @@ export default function Home() {
                     <p>Jenis Kelamin</p>
                     <select
                       value={jenis_kelamin}
-                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      onChange={(e) => setJenis_kelamin(e.target.value)} required>
                       <option>Pilih jenis kelamin</option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
@@ -766,7 +773,70 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Pekerjaan</p>
-                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status Perkawinan</p>
+                    <select
+                      value={status} onChange={(e) => setStatus(e.target.value)} required>
+                      <option>Pilih Status Perkawinan</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Perihal Lampiran</p>
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>No. WhatsApp</p>
+                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                  </span>
+                </section>
+                <section className="d-flex justify-content-between">
+                  <button type="submit" style={{ backgroundColor: '#27323A' }}>Simpan</button>
+                  <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                </section>
+              </form>
+            )}
+          </div>
+          <div className="inputUser">
+            {visibleLainnya && (
+              <form onSubmit={handleSubmit} method="post" action="">
+                <section>
+                  <span>
+                    <p>Nama Lengkap</p>
+                    <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nip</p>
+                    <input type="number" name="" placeholder="Isi jika perlu" id="" value={nip} onChange={(e) => setNip(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="Makassar, 12 Agustus 2007" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Jenis Kelamin</p>
+                    <select
+                      value={jenis_kelamin}
+                      onChange={(e) => setJenis_kelamin(e.target.value)}>
+                      <option>Pilih jenis kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
                   </span>
                   <span>
                     <p>Status Perkawinan</p>
@@ -776,6 +846,60 @@ export default function Home() {
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
                     </select>
+                  </span>
+                  <span>
+                    <p>Agama</p>
+                    <select
+                      value={agama}
+                      onChange={(e) => setAgama(e.target.value)}>
+                      <option>Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen Protestan">Kristen Protestan</option>
+                      <option value="Kristen Katolik">Kristen Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghuchu">Konghuchu</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Alamat Pengirim</p>
+                    <input type="text" name="alamat" id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Pekerjaan</p>
+                    <input type="text" name="" id="" value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>RT/RW</p>
+                    <input type="text" name="" id="" required value={rtRw} onChange={(e) => setRtRw(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kelurahan</p>
+                    <input type="text" name="" id="" required value={kelurahan} onChange={(e) => setKelurahan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kecamatan</p>
+                    <input type="text" name="" id="" value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kabupaten / Kota</p>
+                    <input type="text" name="" id="" value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Ajukan</p>
+                    <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Surat</p>
+                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
+                  </span>
+                  <span>
+                    <p>Sifat Surat</p>
+                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
@@ -788,6 +912,10 @@ export default function Home() {
                       <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
                       <option value="Lainnya">Lainnya</option>
                     </select>
+                  </span>
+                  <span>
+                    <p>Lampiran Surat</p>
+                    <input type="text" name="" id="" placeholder="Jika memilih perihal lampiran lainnya" value={penghasilan} onChange={(e) => setPenghasilan(e.target.value)} />
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
