@@ -37,7 +37,7 @@ export default function SekretarisAside({ isHomeActive, isMasukActive, isKeluarA
                             </button>
                         </Link> */}
                     </span>
-                    <Link href="/sekretaris">
+                    <Link href="/sekretaris" className="d-flex justify-content-center">
                         <span style={{ width: '80%' }}>
                             <button className='logout'>Logout
                                 <svg style={{ marginLeft: '10px' }} xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">

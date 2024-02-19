@@ -168,168 +168,122 @@ export default function BuatSuart() {
         }
     };
 
-    // const handleTemplate = () => {
-    //     router.push("")
-    // }
+    let visibleSku = false;
+    let visibleSt = false;
+    let visibleSkd = false;
+    let visibleSktm = false;
+    let visibleSkpo = false;
 
-    const [isVisible, setIsVisible] = useState(true);
-    const [visibleSku, setVisibleSku] = useState(false);
-    const [visibleSt, setVisibleSt] = useState(false);
-    const [visibleSktm, setVisibleSktm] = useState(false);
-    const [visibleSkd, setVisibleSkd] = useState(false);
-    const [visibleSkpo, setVisibleSkpo] = useState(false);
-
-    const handleSKU = () => {
-        setIsVisible(false);
-        setVisibleSku(true);
-        setVisibleSt(false);
-        setVisibleSktm(false);
-        setVisibleSkd(false);
-        setVisibleSkpo(false);
-    }
-
-    const handleST = () => {
-        setIsVisible(false);
-        setVisibleSku(false);
-        setVisibleSt(true);
-        setVisibleSktm(false);
-        setVisibleSkd(false);
-        setVisibleSkpo(false);
-    }
-
-    const handleSKTM = () => {
-        setIsVisible(false);
-        setVisibleSku(false);
-        setVisibleSt(false);
-        setVisibleSktm(true);
-        setVisibleSkd(false);
-        setVisibleSkpo(false);
-    }
-
-    const handleSKD = () => {
-        setIsVisible(false);
-        setVisibleSku(false);
-        setVisibleSt(false);
-        setVisibleSktm(false);
-        setVisibleSkd(true);
-        setVisibleSkpo(false);
-    }
-
-    const handleSKPO = () => {
-        setIsVisible(false);
-        setVisibleSku(false);
-        setVisibleSt(false);
-        setVisibleSktm(false);
-        setVisibleSkd(false);
-        setVisibleSkpo(true);
-    }
-
-    const handleBatal = () => {
-        setIsVisible(true);
-        setVisibleSku(false);
-        setVisibleSt(false);
-        setVisibleSktm(false);
-        setVisibleSkd(false);
-        setVisibleSkpo(false);
-    }
-
-
+    dataSuratMasuk.map((value) => {
+        switch (value.prihal) {
+            case "Surat Keteranagan Usaha":
+                visibleSku = true;
+                break;
+            case "Surat Tugas":
+                visibleSt = true;
+                break;
+            case "Surat Keterangan Tidak Mampu":
+                visibleSktm = true;
+                break;
+            case "Surat Keterangan Domisili":
+                visibleSkd = true;
+                break;
+            case "Surat Keteranagan Penghasilan":
+                visibleSkpo = true;
+                break;
+            default:
+                alert("Tidak ada");
+                break;
+        }
+    });
 
     return (
         <>
             <div className="d-flex buatSurat">
                 <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-                    <div>
-                        {isVisible && (
-                            <div className="buttons">
-                                <h1>Silakan Pilih Jenis Surat</h1>
-                                <button onClick={handleSKU}>Surat Keterangan Usaha</button>
-                                <button onClick={handleST}>Surat Tugas</button>
-                                <button onClick={handleSKTM}>Surat Keterangan Tidak Mampu</button>
-                                <button onClick={handleSKD}>Surat Keterangan Domisili</button>
-                                <button onClick={handleSKPO}>Surat keterangan penghasilan orang tua</button>
-                            </div>
-                        )}
-                    </div>
                     {visibleSku && (
                         <div className="p-3">
                             <h1 className="p-3">Form Pengisian Surat Keterangan Usaha</h1>
                             {dataSuratMasuk.map((value) => (
                                 <form onSubmit={handleSubmit} method="post" action="">
-                                    <span>
-                                        <p>No Surat</p>
-                                        <p>Nama Pemberi Izin</p>
-                                        <p>Jabatan Pemberi Izin</p>
-                                        <p>Nama Penerima</p>
-                                        <p>Nik</p>
-                                        <p>Tempat/Tanggal Lahir</p>
-                                        <p>Jenis Kelamin</p>
-                                        <p>Status perkawinan</p>
-                                        <p>Agama</p>
-                                        <p>Pekerjaan</p>
-                                        <p>Alamat</p>
-                                        {/* <p>Isi surat</p>
+                                    <div className="inputanUsers">
+                                        <span>
+                                            <p>No Surat</p>
+                                            <p>Nama Pemberi Izin</p>
+                                            <p>Jabatan Pemberi Izin</p>
+                                            <p>Nama Penerima</p>
+                                            <p>Nik</p>
+                                            <p>Tempat/Tanggal Lahir</p>
+                                            <p>Jenis Kelamin</p>
+                                            <p>Status perkawinan</p>
+                                            <p>Agama</p>
+                                            <p>Pekerjaan</p>
+                                            <p>Alamat</p>
+                                            {/* <p>Isi surat</p>
                                         <p>Penutup Surat</p> */}
-                                        <p>Tanggal Surat</p>
-                                    </span>
-                                    <span>
-                                        <input type="text" value={formFields.no_surat}
-                                            onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
-                                        <input type="text" value={formFields.namaKades}
-                                            onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                        <select
-                                            value={formFields.jabatanKades}
-                                            onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
-                                            <option>Pilih Jabatan Pemberi Izin</option>
-                                            <option value="Kepala Desa">Kepala Desa</option>
-                                            <option value="Sekretaris Desa">Sekretaris Desa</option>
-                                            <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
-                                            <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
-                                            <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
-                                            <option value="Kepala Dusun">Kepala Dusun</option>
-                                            <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
-                                            <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
-                                            <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
-                                        </select>
-                                        <input type="text" value={value.nama} />
-                                        <input type="number" value={formFields.nik}
-                                            onChange={(e) => handleFieldChange('nik', e.target.value)} />
-                                        <input type="text" value={formFields.ttl}
-                                            onChange={(e) => handleFieldChange('ttl', e.target.value)} />
-                                        <select
-                                            value={formFields.jenis_kelamin}
-                                            onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
-                                            <option>Pilih jenis kelamin</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
-                                        </select>
-                                        <select
-                                            value={formFields.status_perkawinan}
-                                            onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
-                                            <option>Pilih Status Perkawinan</option>
-                                            <option>Lajang</option>
-                                            <option>Sudah Menikah</option>
-                                        </select>
-                                        <select
-                                            value={formFields.agama}
-                                            onChange={(e) => handleFieldChange('agama', e.target.value)}>
-                                            <option>Pilih Agama</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen Protestan">Kristen Protestan</option>
-                                            <option value="Kristen Katolik">Kristen Katolik</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghuchu">Konghuchu</option>
-                                        </select>
-                                        <input type="text" value={formFields.pekerjaan}
-                                            onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
-                                        <input type="text" value={value.alamat} />
-                                        <input type="date" value={value.tanggal_surat} />
-                                    </span>
-                                    <span className="d-flex buttonBuatSurat justify-content-between">
+                                            <p>Tanggal Surat</p>
+                                        </span>
+                                        <span>
+                                            <input type="text" value={formFields.no_surat}
+                                                onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
+                                            <input type="text" value={formFields.namaKades}
+                                                onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                            <select
+                                                value={formFields.jabatanKades}
+                                                onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
+                                                <option>Pilih Jabatan Pemberi Izin</option>
+                                                <option value="Kepala Desa">Kepala Desa</option>
+                                                <option value="Sekretaris Desa">Sekretaris Desa</option>
+                                                <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
+                                                <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
+                                                <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
+                                                <option value="Kepala Dusun">Kepala Dusun</option>
+                                                <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
+                                                <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
+                                                <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
+                                            </select>
+                                            <input type="text" value={value.nama} />
+                                            <input type="number" value={formFields.nik}
+                                                onChange={(e) => handleFieldChange('nik', e.target.value)} />
+                                            <input type="text" value={formFields.ttl}
+                                                onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                            <select
+                                                value={formFields.jenis_kelamin}
+                                                onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
+                                                <option>Pilih jenis kelamin</option>
+                                                <option value="Laki-laki">Laki-laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                            <select
+                                                value={formFields.status_perkawinan}
+                                                onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
+                                                <option>Pilih Status Perkawinan</option>
+                                                <option>Lajang</option>
+                                                <option>Sudah Menikah</option>
+                                            </select>
+                                            <select
+                                                value={formFields.agama}
+                                                onChange={(e) => handleFieldChange('agama', e.target.value)}>
+                                                <option>Pilih Agama</option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                                <option value="Kristen Katolik">Kristen Katolik</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Budha">Budha</option>
+                                                <option value="Konghuchu">Konghuchu</option>
+                                            </select>
+                                            <input type="text" value={formFields.pekerjaan}
+                                                onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                            <input type="text" value={value.alamat} />
+                                            <input type="date" value={value.tanggal_surat} />
+                                        </span>
+                                    </div>
+                                    <span className="d-flex buttonBuatSurat justify-content-center">
                                         <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                        <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                        <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                                        </Link>
                                         <Link
                                             href={{
                                                 pathname: '/sekretaris/surat-keterangan-usaha',
@@ -348,55 +302,59 @@ export default function BuatSuart() {
                                 <h1 className="p-3">Form Pengisian Surat Tugas</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
-                                        <span>
-                                            <p>No Surat</p>
-                                            <p>Nama Pemberi Izin</p>
-                                            <p>Nip Pemberi Izin</p>
-                                            <p>Jabatan Pemberi Izin</p>
-                                            <p>Nama Penerima</p>
-                                            <p>Jabatan Penerima</p>
-                                            <p>Nip Penerima</p>
-                                            <p>Nama Desa</p>
-                                            <p>Isi surat</p>
-                                            <p>Penutup Surat</p>
-                                            <p>Tanggal Surat</p>
-                                        </span>
-                                        <span>
-                                            <input type="text" value={value.no_surat} />
-                                            <input type="text" value={formFields.namaKades}
-                                                onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                            <input type="number" value={formFields.nip_penanggungJawab}
-                                                onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
-                                            <select
-                                                value={formFields.jabatanKades}
-                                                onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
-                                                <option>Pilih Jabatan Pemberi Izin</option>
-                                                <option value="Kepala Desa">Kepala Desa</option>
-                                                <option value="Sekretaris Desa">Sekretaris Desa</option>
-                                                <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
-                                                <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
-                                                <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
-                                                <option value="Kepala Dusun">Kepala Dusun</option>
-                                                <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
-                                                <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
-                                                <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
-                                            </select>
-                                            <input type="text" value={value.nama} />
-                                            <input type="text" value={formFields.jabatan_penerima}
-                                                onChange={(e) => handleFieldChange('jabatan_penerima', e.target.value)} />
-                                            <input type="text" value={formFields.nip_penerima}
-                                                onChange={(e) => handleFieldChange('nip_penerima', e.target.value)} />
-                                            <input type="text" value={formFields.nama_desa}
-                                                onChange={(e) => handleFieldChange('nama_desa', e.target.value)} />
-                                            <textarea value={formFields.isi_surat}
-                                                onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
-                                            <textarea value={formFields.penutup_surat}
-                                                onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
-                                            <input type="date" value={value.tanggal_surat} />
-                                        </span>
-                                        <span className="d-flex buttonBuatSurat justify-content-between">
+                                        <div className="inputanUsers">
+                                            <span>
+                                                <p>No Surat</p>
+                                                <p>Nama Pemberi Izin</p>
+                                                <p>Nip Pemberi Izin</p>
+                                                <p>Jabatan Pemberi Izin</p>
+                                                <p>Nama Penerima</p>
+                                                <p>Jabatan Penerima</p>
+                                                <p>Nip Penerima</p>
+                                                <p>Nama Desa</p>
+                                                <p>Isi surat</p>
+                                                <p>Penutup Surat</p>
+                                                <p>Tanggal Surat</p>
+                                            </span>
+                                            <span>
+                                                <input type="text" value={value.no_surat} />
+                                                <input type="text" value={formFields.namaKades}
+                                                    onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                                <input type="number" value={formFields.nip_penanggungJawab}
+                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
+                                                <select
+                                                    value={formFields.jabatanKades}
+                                                    onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
+                                                    <option>Pilih Jabatan Pemberi Izin</option>
+                                                    <option value="Kepala Desa">Kepala Desa</option>
+                                                    <option value="Sekretaris Desa">Sekretaris Desa</option>
+                                                    <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
+                                                    <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
+                                                    <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
+                                                    <option value="Kepala Dusun">Kepala Dusun</option>
+                                                    <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
+                                                    <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
+                                                    <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
+                                                </select>
+                                                <input type="text" value={value.nama} />
+                                                <input type="text" value={formFields.jabatan_penerima}
+                                                    onChange={(e) => handleFieldChange('jabatan_penerima', e.target.value)} />
+                                                <input type="text" value={formFields.nip_penerima}
+                                                    onChange={(e) => handleFieldChange('nip_penerima', e.target.value)} />
+                                                <input type="text" value={formFields.nama_desa}
+                                                    onChange={(e) => handleFieldChange('nama_desa', e.target.value)} />
+                                                <textarea value={formFields.isi_surat}
+                                                    onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
+                                                <textarea value={formFields.penutup_surat}
+                                                    onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
+                                                <input type="date" value={value.tanggal_surat} />
+                                            </span>
+                                        </div>
+                                        <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                                <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            </Link>
                                             <Link
                                                 href={{
                                                     pathname: '/sekretaris/surat-tugas',
@@ -416,6 +374,109 @@ export default function BuatSuart() {
                                 <h1 className="p-3">Form Pengisian Surat Keterangan Usaha</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
+                                        <div className="inputanUsers">
+                                            <span>
+                                                <p>No Surat</p>
+                                                <p>Nama Pemberi Izin</p>
+                                                <p>Nip Pemberi Izin</p>
+                                                <p>Jabatan Pemberi Izin</p>
+                                                <p>Nama Penerima</p>
+                                                <p>Nik</p>
+                                                <p>Tempat/Tanggal Lahir</p>
+                                                <p>Jenis Kelamin</p>
+                                                <p>Status perkawinan</p>
+                                                <p>Agama</p>
+                                                <p>Pekerjaan</p>
+                                                <p>Alamat</p>
+                                                <p>Isi surat</p>
+                                                {/* <p>Penutup Surat</p> */}
+                                                <p>Tanggal Surat</p>
+                                            </span>
+                                            <span>
+                                                <input type="text" value={formFields.no_surat}
+                                                    onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
+                                                <input type="text" value={formFields.namaKades}
+                                                    onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                                <input type="number" value={formFields.nip_penanggungJawab}
+                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
+                                                <select
+                                                    value={formFields.jabatanKades}
+                                                    onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
+                                                    <option>Pilih Jabatan Pemberi Izin</option>
+                                                    <option value="Kepala Desa">Kepala Desa</option>
+                                                    <option value="Sekretaris Desa">Sekretaris Desa</option>
+                                                    <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
+                                                    <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
+                                                    <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
+                                                    <option value="Kepala Dusun">Kepala Dusun</option>
+                                                    <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
+                                                    <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
+                                                    <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
+                                                </select>
+                                                <input type="text" value={value.nama} />
+                                                <input type="number" value={formFields.nik}
+                                                    onChange={(e) => handleFieldChange('nik', e.target.value)} />
+                                                <input type="text" value={formFields.ttl}
+                                                    onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                                <select
+                                                    value={formFields.jenis_kelamin}
+                                                    onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
+                                                    <option>Pilih jenis kelamin</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                </select>
+                                                <select
+                                                    value={formFields.status_perkawinan}
+                                                    onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
+                                                    <option>Pilih Status Perkawinan</option>
+                                                    <option>Lajang</option>
+                                                    <option>Sudah Menikah</option>
+                                                </select>
+                                                <select
+                                                    value={formFields.agama}
+                                                    onChange={(e) => handleFieldChange('agama', e.target.value)}>
+                                                    <option>Pilih Agama</option>
+                                                    <option value="Islam">Islam</option>
+                                                    <option value="Kristen Protestan">Kristen Protestan</option>
+                                                    <option value="Kristen Katolik">Kristen Katolik</option>
+                                                    <option value="Hindu">Hindu</option>
+                                                    <option value="Budha">Budha</option>
+                                                    <option value="Konghuchu">Konghuchu</option>
+                                                </select>
+                                                <input type="text" value={formFields.pekerjaan}
+                                                    onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                                <input type="text" value={value.alamat} />
+                                                <textarea value={formFields.isi_surat}
+                                                    onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
+                                                {/* <textarea value={formFields.penutup_surat}
+                                            onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} /> */}
+                                                <input type="date" value={value.tanggal_surat} />
+                                            </span>
+                                        </div>
+                                        <span className="d-flex buttonBuatSurat justify-content-center">
+                                            <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
+                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                                <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            </Link>
+                                            <Link
+                                                href={{
+                                                    pathname: '/sekretaris/surat-keterangan-tidak-mampu',
+                                                    query: { id: id },
+                                                }} >
+                                                <button>Cetak surat</button>
+                                            </Link>
+                                        </span>
+                                    </form>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    {visibleSkd && (
+                        <div className="p-3">
+                            <h1 className="p-3">Form Pengisian Surat Keterangan Domisili</h1>
+                            {dataSuratMasuk.map((value) => (
+                                <form onSubmit={handleSubmit} method="post" action="">
+                                    <div className="inputanUsers">
                                         <span>
                                             <p>No Surat</p>
                                             <p>Nama Pemberi Izin</p>
@@ -429,8 +490,10 @@ export default function BuatSuart() {
                                             <p>Agama</p>
                                             <p>Pekerjaan</p>
                                             <p>Alamat</p>
-                                            <p>Isi surat</p>
-                                            {/* <p>Penutup Surat</p> */}
+                                            <p>RT/RW</p>
+                                            <p>Kelurahan</p>
+                                            <p>Kecamatan</p>
+                                            <p>Kabupaten</p>
                                             <p>Tanggal Surat</p>
                                         </span>
                                         <span>
@@ -487,119 +550,22 @@ export default function BuatSuart() {
                                             <input type="text" value={formFields.pekerjaan}
                                                 onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
                                             <input type="text" value={value.alamat} />
-                                            <textarea value={formFields.isi_surat}
-                                                onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
-                                            {/* <textarea value={formFields.penutup_surat}
-                                            onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} /> */}
+                                            <input type="text" value={formFields.rtRw}
+                                                onChange={(e) => handleFieldChange('rtRw', e.target.value)} />
+                                            <input type="text" value={formFields.kelurahan}
+                                                onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
+                                            <input type="text" value={formFields.kecamatan}
+                                                onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                            <input type="text" value={formFields.kabupaten}
+                                                onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
                                             <input type="date" value={value.tanggal_surat} />
                                         </span>
-                                        <span className="d-flex buttonBuatSurat justify-content-between">
-                                            <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
-                                            <Link
-                                                href={{
-                                                    pathname: '/sekretaris/surat-keterangan-tidak-mampu',
-                                                    query: { id: id },
-                                                }} >
-                                                <button>Cetak surat</button>
-                                            </Link>
-                                        </span>
-                                    </form>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                    {visibleSkd && (
-                        <div className="p-3">
-                            <h1 className="p-3">Form Pengisian Surat Keterangan Domisili</h1>
-                            {dataSuratMasuk.map((value) => (
-                                <form onSubmit={handleSubmit} method="post" action="">
-                                    <span>
-                                        <p>No Surat</p>
-                                        <p>Nama Pemberi Izin</p>
-                                        <p>Nip Pemberi Izin</p>
-                                        <p>Jabatan Pemberi Izin</p>
-                                        <p>Nama Penerima</p>
-                                        <p>Nik</p>
-                                        <p>Tempat/Tanggal Lahir</p>
-                                        <p>Jenis Kelamin</p>
-                                        <p>Status perkawinan</p>
-                                        <p>Agama</p>
-                                        <p>Pekerjaan</p>
-                                        <p>Alamat</p>
-                                        <p>RT/RW</p>
-                                        <p>Kelurahan</p>
-                                        <p>Kecamatan</p>
-                                        <p>Kabupaten</p>
-                                        <p>Tanggal Surat</p>
-                                    </span>
-                                    <span>
-                                        <input type="text" value={formFields.no_surat}
-                                            onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
-                                        <input type="text" value={formFields.namaKades}
-                                            onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                        <input type="number" value={formFields.nip_penanggungJawab}
-                                            onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
-                                        <select
-                                            value={formFields.jabatanKades}
-                                            onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
-                                            <option>Pilih Jabatan Pemberi Izin</option>
-                                            <option value="Kepala Desa">Kepala Desa</option>
-                                            <option value="Sekretaris Desa">Sekretaris Desa</option>
-                                            <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
-                                            <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
-                                            <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
-                                            <option value="Kepala Dusun">Kepala Dusun</option>
-                                            <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
-                                            <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
-                                            <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
-                                        </select>
-                                        <input type="text" value={value.nama} />
-                                        <input type="number" value={formFields.nik}
-                                            onChange={(e) => handleFieldChange('nik', e.target.value)} />
-                                        <input type="text" value={formFields.ttl}
-                                            onChange={(e) => handleFieldChange('ttl', e.target.value)} />
-                                        <select
-                                            value={formFields.jenis_kelamin}
-                                            onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
-                                            <option>Pilih jenis kelamin</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
-                                        </select>
-                                        <select
-                                            value={formFields.status_perkawinan}
-                                            onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
-                                            <option>Pilih Status Perkawinan</option>
-                                            <option>Lajang</option>
-                                            <option>Sudah Menikah</option>
-                                        </select>
-                                        <select
-                                            value={formFields.agama}
-                                            onChange={(e) => handleFieldChange('agama', e.target.value)}>
-                                            <option>Pilih Agama</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen Protestan">Kristen Protestan</option>
-                                            <option value="Kristen Katolik">Kristen Katolik</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghuchu">Konghuchu</option>
-                                        </select>
-                                        <input type="text" value={formFields.pekerjaan}
-                                            onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
-                                        <input type="text" value={value.alamat} />
-                                        <input type="text" value={formFields.rtRw}
-                                            onChange={(e) => handleFieldChange('rtRw', e.target.value)} />
-                                        <input type="text" value={formFields.kelurahan}
-                                            onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
-                                        <input type="text" value={formFields.kecamatan}
-                                            onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
-                                        <input type="text" value={formFields.kabupaten}
-                                            onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
-                                        <input type="date" value={value.tanggal_surat} />
-                                    </span>
-                                    <span className="d-flex buttonBuatSurat justify-content-between">
+                                    </div>
+                                    <span className="d-flex buttonBuatSurat justify-content-center">
                                         <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                        <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                        <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                                        </Link>
                                         <Link
                                             href={{
                                                 pathname: '/sekretaris/surat-keterangan-domisili',
@@ -610,74 +576,79 @@ export default function BuatSuart() {
                                     </span>
                                 </form>
                             ))}
-                        </div>
-                    )}
+                        </div >
+                    )
+                    }
                     <div>
                         {visibleSkpo && (
                             <div className="p-3">
                                 <h1 className="p-3">Form Pengisian Surat Keterangan Penghasilan</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
-                                        <span>
-                                            <p>No Surat</p>
-                                            <p>Nama Pemberi Izin</p>
-                                            <p>Nip Pemberi Izin</p>
-                                            <p>Jabatan Pemberi Izin</p>
-                                            <p>Nama Penerima</p>
-                                            <p>Alamat</p>
-                                            <p>Pekerjaan</p>
-                                            <p>Jenis Kelamin</p>
-                                            <p>Orang tua/wali dari</p>
-                                            <p>Kecamatan</p>
-                                            <p>Kabupaten</p>
-                                            <p>Jumlah Penghasilan</p>
-                                            <p>Tanggal Surat</p>
-                                        </span>
-                                        <span>
-                                            <input type="text" value={formFields.no_surat}
-                                                onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
-                                            <input type="text" value={formFields.namaKades}
-                                                onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                            <input type="number" value={formFields.nip_penanggungJawab}
-                                                onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
-                                            <select
-                                                value={formFields.jabatanKades}
-                                                onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
-                                                <option>Pilih Jabatan Pemberi Izin</option>
-                                                <option value="Kepala Desa">Kepala Desa</option>
-                                                <option value="Sekretaris Desa">Sekretaris Desa</option>
-                                                <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
-                                                <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
-                                                <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
-                                                <option value="Kepala Dusun">Kepala Dusun</option>
-                                                <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
-                                                <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
-                                                <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
-                                            </select>
-                                            <input type="text" value={value.nama} />
-                                            <input type="text" value={value.alamat} />
-                                            <input type="text" value={formFields.pekerjaan}
-                                                onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
-                                            <select
-                                                value={formFields.jenis_kelamin}
-                                                onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
-                                                <option>Pilih jenis kelamin</option>
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
-                                            </select>
-                                            <input type="text" value={formFields.namaOrangTua}
-                                                onChange={(e) => handleFieldChange('namaOrangTua', e.target.value)} />
-                                            <input type="text" value={formFields.kecamatan}
-                                                onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
-                                            <input type="text" value={formFields.kabupaten}
-                                                onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
-                                            <input type="text" value={formFields.penghasilan}
-                                                onChange={(e) => handleFieldChange('penghasilan', e.target.value)} />
-                                            <input type="date" value={value.tanggal_surat} />
-                                        </span>
-                                        <span className="d-flex buttonBuatSurat justify-content-between">
+                                        <div className="inputanUsers">
+                                            <span>
+                                                <p>No Surat</p>
+                                                <p>Nama Pemberi Izin</p>
+                                                <p>Nip Pemberi Izin</p>
+                                                <p>Jabatan Pemberi Izin</p>
+                                                <p>Nama Penerima</p>
+                                                <p>Alamat</p>
+                                                <p>Pekerjaan</p>
+                                                <p>Jenis Kelamin</p>
+                                                <p>Orang tua/wali dari</p>
+                                                <p>Kecamatan</p>
+                                                <p>Kabupaten</p>
+                                                <p>Jumlah Penghasilan</p>
+                                                <p>Tanggal Surat</p>
+                                            </span>
+                                            <span>
+                                                <input type="text" value={formFields.no_surat}
+                                                    onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
+                                                <input type="text" value={formFields.namaKades}
+                                                    onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
+                                                <input type="number" value={formFields.nip_penanggungJawab}
+                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
+                                                <select
+                                                    value={formFields.jabatanKades}
+                                                    onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
+                                                    <option>Pilih Jabatan Pemberi Izin</option>
+                                                    <option value="Kepala Desa">Kepala Desa</option>
+                                                    <option value="Sekretaris Desa">Sekretaris Desa</option>
+                                                    <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
+                                                    <option value="Kepala Urusan Keuangan">Kepala Urusan Keuangan</option>
+                                                    <option value="Kepala Urusan Perencanaan">Kepala Urusan Perencanaan</option>
+                                                    <option value="Kepala Dusun">Kepala Dusun</option>
+                                                    <option value="Kepala Seksi Pemerintahan">Kepala Seksi Pemerintahan</option>
+                                                    <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
+                                                    <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
+                                                </select>
+                                                <input type="text" value={value.nama} />
+                                                <input type="text" value={value.alamat} />
+                                                <input type="text" value={formFields.pekerjaan}
+                                                    onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                                <select
+                                                    value={formFields.jenis_kelamin}
+                                                    onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
+                                                    <option>Pilih jenis kelamin</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                </select>
+                                                <input type="text" value={formFields.namaOrangTua}
+                                                    onChange={(e) => handleFieldChange('namaOrangTua', e.target.value)} />
+                                                <input type="text" value={formFields.kecamatan}
+                                                    onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                                <input type="text" value={formFields.kabupaten}
+                                                    onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
+                                                <input type="text" value={formFields.penghasilan}
+                                                    onChange={(e) => handleFieldChange('penghasilan', e.target.value)} />
+                                                <input type="date" value={value.tanggal_surat} />
+                                            </span>
+                                        </div>
+                                        <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <button onClick={handleBatal} style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                                <button style={{ backgroundColor: '#900000' }}>Batal</button>
+                                            </Link>
                                             <Link
                                                 href={{
                                                     pathname: '/sekretaris/surat-keterangan-penghasilan',
@@ -691,7 +662,7 @@ export default function BuatSuart() {
                             </div>
                         )}
                     </div>
-                </article>
+                </article >
             </div >
         </>
     )

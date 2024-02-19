@@ -381,7 +381,15 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -470,7 +478,15 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -559,7 +575,15 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -664,7 +688,15 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -687,7 +719,7 @@ export default function Home() {
                     <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
                   </span>
                   <span>
-                    <p>Alamat Pengirim</p>
+                    <p>Alamat Orang Tua</p>
                     <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
                   </span>
                   <span>
@@ -713,7 +745,7 @@ export default function Home() {
                     <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
                   </span>
                   <span>
-                    <p>Kabupaten</p>
+                    <p>Kabupaten / Kota</p>
                     <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
                   </span>
                   <span>
@@ -747,7 +779,15 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Perihal Lampiran</p>
-                    <input type="text" name="perihal" id="nama" value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                      <option>Pilih Perihal Surat</option>
+                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                      <option value="Surat Tugas">Surat Tugas</option>
+                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
+                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
