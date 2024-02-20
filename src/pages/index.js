@@ -303,10 +303,21 @@ export default function Home() {
     }
   }
 
+  const [asideVisble, setAsideVisible] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+  const handleAside = () => {
+    setAsideVisible(true);
+  }
+
   return (
     <>
       <div className="tambah-arsip d-flex">
-        <Aside isSku={isSku} isSt={isSt} isSktm={isSktm} isSkd={isSkd} isSkp={isSkp} islainnya={islainnya} handleButtonClick={handleButtonClick} />
+        <Aside sidebarVisible={sidebarVisible} toggleSidebar={toggleSidebar} isSku={isSku} isSt={isSt} isSktm={isSktm} isSkd={isSkd} isSkp={isSkp} islainnya={islainnya} handleButtonClick={handleButtonClick} />
+        {/* <button onClick={handleAside} className="buttonAside"></button> */}
         <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
           <div className="d-flex f-width align-items-center justify-content-left p-2 title-mobile">
             <img className="imgProfile" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
