@@ -208,7 +208,7 @@ export default function TambahArsip() {
 
     return (
         <>
-            <div className="tambah-arsip d-flex">
+            <div className="tambah-arsip d-flex" id="sekretarisAdd">
                 <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <form onSubmit={handleSubmit} method="post" action="">

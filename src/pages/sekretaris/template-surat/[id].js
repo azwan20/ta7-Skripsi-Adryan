@@ -299,7 +299,7 @@ export default function BuatSuart() {
                     )}
                     <div>
                         {visibleSt && (
-                            <div>
+                            <div className="p-2">
                                 <h1 className="p-3">Form Pengisian Surat Tugas</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
@@ -688,10 +688,10 @@ export default function BuatSuart() {
                                                 <p>Kelurahan</p>
                                                 <p>Kecamatan</p>
                                                 <p>Kabupaten / Kota</p>
+                                                <p>Lampiran</p>
+                                                <p>Tanggal Surat</p>
                                                 <p>Isi Surat</p>
                                                 <p>Penutup Surat</p>
-                                                <p>Tanggal Surat</p>
-                                                <p>Lampiran</p>
                                             </span>
                                             <span>
                                                 <input type="text" value={formFields.no_surat}
