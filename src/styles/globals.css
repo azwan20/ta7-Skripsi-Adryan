@@ -64,6 +64,10 @@ aside {
   background-color: var(--primary-color);
 }
 
+.tambah-arsip aside {
+  width: 100%;
+}
+
 aside section {
   padding-top: 10px;
 }
@@ -213,6 +217,10 @@ aside a {
 
 .popup-content span input {
   width: 60%;
+}
+
+.tambah-arsip .sidebar .buttonAside {
+  display: none;
 }
 
 .tambah-arsip .inputUser,
@@ -473,6 +481,8 @@ h6 {
   margin: 7px 0;
   height: 27px;
   width: 150%;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 .buatSurat .inputanUsers span p {
@@ -542,13 +552,64 @@ h6 {
   }
 
   .sekretaris aside,
-  .surat-masuk aside,
+  #sekretarisAdd aside,
+  .buatSurat aside,
+  .surat-masuk aside {
+    display: none;
+  }
+
   .tambah-arsip aside {
+    position: fixed;
+    width: 50%;
+  }
+
+  .tambah-arsip aside .identify {
+    display: none;
+  }
+
+  .tambah-arsip .sidebar .buttonAside {
+    display: block;
+    position: fixed;
+    width: 25px;
+    border-radius: 0px 10px 10px 0px;
+    height: 100px;
+    top: 20%;
+    border: none;
+    left: 0%;
+    z-index: 4;
+    background-color: #900000;
+  }
+
+  .tambah-arsip .sidebar .buttonAside p {
+    writing-mode: vertical-rl;
+    transform-origin: right bottom;
+    margin: 25px auto;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .tambah-arsip .sidebar .hiddenAdd {
+    width: 15px;
+  }
+
+  .hiddenAdd.buttonAside p {
+    display: none;
+
+  }
+
+  .tambah-arsip .sidebar .hiddenAdd.buttonAside {
+    left: 50%;
+
+  }
+
+  .tambah-arsip .sidebar .hidden {
     display: none;
   }
 
   .sekretaris article,
   .surat-masuk article,
+  .buatSurat article,
   .tambah-arsip article {
     width: 100%;
   }
@@ -631,6 +692,48 @@ h6 {
     padding: 7px !important;
     margin: 0 !important;
     background-color: var(--third-color) !important;
+  }
+
+  .buatSurat .inputanUsers {
+    margin: auto 0;
+    width: 100%;
+  }
+
+  .buatSurat .inputanUsers span {
+    width: 50%;
+  }
+
+  .buatSurat .inputanUsers input,
+  .buatSurat .inputanUsers textarea,
+  .buatSurat .inputanUsers select {
+    width: 100% !important;
+  }
+
+  .buatSurat .buttonBuatSurat {
+    margin-left: 5px;
+    margin-top: 20px;
+  }
+
+  .buatSurat .buttonBuatSurat button,
+  .buatSurat .buttonBuatSurat a button,
+  .buatSurat .buttonBuatSurat a {
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #27323A;
+    color: #fff;
+    font-weight: 500;
+    height: fit-content;
+    width: 40%;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .buatSurat .buttonBuatSurat a button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
 }
