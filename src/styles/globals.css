@@ -509,6 +509,17 @@ td {
   text-align: center;
 }
 
+.template .spanUpper p,
+.template .suratPindah .spanUpper {
+  text-transform: uppercase;
+}
+
+.template .spanUpper td p {
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0;
+}
+
 .buatSurat .inputanUsers {
   display: flex;
   width: 60%;
