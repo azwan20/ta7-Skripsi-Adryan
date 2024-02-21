@@ -25,7 +25,26 @@ async function addDataToFirebase(nama, alamat, tanggal_masuk, tanggal_surat, jen
   kecamatan,
   kabupaten,
   penghasilan,
-  namaOrangTua,) {
+  namaOrangTua,
+  provinsi,
+  klasifikasi,
+  nomor_kk,
+  nama_kepalakk,
+  kodePos_asal,
+  telpon_asal,
+  alasan_pindah,
+  alamat_tujuan,
+  desa_tujuan,
+  kecamatan_tujuan,
+  kabupaten_tujuan,
+  provinsi_tujuan,
+  kodePos_tujuan,
+  telpon_tujuan,
+  jenis_kepindahan,
+  statuskk_pindah,
+  statustidak_pindah,
+  shdk,
+) {
   try {
     const docRefSurat = await addDoc(collection(db, "surat"), {
       nama: nama,
@@ -56,6 +75,24 @@ async function addDataToFirebase(nama, alamat, tanggal_masuk, tanggal_surat, jen
       kabupaten: kabupaten,
       penghasilan: penghasilan,
       namaOrangTua: namaOrangTua,
+      provinsi: provinsi,
+      klasifikasi: klasifikasi,
+      nomor_kk: nomor_kk,
+      nama_kepalakk: nama_kepalakk,
+      kodePos_asal: kodePos_asal,
+      telpon_asal: telpon_asal,
+      alasan_pindah: alasan_pindah,
+      alamat_tujuan: alamat_tujuan,
+      desa_tujuan: desa_tujuan,
+      kecamatan_tujuan: kecamatan_tujuan,
+      kabupaten_tujuan: kabupaten_tujuan,
+      provinsi_tujuan: provinsi_tujuan,
+      kodePos_tujuan: kodePos_tujuan,
+      telpon_tujuan: telpon_tujuan,
+      jenis_kepindahan: jenis_kepindahan,
+      statuskk_pindah: statuskk_pindah,
+      statustidak_pindah: statustidak_pindah,
+      shdk: shdk,
     })
     console.log("Document input document ID : ", docRefSurat.id);
     return true;
@@ -81,18 +118,18 @@ export default function Home() {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const router = useRouter();
 
-  const [visibleSku, setVisibleSku] = useState(true);
+  const [visibleSku, setVisibleSku] = useState(false);
   const [visibleSt, setVisibleSt] = useState(false);
   const [visibleSktm, setVisibleSktm] = useState(false);
   const [visibleSkd, setVisibleSkd] = useState(false);
-  const [visibleSkpo, setVisibleSkpo] = useState(false);
+  const [visibleSkpo, setVisibleSkpo] = useState(true);
   const [visibleLainnya, setVisibleLainnya] = useState(false);
 
-  const [isSku, setIsSku] = useState(true);
+  const [isSku, setIsSku] = useState(false);
   const [isSt, setIsSt] = useState(false);
   const [isSktm, setIsSktm] = useState(false);
   const [isSkd, setIsSkd] = useState(false);
-  const [isSkp, setIsSkp] = useState(false);
+  const [isSkp, setIsSkp] = useState(true);
   const [islainnya, setIsLainnya] = useState(false);
 
   const handleButtonClick = (buttonType) => {
@@ -240,7 +277,25 @@ export default function Home() {
   const [kecamatan, setKecamatan] = useState('');
   const [kabupaten, setKabupaten] = useState('');
   const [penghasilan, setPenghasilan] = useState('');
-  const [namaOrangTua, setNamaOrangTua,] = useState('');
+  const [namaOrangTua, setNamaOrangTua] = useState('');
+  const [provinsi, setProvinsi] = useState('');
+  const [klasifikasi, setKlasifikasi] = useState('');
+  const [nomor_kk, setNomor_kk] = useState('');
+  const [nama_kepalakk, setNama_kepalakk] = useState('');
+  const [kodePos_asal, setKodePos_asal] = useState('');
+  const [telpon_asal, setTelpon_asal] = useState('');
+  const [alasan_pindah, setAlasan_pindah] = useState('');
+  const [alamat_tujuan, setAlamat_tujuan] = useState('');
+  const [desa_tujuan, setDesa_tujuan] = useState('');
+  const [kecamatan_tujuan, setKecamatan_tujuan] = useState('');
+  const [kabupaten_tujuan, setKabupaten_tujuan] = useState('');
+  const [provinsi_tujuan, setProvinsi_tujuan] = useState('');
+  const [kodePos_tujuan, setKodePos_tujuan] = useState('');
+  const [telpon_tujuan, setTelpon_tujuan] = useState('');
+  const [jenis_kepindahan, setJenis_kepindahan] = useState('');
+  const [statuskk_pindah, setStatuskk_pindah] = useState('');
+  const [statustidak_pindah, setStatustidak_pindah] = useState('');
+  const [shdk, setShdk] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -264,7 +319,26 @@ export default function Home() {
       kecamatan,
       kabupaten,
       penghasilan,
-      namaOrangTua,);
+      namaOrangTua,
+      provinsi,
+      klasifikasi,
+      nomor_kk,
+      nama_kepalakk,
+      kodePos_asal,
+      telpon_asal,
+      alasan_pindah,
+      alamat_tujuan,
+      desa_tujuan,
+      kecamatan_tujuan,
+      kabupaten_tujuan,
+      provinsi_tujuan,
+      kodePos_tujuan,
+      telpon_tujuan,
+      jenis_kepindahan,
+      statuskk_pindah,
+      statustidak_pindah,
+      shdk,
+    );
 
     if (added) {
       setNama("");
@@ -290,12 +364,29 @@ export default function Home() {
       setPekerjaan("");
       "";
       "";
-      setRtRw("")
-      setKelurahan("")
-      setKecamatan("")
-      setKabupaten("")
-      setPenghasilan("")
-      setNamaOrangTua("")
+      setRtRw("");
+      setKelurahan("");
+      setKecamatan("");
+      setKabupaten("");
+      setPenghasilan("");
+      setNamaOrangTua("");
+      setProvinsi("");
+      setKlasifikasi("");
+      setNomor_kk("");
+      setNama_kepalakk("");
+      setKodePos_asal("");
+      setTelpon_asal("");
+      setAlasan_pindah("");
+      setAlamat_tujuan("");
+      setKecamatan_tujuan("");
+      setKabupaten_tujuan("");
+      setProvinsi_tujuan("");
+      setKodePos_tujuan("");
+      setTelpon_tujuan("");
+      setJenis_kepindahan("");
+      setStatuskk_pindah("");
+      setStatustidak_pindah("");
+      setShdk("");
 
       setPopupVisible(true);
     } else {
@@ -732,47 +823,121 @@ export default function Home() {
             {visibleSkpo && (
               <form onSubmit={handleSubmit} method="post" action="">
                 <section>
+                  <span><h4>Data Daerah Asal</h4></span>
                   <span>
                     <p>Nama Lengkap</p>
                     <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
                   </span>
                   <span>
-                    <p>Alamat Orang Tua</p>
-                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
-                  </span>
-                  <span>
-                    <p>Jenis Kelamin</p>
-                    <select
-                      value={jenis_kelamin}
-                      onChange={(e) => setJenis_kelamin(e.target.value)} required>
-                      <option>Pilih jenis kelamin</option>
-                      <option value="Laki-laki">Laki-laki</option>
-                      <option value="Perempuan">Perempuan</option>
-                    </select>
-                  </span>
-                  <span>
-                    <p>Nama Orang Tua</p>
-                    <input type="text" name="" id="" value={namaOrangTua} onChange={(e) => setNamaOrangTua(e.target.value)} required />
-                  </span>
-                  <span>
-                    <p>Penghasilan Orang Tua</p>
-                    <input type="text" name="" id="" required value={penghasilan} onChange={(e) => setPenghasilan(e.target.value)} />
-                  </span>
-                  <span>
-                    <p>Kecamatan</p>
-                    <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
+                    <p>Nama Provinsi</p>
+                    <input type="text" name="" id="" required value={provinsi} onChange={(e) => setProvinsi(e.target.value)} />
                   </span>
                   <span>
                     <p>Kabupaten / Kota</p>
                     <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
                   </span>
                   <span>
-                    <p>Tanggal Surat</p>
-                    <input type="date" name="tanggal_surat" id="nama" value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
+                    <p>Kecamatan</p>
+                    <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kelurahan</p>
+                    <input type="text" name="" id="" required value={kelurahan} onChange={(e) => setKelurahan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Klasifikasi Kepindahan</p>
+                    <select
+                      value={klasifikasi} onChange={(e) => setKlasifikasi(e.target.value)} >
+                      <option>Pilih Jenis Kepindahan</option>
+                      <option value="ANTAR DESA">ANTAR DESA</option>
+                      <option value="ANTAR KAB/KOTA">ANTAR KAB/KOTA</option>
+                      <option value="ANTAR PROVINSI">ANTAR PROVINSI</option>
+                      <option value="ANTAR NEGARA">ANTAR NEGARA</option>
+                    </select>
+                  </span>
+                  <span>
+                    <p>Nomor kartu keluarga</p>
+                    <input type="number" name="" id="" value={nomor_kk} onChange={(e) => setNomor_kk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nama Kepala Keluarga</p>
+                    <input type="text" name="" id="" value={nama_kepalakk} onChange={(e) => setNama_kepalakk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Alamat</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kode Pos</p>
+                    <input type="number" name="" id="" value={kodePos_asal} onChange={(e) => setKodePos_asal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Telepon</p>
+                    <input type="number" name="" id="" value={telpon_asal} onChange={(e) => setTelpon_asal(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} />
+                  </span>
+                  <span>
+
+                    <h4>Data Kepindahan</h4>
+                  </span>
+                  <span>
+                    <p>Alasan Pindah</p>
+                    <input type="text" name="" id="" value={alasan_pindah} onChange={(e) => setAlasan_pindah(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Alamat Tujuan Pindah</p>
+                    <input type="text" name="" id="" value={alamat_tujuan} onChange={(e) => setAlamat_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nama Provinsi Tujuan</p>
+                    <input type="text" name="" id="" required value={provinsi_tujuan} onChange={(e) => setProvinsi_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kabupaten / Kota Tujuan</p>
+                    <input type="text" name="" id="" required value={kabupaten_tujuan} onChange={(e) => setKabupaten_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kecamatan Tujuan</p>
+                    <input type="text" name="" id="" required value={kecamatan_tujuan} onChange={(e) => setKecamatan_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kelurahan Tujuan</p>
+                    <input type="text" name="" id="" required value={desa_tujuan} onChange={(e) => setDesa_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Kode Pos Tujuan</p>
+                    <input type="number" name="" id="" value={kodePos_tujuan} onChange={(e) => setKodePos_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Telepon Tujuan</p>
+                    <input type="number" name="" id="" value={telpon_tujuan} onChange={(e) => setTelpon_tujuan(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Jenis Kepindahan</p>
+                    <input type="text" name="" id="" value={jenis_kepindahan} onChange={(e) => setJenis_kepindahan(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Status KK Bagi Yang Tidak Pindah</p>
+                    <input type="text" name="tanggal_surat" id="nama" value={statustidak_pindah} onChange={(e) => setStatustidak_pindah(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Status KK Bagi Yang Pindah</p>
+                    <input type="text" name="" id="" required value={statuskk_pindah} onChange={(e) => setStatuskk_pindah(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>SHDK</p>
+                    <input type="text" name="" id="" required value={shdk} onChange={(e) => setShdk(e.target.value)} />
                   </span>
                   <span>
                     <p>Tanggal Ajukan</p>
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tanggal Surat</p>
+                    <input type="date" name="tanggal_surat" id="nama" required value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
                   </span>
                   <span>
                     <p>Jenis Surat</p>
@@ -783,19 +948,6 @@ export default function Home() {
                     <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
                   </span>
                   <span>
-                    <p>Pekerjaan</p>
-                    <input type="text" name="" id="" required value={pekerjaan} onChange={(e) => setPekerjaan(e.target.value)} />
-                  </span>
-                  <span>
-                    <p>Status Perkawinan</p>
-                    <select
-                      value={status} onChange={(e) => setStatus(e.target.value)} required>
-                      <option>Pilih Status Perkawinan</option>
-                      <option value="Lajang">Lajang</option>
-                      <option value="Sudah Menikah">Sudah Menikah</option>
-                    </select>
-                  </span>
-                  <span>
                     <p>Perihal Lampiran</p>
                     <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
                       <option>Pilih Perihal Surat</option>
@@ -803,7 +955,7 @@ export default function Home() {
                       <option value="Surat Tugas">Surat Tugas</option>
                       <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
                       <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
+                      <option value="Surat Keterangan Pindah">Surat Keterangan Pindah</option>
                       <option value="Lainnya">Lainnya</option>
                     </select>
                   </span>
