@@ -24,9 +24,6 @@ export default function Aside({ isSku, isSt, isSktm, isSkd, isSkp, islainnya, ha
                                 <button className={isSkp ? "active" : ""} onClick={() => handleButtonClick("skp")}>
                                     Surat Keterangan Pindah
                                 </button>
-                                <button className={isSku ? "active" : ""} onClick={() => handleButtonClick("sku")}>
-                                    Surat Keteranagan Usaha
-                                </button>
                                 <button className={isSt ? "active" : ""} onClick={() => handleButtonClick("st")}>
                                     Surat Tugas
                                 </button>
@@ -35,6 +32,9 @@ export default function Aside({ isSku, isSt, isSktm, isSkd, isSkp, islainnya, ha
                                 </button>
                                 <button className={isSkd ? "active" : ""} onClick={() => handleButtonClick("skd")}>
                                     Surat Keterangan Domisili
+                                </button>
+                                <button className={isSku ? "active" : ""} onClick={() => handleButtonClick("sku")}>
+                                    Surat Keteranagan Usaha
                                 </button>
                                 <button className={islainnya ? "active" : ""} onClick={() => handleButtonClick("lainnya")}>
                                     Lainnya

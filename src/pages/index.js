@@ -428,6 +428,7 @@ export default function Home() {
           <div className="inputUser">
             {visibleSku && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Usaha</h1>
                 <section>
                   <span>
                     <p>Nama Lengkap</p>
@@ -500,7 +501,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -513,6 +514,7 @@ export default function Home() {
           <div className="inputUser">
             {visibleSt && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Tugas</h1>
                 <section>
                   <span>
                     <p>Nama Lengkap</p>
@@ -585,7 +587,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -598,6 +600,7 @@ export default function Home() {
           <div className="inputUser">
             {visibleSktm && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Tidak Mampu</h1>
                 <section>
                   <span>
                     <p>Nama Lengkap</p>
@@ -670,7 +673,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -683,6 +686,7 @@ export default function Home() {
           <div className="inputUser">
             {visibleSkd && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Domisili</h1>
                 <section>
                   <span>
                     <p>Nama Lengkap</p>
@@ -771,7 +775,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -782,9 +786,9 @@ export default function Home() {
             )}
           </div>
           <div className="inputUser">
-            <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Pindah</h1>
             {visibleSkpo && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Pindah</h1>
                 <section>
                   <span><h4>Data Daerah Asal</h4></span>
                   <span>
@@ -928,6 +932,7 @@ export default function Home() {
           <div className="inputUser">
             {visibleLainnya && (
               <form onSubmit={handleSubmit} method="post" action="">
+                <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Lainnya</h1>
                 <section>
                   <span>
                     <p>Nama Lengkap</p>
@@ -1024,7 +1029,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
