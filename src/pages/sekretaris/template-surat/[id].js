@@ -45,6 +45,24 @@ export default function BuatSuart() {
         kabupaten: '',
         penghasilan: '',
         namaOrangTua: '',
+        provinsi: '',
+        klasifikasi: '',
+        nomor_kk: '',
+        nama_kepalakk: '',
+        kodePos_asal: '',
+        telpon_asal: '',
+        alasan_pindah: '',
+        alamat_tujuan: '',
+        desa_tujuan: '',
+        kecamatan_tujuan: '',
+        kabupaten_tujuan: '',
+        provinsi_tujuan: '',
+        kodePos_tujuan: '',
+        telpon_tujuan: '',
+        jenis_kepindahan: '',
+        statuskk_pindah: '',
+        statustidak_pindah: '',
+        shdk: '',
     });
 
     const router = useRouter();
@@ -84,6 +102,24 @@ export default function BuatSuart() {
                         kabupaten: suratMasuk[0].kabupaten || '',
                         penghasilan: suratMasuk[0].penghasilan || '',
                         namaOrangTua: suratMasuk[0].namaOrangTua || '',
+                        provinsi: suratMasuk[0].provinsi || '',
+                        klasifikasi: suratMasuk[0].klasifikasi || '',
+                        nomor_kk: suratMasuk[0].nomor_kk || '',
+                        nama_kepalakk: suratMasuk[0].nama_kepalakk || '',
+                        kodePos_asal: suratMasuk[0].kodePos_asal || '',
+                        telpon_asal: suratMasuk[0].telpon_asal || '',
+                        alasan_pindah: suratMasuk[0].alasan_pindah || '',
+                        alamat_tujuan: suratMasuk[0].alamat_tujuan || '',
+                        desa_tujuan: suratMasuk[0].desa_tujuan || '',
+                        kecamatan_tujuan: suratMasuk[0].kecamatan_tujuan || '',
+                        kabupaten_tujuan: suratMasuk[0].kabupaten_tujuan || '',
+                        provinsi_tujuan: suratMasuk[0].provinsi_tujuan || '',
+                        kodePos_tujuan: suratMasuk[0].kodePos_tujuan || '',
+                        telpon_tujuan: suratMasuk[0].telpon_tujuan || '',
+                        jenis_kepindahan: suratMasuk[0].jenis_kepindahan || '',
+                        statuskk_pindah: suratMasuk[0].statuskk_pindah || '',
+                        statustidak_pindah: suratMasuk[0].statustidak_pindah || '',
+                        shdk: suratMasuk[0].shdk || '',
                     });
                 }
             }
@@ -153,6 +189,24 @@ export default function BuatSuart() {
             kabupaten: formFields.kabupaten,
             penghasilan: formFields.penghasilan,
             namaOrangTua: formFields.namaOrangTua,
+            provinsi: formFields.provinsi,
+            klasifikasi: formFields.klasifikasi,
+            nomor_kk: formFields.nomor_kk,
+            nama_kepalakk: formFields.nama_kepalakk,
+            kodePos_asal: formFields.kodePos_asal,
+            telpon_asal: formFields.telpon_asal,
+            alasan_pindah: formFields.alasan_pindah,
+            alamat_tujuan: formFields.alamat_tujuan,
+            desa_tujuan: formFields.desa_tujuan,
+            kecamatan_tujuan: formFields.kecamatan_tujuan,
+            kabupaten_tujuan: formFields.kabupaten_tujuan,
+            provinsi_tujuan: formFields.provinsi_tujuan,
+            kodePos_tujuan: formFields.kodePos_tujuan,
+            telpon_tujuan: formFields.telpon_tujuan,
+            jenis_kepindahan: formFields.jenis_kepindahan,
+            statuskk_pindah: formFields.statuskk_pindah,
+            statustidak_pindah: formFields.statustidak_pindah,
+            shdk: formFields.shdk,
         };
 
         try {
@@ -189,7 +243,7 @@ export default function BuatSuart() {
             case "Surat Keterangan Domisili":
                 visibleSkd = true;
                 break;
-            case "Surat Keteranagan Penghasilan":
+            case "Surat Keterangan Pindah":
                 visibleSkpo = true;
                 break;
             default:
@@ -583,7 +637,7 @@ export default function BuatSuart() {
                     <div>
                         {visibleSkpo && (
                             <div className="p-3">
-                                <h1 className="p-3">Form Pengisian Surat Keterangan Penghasilan</h1>
+                                <h1 className="p-3">Form Pengisian Surat Keterangan Pindah</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
                                         <div className="inputanUsers">
@@ -592,14 +646,33 @@ export default function BuatSuart() {
                                                 <p>Nama Pemberi Izin</p>
                                                 <p>Nip Pemberi Izin</p>
                                                 <p>Jabatan Pemberi Izin</p>
+                                                <h4>Data Daerah Asal</h4>
                                                 <p>Nama Penerima</p>
-                                                <p>Alamat</p>
-                                                <p>Pekerjaan</p>
-                                                <p>Jenis Kelamin</p>
-                                                <p>Orang tua/wali dari</p>
+                                                <p>Nama Provinsi</p>
+                                                <p>Kabupaten / Kota</p>
                                                 <p>Kecamatan</p>
-                                                <p>Kabupaten</p>
-                                                <p>Jumlah Penghasilan</p>
+                                                <p>Kelurahan</p>
+                                                <p>Klasifikasi Kepindahan</p>
+                                                <p>Nomor kartu keluarga</p>
+                                                <p>Nama Kepala Keluarga</p>
+                                                <p>Alamat</p>
+                                                <p>Kode Pos</p>
+                                                <p>Telepon</p>
+                                                <p>Nik</p>
+                                                <h4>Data Kepindahan</h4>
+                                                <p>Alasan Pindah</p>
+                                                <p>Alamat Tujuan Pindah</p>
+                                                <p>Nama Provinsi Tujuan</p>
+                                                <p>Kabupaten / Kota Tujuan</p>
+                                                <p>Kecamatan Tujuan</p>
+                                                <p>Kelurahan</p>
+                                                <p>Kode Pos Tujuan</p>
+                                                <p>Telepon Tujuan</p>
+                                                <p>Jenis Kepindahan</p>
+                                                <p>Status KK Bagi Yang Tidak Pindah</p>
+                                                <p>Status KK Bagi Yang Pindah</p>
+                                                <p>SHDK</p>
+                                                <p>Jenis Surat</p>
                                                 <p>Tanggal Surat</p>
                                             </span>
                                             <span>
@@ -613,6 +686,7 @@ export default function BuatSuart() {
                                                     value={formFields.jabatanKades}
                                                     onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
                                                     <option>Pilih Jabatan Pemberi Izin</option>
+                                                    <option value="KEPALA DINAS KEPENDIDIKAN DAN PENCACATAN SIPIL KABUPATEN">KEPALA DINAS KEPENDIDIKAN DAN PENCACATAN SIPIL KABUPATEN</option>
                                                     <option value="Kepala Desa">Kepala Desa</option>
                                                     <option value="Sekretaris Desa">Sekretaris Desa</option>
                                                     <option value="Kepala Urusan Tata Usaha dan Umum">Kepala Urusan Tata Usaha dan Umum</option>
@@ -623,25 +697,56 @@ export default function BuatSuart() {
                                                     <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
                                                     <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
                                                 </select>
+                                                <p><br /></p>
                                                 <input type="text" value={value.nama} />
-                                                <input type="text" value={value.alamat} />
-                                                <input type="text" value={formFields.pekerjaan}
-                                                    onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
-                                                <select
-                                                    value={formFields.jenis_kelamin}
-                                                    onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
-                                                    <option>Pilih jenis kelamin</option>
-                                                    <option value="Laki-laki">Laki-laki</option>
-                                                    <option value="Perempuan">Perempuan</option>
-                                                </select>
-                                                <input type="text" value={formFields.namaOrangTua}
-                                                    onChange={(e) => handleFieldChange('namaOrangTua', e.target.value)} />
-                                                <input type="text" value={formFields.kecamatan}
-                                                    onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                                <input type="text" value={formFields.provinsi}
+                                                    onChange={(e) => handleFieldChange('provinsi', e.target.value)} />
                                                 <input type="text" value={formFields.kabupaten}
                                                     onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
-                                                <input type="text" value={formFields.penghasilan}
-                                                    onChange={(e) => handleFieldChange('penghasilan', e.target.value)} />
+                                                <input type="text" value={formFields.kecamatan}
+                                                    onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                                <input type="text" value={formFields.kelurahan}
+                                                    onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
+                                                <input type="text" value={formFields.klasifikasi}
+                                                    onChange={(e) => handleFieldChange('klasifikasi', e.target.value)} />
+                                                <input type="text" value={formFields.nomor_kk}
+                                                    onChange={(e) => handleFieldChange('nomor_kk', e.target.value)} />
+                                                <input type="text" value={formFields.nama_kepalakk}
+                                                    onChange={(e) => handleFieldChange('nama_kepalakk', e.target.value)} />
+                                                <input type="text" value={value.alamat} />
+                                                <input type="text" value={formFields.kodePos_asal}
+                                                    onChange={(e) => handleFieldChange('kodePos_asal', e.target.value)} />
+                                                <input type="text" value={formFields.telpon_asal}
+                                                    onChange={(e) => handleFieldChange('telpon_asal', e.target.value)} />
+                                                <input type="text" value={formFields.nik}
+                                                    onChange={(e) => handleFieldChange('nik', e.target.value)} />
+                                                <p><br /></p>
+                                                <input type="text" value={formFields.alasan_pindah}
+                                                    onChange={(e) => handleFieldChange('alasan_pindah', e.target.value)} />
+                                                <input type="text" value={formFields.alamat_tujuan}
+                                                    onChange={(e) => handleFieldChange('alamat_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.provinsi_tujuan}
+                                                    onChange={(e) => handleFieldChange('provinsi_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.kabupaten_tujuan}
+                                                    onChange={(e) => handleFieldChange('kabupaten_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.kecamatan_tujuan}
+                                                    onChange={(e) => handleFieldChange('kecamatan_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.desa_tujuan}
+                                                    onChange={(e) => handleFieldChange('desa_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.kodePos_tujuan}
+                                                    onChange={(e) => handleFieldChange('kodePos_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.telpon_tujuan}
+                                                    onChange={(e) => handleFieldChange('telpon_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.jenis_kepindahan}
+                                                    onChange={(e) => handleFieldChange('jenis_kepindahan', e.target.value)} />
+                                                <input type="text" value={formFields.statustidak_pindah}
+                                                    onChange={(e) => handleFieldChange('statustidak_pindah', e.target.value)} />
+                                                <input type="text" value={formFields.statuskk_pindah}
+                                                    onChange={(e) => handleFieldChange('statuskk_pindah', e.target.value)} />
+                                                <input type="text" value={formFields.shdk}
+                                                    onChange={(e) => handleFieldChange('shdk', e.target.value)} />
+                                                <input type="text" value={formFields.kabupaten}
+                                                    onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
                                                 <input type="date" value={value.tanggal_surat} />
                                             </span>
                                         </div>
@@ -652,7 +757,7 @@ export default function BuatSuart() {
                                             </Link>
                                             <Link
                                                 href={{
-                                                    pathname: '/sekretaris/surat-keterangan-penghasilan',
+                                                    pathname: '/sekretaris/surat-keterangan-pindah',
                                                     query: { id: id },
                                                 }} >
                                                 <button>Cetak surat</button>
