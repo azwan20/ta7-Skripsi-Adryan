@@ -162,6 +162,12 @@ aside a {
 .surat-masuk table {
   width: 98%;
   margin: 0px 10px 20px;
+  border: none !important;
+}
+
+.surat-masuk table tbody td,
+.surat-masuk table thead th {
+  border: none !important;
 }
 
 .sekretaris thead th,
@@ -233,8 +239,12 @@ aside a {
   align-items: center;
 }
 
+.tambah-arsip .inputUser p {
+  width: 30%
+}
+
 .tambah-arsip article section {
-  width: 50%;
+  width: 70%;
   margin-top: 20px;
 }
 
@@ -371,7 +381,7 @@ aside a {
     width: 8.5in;
     height: 12in;
     margin: auto;
-    padding: 1in;
+    /* padding: 1in; */
   }
 
   .print-button {
@@ -392,7 +402,7 @@ h6 {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -462,6 +472,43 @@ h6 {
   background-color: rgb(101, 208, 101);
 }
 
+.template .kopHead p,
+.template .suratPindah p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.template .suratPindah h6 {
+  text-align: left;
+  margin: 10px 0;
+}
+
+.template .suratKepindahan span {
+  display: flex;
+}
+
+.template .tablesForm table {
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+}
+
+.template .tablesForm table,
+th,
+td {
+  border: 1px solid black;
+  font-size: 12px;
+  color: #000;
+}
+
+.template table thead th {
+  color: #000;
+}
+
+.template table th {
+  text-align: center;
+}
+
 .buatSurat .inputanUsers {
   display: flex;
   width: 60%;
@@ -485,6 +532,7 @@ h6 {
   border: 1px solid black;
 }
 
+.buatSurat .inputanUsers span h4,
 .buatSurat .inputanUsers span p {
   margin: 10px 0;
   font-size: 14px;
@@ -661,6 +709,7 @@ h6 {
   }
 
   .tambah-arsip article input,
+  .tambah-arsip article select,
   .tambah-arsip article select {
     width: 60%;
     height: 40px;
