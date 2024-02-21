@@ -133,6 +133,8 @@ export default function Home() {
   const [islainnya, setIsLainnya] = useState(false);
 
   const handleButtonClick = (buttonType) => {
+    let newPerihall;
+
     if (buttonType === "sku") {
       setIsSku(true);
       setIsSt(false);
@@ -146,6 +148,7 @@ export default function Home() {
       setVisibleSkd(false);
       setVisibleSkpo(false);
       setVisibleLainnya(false);
+      newPerihall = "Surat Keteranagan Usaha";
     } else if (buttonType === "st") {
       setIsSku(false);
       setIsSt(true);
@@ -159,6 +162,7 @@ export default function Home() {
       setVisibleSkd(false);
       setVisibleSkpo(false);
       setVisibleLainnya(false);
+      newPerihall = "Surat Tugas";
     } else if (buttonType === "sktm") {
       setIsSku(false);
       setIsSt(false);
@@ -172,6 +176,7 @@ export default function Home() {
       setVisibleSkd(false);
       setVisibleSkpo(false);
       setVisibleLainnya(false);
+      newPerihall = "Surat Keterangan Tidak Mampu";
     } else if (buttonType === "skd") {
       setIsSku(false);
       setIsSt(false);
@@ -185,6 +190,7 @@ export default function Home() {
       setVisibleSkd(true);
       setVisibleSkpo(false);
       setVisibleLainnya(false);
+      newPerihall = "Surat Keterangan Domisili";
     } else if (buttonType === "skp") {
       setIsSku(false);
       setIsSt(false);
@@ -198,6 +204,7 @@ export default function Home() {
       setVisibleSkd(false);
       setVisibleSkpo(true);
       setVisibleLainnya(false);
+      newPerihall = "Surat Keterangan Pindah";
     } else if (buttonType === "lainnya") {
       setIsSku(false);
       setIsSt(false);
@@ -211,7 +218,10 @@ export default function Home() {
       setVisibleSkd(false);
       setVisibleSkpo(false);
       setVisibleLainnya(true);
+      newPerihall = "Lainnya";
     }
+
+    setPerihal(newPerihall);
   };
 
   const handleSimpanClick = () => {
@@ -414,7 +424,7 @@ export default function Home() {
             <img className="imgProfile" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Luwu_Utara_Logo_%28North_Luwu%29.png" alt="Profile" width={55} height={70} />
             <h3 className="imgProfile" style={{ textAlign: 'center', margin: 'auto' }}>Kantor Desa Pao</h3>
           </div>
-          <h1 className="p-3" style={{ textAlign: 'center' }}>Silakan Input Data Anda</h1>
+          {/* <h1 className="p-3" style={{ textAlign: 'center' }}>Silakan Input Data Anda</h1> */}
           <div className="inputUser">
             {visibleSku && (
               <form onSubmit={handleSubmit} method="post" action="">
@@ -486,18 +496,6 @@ export default function Home() {
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
-                    </select>
-                  </span>
-                  <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
-                      <option value="Lainnya">Lainnya</option>
                     </select>
                   </span>
                   <span>
@@ -586,18 +584,6 @@ export default function Home() {
                     </select>
                   </span>
                   <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
-                      <option value="Lainnya">Lainnya</option>
-                    </select>
-                  </span>
-                  <span>
                     <p>No. WhatsApp</p>
                     <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
@@ -680,18 +666,6 @@ export default function Home() {
                       <option>Pilih Status Perkawinan</option>
                       <option value="Lajang">Lajang</option>
                       <option value="Sudah Menikah">Sudah Menikah</option>
-                    </select>
-                  </span>
-                  <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
-                      <option value="Lainnya">Lainnya</option>
                     </select>
                   </span>
                   <span>
@@ -796,18 +770,6 @@ export default function Home() {
                     </select>
                   </span>
                   <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
-                      <option value="Lainnya">Lainnya</option>
-                    </select>
-                  </span>
-                  <span>
                     <p>No. WhatsApp</p>
                     <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
@@ -820,6 +782,7 @@ export default function Home() {
             )}
           </div>
           <div className="inputUser">
+            <h1 className="p-3" style={{ textAlign: 'center' }}>Formulir Surat Keteranagan Pindah</h1>
             {visibleSkpo && (
               <form onSubmit={handleSubmit} method="post" action="">
                 <section>
@@ -829,43 +792,51 @@ export default function Home() {
                     <input type="text" name="nama" id="nama" required value={nama} onChange={(e) => setNama(e.target.value)} />
                   </span>
                   <span>
-                    <p>Nama Provinsi</p>
+                    <p>Nik</p>
+                    <input type="number" name="" id="" required value={nik} onChange={(e) => setNik(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Tempat Tanggal Lahir</p>
+                    <input type="text" name="" id="" placeholder="10-01-1990" value={ttl} onChange={(e) => setTtl(e.target.value)} required />
+                  </span>
+                  <span>
+                    <p>Alamat Asal</p>
+                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nomor kartu keluarga</p>
+                    <input type="number" name="" id="" required value={nomor_kk} onChange={(e) => setNomor_kk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nama Kepala Keluarga</p>
+                    <input type="text" name="" id="" required value={nama_kepalakk} onChange={(e) => setNama_kepalakk(e.target.value)} />
+                  </span>
+                  <span>
+                    <p>Nama Provinsi Asal</p>
                     <input type="text" name="" id="" required value={provinsi} onChange={(e) => setProvinsi(e.target.value)} />
                   </span>
                   <span>
-                    <p>Kabupaten / Kota</p>
+                    <p>Kabupaten / Kota Asal</p>
                     <input type="text" name="" id="" required value={kabupaten} onChange={(e) => setKabupaten(e.target.value)} />
                   </span>
                   <span>
-                    <p>Kecamatan</p>
+                    <p>Kecamatan Asal</p>
                     <input type="text" name="" id="" required value={kecamatan} onChange={(e) => setKecamatan(e.target.value)} />
                   </span>
                   <span>
-                    <p>Kelurahan</p>
+                    <p>Kelurahan Asal</p>
                     <input type="text" name="" id="" required value={kelurahan} onChange={(e) => setKelurahan(e.target.value)} />
                   </span>
                   <span>
                     <p>Klasifikasi Kepindahan</p>
                     <select
-                      value={klasifikasi} onChange={(e) => setKlasifikasi(e.target.value)} >
-                      <option>Pilih Jenis Kepindahan</option>
+                      value={klasifikasi} required onChange={(e) => setKlasifikasi(e.target.value)} >
+                      <option value="" disabled>Pilih Jenis Kepindahan</option>
                       <option value="ANTAR DESA">ANTAR DESA</option>
                       <option value="ANTAR KAB/KOTA">ANTAR KAB/KOTA</option>
                       <option value="ANTAR PROVINSI">ANTAR PROVINSI</option>
                       <option value="ANTAR NEGARA">ANTAR NEGARA</option>
                     </select>
-                  </span>
-                  <span>
-                    <p>Nomor kartu keluarga</p>
-                    <input type="number" name="" id="" value={nomor_kk} onChange={(e) => setNomor_kk(e.target.value)} />
-                  </span>
-                  <span>
-                    <p>Nama Kepala Keluarga</p>
-                    <input type="text" name="" id="" value={nama_kepalakk} onChange={(e) => setNama_kepalakk(e.target.value)} />
-                  </span>
-                  <span>
-                    <p>Alamat</p>
-                    <input type="text" name="alamat" required id="nama" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
                   </span>
                   <span>
                     <p>Kode Pos</p>
@@ -876,20 +847,15 @@ export default function Home() {
                     <input type="number" name="" id="" value={telpon_asal} onChange={(e) => setTelpon_asal(e.target.value)} />
                   </span>
                   <span>
-                    <p>Nik</p>
-                    <input type="number" name="" id="" value={nik} onChange={(e) => setNik(e.target.value)} />
-                  </span>
-                  <span>
-
                     <h4>Data Kepindahan</h4>
                   </span>
                   <span>
                     <p>Alasan Pindah</p>
-                    <input type="text" name="" id="" value={alasan_pindah} onChange={(e) => setAlasan_pindah(e.target.value)} />
+                    <input type="text" name="" id="" required value={alasan_pindah} onChange={(e) => setAlasan_pindah(e.target.value)} />
                   </span>
                   <span>
                     <p>Alamat Tujuan Pindah</p>
-                    <input type="text" name="" id="" value={alamat_tujuan} onChange={(e) => setAlamat_tujuan(e.target.value)} />
+                    <input type="text" name="" id="" required value={alamat_tujuan} onChange={(e) => setAlamat_tujuan(e.target.value)} />
                   </span>
                   <span>
                     <p>Nama Provinsi Tujuan</p>
@@ -925,11 +891,11 @@ export default function Home() {
                   </span>
                   <span>
                     <p>Status KK Bagi Yang Pindah</p>
-                    <input type="text" name="" id="" required value={statuskk_pindah} onChange={(e) => setStatuskk_pindah(e.target.value)} />
+                    <input type="text" name="" id="" value={statuskk_pindah} onChange={(e) => setStatuskk_pindah(e.target.value)} />
                   </span>
                   <span>
                     <p>SHDK</p>
-                    <input type="text" name="" id="" required value={shdk} onChange={(e) => setShdk(e.target.value)} />
+                    <input type="text" name="" id="" value={shdk} onChange={(e) => setShdk(e.target.value)} />
                   </span>
                   <span>
                     <p>Tanggal Ajukan</p>
@@ -948,20 +914,8 @@ export default function Home() {
                     <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
                   </span>
                   <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)} required>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keterangan Pindah">Surat Keterangan Pindah</option>
-                      <option value="Lainnya">Lainnya</option>
-                    </select>
-                  </span>
-                  <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -1065,20 +1019,8 @@ export default function Home() {
                     <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
                   </span>
                   <span>
-                    <p>Perihal Lampiran</p>
-                    <select value={prihal} onChange={(e) => setPerihal(e.target.value)}>
-                      <option>Pilih Perihal Surat</option>
-                      <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
-                      <option value="Surat Tugas">Surat Tugas</option>
-                      <option value="Surat Keterangan Tidak Mampu">Surat Keterangan Tidak Mampu</option>
-                      <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                      <option value="Surat Keteranagan Penghasilan">Surat Keteranagan Penghasilan</option>
-                      <option value="Lainnya">Lainnya</option>
-                    </select>
-                  </span>
-                  <span>
                     <p>Lampiran Surat</p>
-                    <input type="text" name="" id="" placeholder="Jika memilih perihal lampiran lainnya" value={penghasilan} onChange={(e) => setPenghasilan(e.target.value)} />
+                    <input type="text" name="" id="" placeholder="Jika memilih Lainnnya" value={penghasilan} onChange={(e) => setPenghasilan(e.target.value)} />
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -1092,17 +1034,19 @@ export default function Home() {
               </form>
             )}
           </div>
-        </article>
-      </div>
+        </article >
+      </div >
       {/* Pop-up component */}
-      {isPopupVisible && (
-        <div className="popup" style={{ backgroundColor: '#009933' }}>
-          <div className="popup-content">
-            <h2>Data Anda Berhasil Terkirim</h2>
-            <button onClick={handlePopupClose}>Tutup</button>
+      {
+        isPopupVisible && (
+          <div className="popup" style={{ backgroundColor: '#009933' }}>
+            <div className="popup-content">
+              <h2>Data Anda Berhasil Terkirim</h2>
+              <button onClick={handlePopupClose}>Tutup</button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </>
   )
 }
