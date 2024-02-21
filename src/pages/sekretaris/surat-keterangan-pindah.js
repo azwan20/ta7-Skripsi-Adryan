@@ -89,14 +89,14 @@ export default function Template() {
                                 <p>KECAMATAN</p>
                                 <p>DESA/KELURAHAN</p>
                             </span>
-                            <span>
+                            <span className="spanUpper">
                                 <p>: {value.provinsi}</p>
                                 <p>: {value.kabupaten}</p>
                                 <p>: {value.kecamatan}</p>
                                 <p>: {value.kelurahan}</p>
                             </span>
                         </div>
-                        <div className="d-flex title">
+                        <div className="d-flex title" style={{ margin: '0px auto' }}>
                             <b>{value.prihal}</b>
                             <div className="hr2" />
                             <p>{value.klasifikasi}</p>
@@ -120,7 +120,7 @@ export default function Template() {
                                             <p>4. NIK Pemohon</p>
                                             <p>5. Nama Lengkap</p>
                                         </span>
-                                        <span>
+                                        <span className="spanUpper">
                                             <p>: {value.nomor_kk}</p>
                                             <p>: {value.nama_kepalakk}</p>
                                             <p>: {value.alamat}</p>
@@ -151,8 +151,8 @@ export default function Template() {
                                             <p><br /></p>
                                             <p><br /></p>
                                             <p><br /></p>
-                                            <p>: {value.kabupaten}</p>
-                                            <p>: {value.provinsi}</p>
+                                            <p className="spanUpper">: {value.kabupaten}</p>
+                                            <p className="spanUpper">: {value.provinsi}</p>
                                             <p style={{ paddingLeft: '5px' }}>Telepon : {value.telpon_asal}</p>
                                             <p></p>
                                             <p></p>
@@ -180,17 +180,17 @@ export default function Template() {
                                         <p>7. Keluarga Yang Pindah</p>
                                     </span>
                                     <span>
-                                        <p>: {value.alasan_pindah} </p>
-                                        <p style={{ width: '200%' }}>: {value.alamat_tujuan} RT.RW </p>
+                                        <p className="spanUpper">: {value.alasan_pindah} </p>
+                                        <p className="spanUpper" style={{ width: '200%' }}>: {value.alamat_tujuan} RT.RW </p>
                                         <p style={{ paddingLeft: '5px' }}> Dusun/Dukuh/Kampung </p>
-                                        <p>: {value.desa_tujuan} </p>
-                                        <p>: {value.kecamatan_tujuan} </p>
+                                        <p className="spanUpper">: {value.desa_tujuan} </p>
+                                        <p className="spanUpper">: {value.kecamatan_tujuan} </p>
                                         <p style={{ paddingLeft: '5px' }}> Kode Pos : {value.kodePos_tujuan}</p>
-                                        <p>: {value.klasifikasi} </p>
-                                        <p>: {value.jenis_kepindahan}</p>
-                                        <p>: {value.statustidak_pindah}</p>
-                                        <p><br /></p>
-                                        <p>: {value.statuskk_pindah}</p>
+                                        <p className="spanUpper">: {value.klasifikasi} </p>
+                                        <p className="spanUpper">: {value.jenis_kepindahan}</p>
+                                        <p className="spanUpper">: {value.statustidak_pindah}</p>
+                                        <p className="spanUpper"><br /></p>
+                                        <p className="spanUpper">: {value.statuskk_pindah}</p>
                                         <p></p>
                                     </span>
                                 </section>
@@ -211,9 +211,8 @@ export default function Template() {
                                         <p><br /></p>
                                         <p><br /></p>
                                         <p><br /></p>
-                                        <p><br /></p>
-                                        <p>: {value.kabupaten_tujuan}</p>
-                                        <p>: {value.provinsi_tujuan}</p>
+                                        <p className="spanUpper">: {value.kabupaten_tujuan}</p>
+                                        <p className="spanUpper">: {value.provinsi_tujuan}</p>
                                         <p style={{ paddingLeft: '5px' }}>Telepon : {value.telpon_tujuan}</p>
                                         <p></p>
                                         <p></p>
@@ -233,12 +232,12 @@ export default function Template() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td scope="row">1</td>
-                                        <td>{value.nik}</td>
-                                        <td>{value.nama}</td>
-                                        <td>{value.ttl}</td>
-                                        <td>{value.shdk}</td>
+                                    <tr className="spanUpper">
+                                        <td scope="row"><p>1</p></td>
+                                        <td><p>{value.nik}</p></td>
+                                        <td><p>{value.nama}</p></td>
+                                        <td><p>{value.ttl}</p></td>
+                                        <td><p>{value.shdk}</p></td>
                                     </tr>
                                     <tr>
                                         <th colSpan={5}>
@@ -248,9 +247,9 @@ export default function Template() {
                                 </tbody>
                             </table>
                         </div>
-                        <div className="d-flex footer">
+                        <div className="d-flex footer" style={{ height: '220px', marginTop: '0px' }}>
                             <span>
-                                <p>Pemohon,</p>
+                                <p style={{ paddingTop: '40px' }}>Pemohon,</p>
                                 <div>
                                     <p><b>{value.nama}</b></p>
                                     <hr style={{ margin: '0' }} />
@@ -265,7 +264,7 @@ export default function Template() {
                                 </div>
                                 <div>
                                     <p><b>{value.nama_penanggungJawab}</b></p>
-                                    <hr style={{ margin: '0' }} />
+                                    <hr style={{ margin: '0 auto', width: '50%' }} />
                                     <p>Nip. {value.nip_penanggungJawab}</p>
                                 </div>
                             </span>
