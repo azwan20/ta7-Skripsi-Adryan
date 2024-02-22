@@ -166,6 +166,8 @@ aside a {
 }
 
 .surat-masuk table tbody td,
+.sekretaris table tbody td,
+.sekretaris table thead th,
 .surat-masuk table thead th {
   border: none !important;
 }
@@ -452,6 +454,7 @@ h6 {
 
 .template .footer .names p {
   text-align: left;
+  padding-left: 20px;
 }
 
 .template .title {
@@ -518,6 +521,10 @@ td {
   font-weight: bold;
   font-size: 12px;
   margin: 0;
+}
+
+.template .namaUpper{
+  text-transform: uppercase;
 }
 
 .buatSurat .inputanUsers {
