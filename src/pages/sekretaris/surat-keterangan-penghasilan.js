@@ -84,56 +84,75 @@ export default function Template() {
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
                                         <p>Nama</p>
-                                        <p>Nip</p>
                                         <p>Jabatan</p>
+                                        <p>Alamat</p>
                                     </span>
-                                    <span style={{ paddingLeft: '120px' }}>
-                                        <p>: {value.nama_penanggungJawab}</p>
-                                        <p>: {value.nip_penanggungJawab}</p>
+                                    <span style={{ paddingLeft: '105px' }}>
+                                        <p className="namaUpper">: <b>{value.nama_penanggungJawab}</b></p>
                                         <p>: {value.jabatan_penanggungJawab}</p>
+                                        <p>: {value.nip_penanggungJawab}</p>
                                     </span>
                                 </section>
                             </div>
-                            <p>Dengan ini menerangkan bahwa : </p>
+                            <p style={{ marginTop: '10px' }}>Memberika keterangan kepada : </p>
                             <div>
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
                                         <p>Nama</p>
-                                        <p>Alamat</p>
+                                        <p>Tempat/tgl.lahir</p>
                                         <p>Pekerjaan</p>
-                                        <p>Jenis kelamin</p>
-                                        <p>Orang tua/wali dari</p>
+                                        <p>Alamat</p>
                                     </span>
                                     <span style={{ paddingLeft: '50px' }}>
-                                        <p>: {value.namaOrangTua} </p>
-                                        <p>: {value.alamat} </p>
+                                        <p className="namaUpper">: <b>{value.namaOrangTua} </b></p>
+                                        <p>: {value.ttl_orangtua} </p>
+                                        <p>: {value.pekerjaan_orangtua} </p>
+                                        <p>: Dusun {value.kelurahan} {value.nama_desa} Kec. {value.kecamatan} </p>
+                                        <p style={{ paddingLeft: '7px' }}>{value.kabupaten} </p>
+                                    </span>
+                                </section>
+                            </div>
+                            <p>Adalah Orang Tua / Wali dari : </p>
+                            <div>
+                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
+                                    <span>
+                                        <p>Nama</p>
+                                        <p>Tempat/tgl.lahir</p>
+                                        <p>Pekerjaan</p>
+                                        <p>Alamat</p>
+                                        <p><br /></p>
+                                        <p>No. Hp</p>
+                                    </span>
+                                    <span style={{ paddingLeft: '50px' }}>
+                                        <p className="namaUpper">: <b>{value.nama}</b> </p>
+                                        <p>: {value.ttl} </p>
                                         <p>: {value.pekerjaan} </p>
-                                        <p>: {value.jenis_kelamin} </p>
-                                        <p>: {value.nama} </p>
+                                        <p>: Dusun {value.kelurahan} {value.nama_desa} Kec. {value.kecamatan} </p>
+                                        <p style={{ paddingLeft: '7px' }}>{value.kabupaten} </p>
+                                        <p>: {value.no_wa} </p>
                                     </span>
                                 </section>
                             </div>
                         </div>
-                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Saudara tersebut di atas adalah benar-benar warga dari kelurahan/desa {value.nama_desa} Kecamatan {value.kecamatan}, 
-                        Kabupaten/Kota {value.kabupaten} dengan jumlah penghasilan kotor per bulan sebesar Rp {value.penghasilan} </p>
+                        <div style={{ padding: '20px 10px 0 5px' }}>
+                            <div className="pembuka"><p style={{ fontSize: '16px' }}>&emsp; &emsp; &emsp; Yang tersebut diatas adalah benar warga {value.nama_desa} dan berdasarkan keterangan
+                                warga tersebut mempunyai penghasilan sebesar Rp {value.penghasilan}- Perbulan ({value.terbilang}) / bulan. </p>
+                            </div>
+                            <div className="penutup"><p style={{ fontSize: '16px' }}>&emsp; &emsp; &emsp; Demikian surat keterangan ini dibuat dengan sebenarnya, dan diberikan kepada warga
+                                dimaksud untuk dipergunakan seperlunya.</p></div>
                         </div>
-                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian surat keterangan ini dibuat dengan sebenar-benarnya, dan apabila ternyata keterangan tersebut tidak benar,
-                            maka surat ini dinyatakan batal/tidak sah.</p></div>
                         <div className="d-flex footer">
                             <span>
                                 {/* <p>Yang bermohon,</p> */}
                                 {/* <p><b>{value.nama}</b></p> */}
                             </span>
-                            <span>
-                                <div className="names">
+                            <span className="names">
+                                <div >
                                     <p>{value.nama_desa}, {formatDate(currentDate)}</p>
+                                    <p style={{ paddingLeft: '0' }}>an. Kepala Desa Pao</p>
                                     <p>{value.jabatan_penanggungJawab},</p>
                                 </div>
-                                <div>
-                                    <p style={{ textAlign: 'left' }}><b>{value.nama_penanggungJawab}</b></p>
-                                    <hr style={{ margin: '0' }} />
-                                    <p style={{ textAlign: 'left' }}>Nip: {value.nip_penanggungJawab}</p>
-                                </div>
+                                <p className="namaUpper"><b>{value.nama_penanggungJawab}</b></p>
                             </span>
                         </div>
                     </div>

@@ -74,59 +74,71 @@ export default function Template() {
                     </div>
                     <div className="">
                         <div className="d-flex title">
-                            <b>SURAT KETERANGAN USAHA</b>
+                            <b>SURAT KETERANGAN KEMATIAN</b>
                             <div className="hr2" />
                             <p>Nomor : {value.no_surat} </p>
                         </div>
                         <div>
+                            <p>Yang bertanda tangan di bawah ini, menerangkan bahawa : </p>
                             <div>
-                                <p>Yang bertanda tangan di bawah ini : </p>
-                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
+                                <section className="d-flex flex-direction-coloumn">
                                     <span>
-                                        <p>Nama</p>
-                                        <p>Jabatan</p>
-                                    </span>
-                                    <span style={{ paddingLeft: '120px' }}>
-                                        <p className="namaUpper">: <b>{value.nama_penanggungJawab}</b></p>
-                                        <p>: {value.jabatan_penanggungJawab}</p>
-                                    </span>
-                                </section>
-                                <p>Menerangkan dengan sebenarnya bahwa : </p>
-                            </div>
-                            <div>
-                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
-                                    <span>
-                                        <p>Nama</p>
-                                        <p>Jenis kelamin</p>
-                                        <p>Nik</p>
-                                        <p>Tempat/tgl lahir</p>
-                                        <p>Status perkawinan</p>
-                                        <p>Agama</p>
-                                        <p>Pekerjaan</p>
-                                        <p>Alamat</p>
+                                        <p>1. Nama Lengkap</p>
+                                        <p>2. Nomor Induk Kependudukan</p>
+                                        <p>3. Nomor Kartu Keluarga</p>
+                                        <p>4. Tempat/tgl lahir</p>
+                                        <p>5. Jenis kelamin</p>
+                                        <p>6. Kewarganegaraan</p>
+                                        <p>7. Agama</p>
+                                        <p>8. Status perkawinan</p>
+                                        <p>9. Pekerjaan</p>
+                                        <p>10. Alamat</p>
+                                        <p><br /></p>
+                                        <p>11. Anak ke</p>
+                                        <h6>Telah meninggal pada</h6>
+                                        <p>12. Hari/Tanggal</p>
+                                        <p>13. Tempat Kematian</p>
+                                        <section style={{ marginLeft: '23px' }}>
+                                            <p>Kecamatan</p>
+                                            <p>Kabupaten/Kota</p>
+                                            <p>Provinsi</p>
+                                        </section>
+                                        <p>14. Sebab kematian</p>
+                                        <p>15. Yang menentukan</p>
+                                        <p>16. Keterangan Visum</p>
                                     </span>
                                     <span style={{ paddingLeft: '50px' }}>
-                                        <p className="namaUpper">: <b>{value.nama} </b></p>
-                                        <p>: {value.jenis_kelamin} </p>
+                                        <p className="namaUpper">:<b> {value.nama}</b> </p>
                                         <p>: {value.nik} </p>
+                                        <p>: {value.nomor_kk}</p>
                                         <p>: {value.ttl} </p>
-                                        <p>: {value.status_perkawinan} </p>
+                                        <p>: {value.jenis_kelamin} </p>
+                                        <p>: {value.kewarganegaraan}</p>
                                         <p>: {value.agama} </p>
+                                        <p>: {value.status_perkawinan} </p>
                                         <p>: {value.pekerjaan} </p>
                                         <p>: Dusun {value.kelurahan} {value.nama_desa} Kec. {value.kecamatan} </p>
                                         <p style={{ paddingLeft: '7px' }}>{value.kabupaten} </p>
+                                        <p>: {value.anak_ke}</p>
+                                        <p><br /></p>
+                                        <p>: {value.ttl_orangtua}</p>
+                                        <p>: {value.alamat_tujuan}</p>
+                                        <p>: {value.kecamatan}</p>
+                                        <p>: {value.kabupaten}</p>
+                                        <p>: {value.provinsi}</p>
+                                        <p>: {value.sebab_kematian}</p>
+                                        <p>: {value.jenis_kepindahan}</p>
+                                        <p>: {value.keterangan_visum}</p>
                                     </span>
                                 </section>
                             </div>
                         </div>
-                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Yang tersebut di atas adalah benar penduduk Tetap Desa Pao Kec. Malangke Barat
-                        dan menurut keterangan yang bersangkutan benar sampai saat ini memiliki <b>{value.usaha}</b> yang terletak di Desa Pao Kec. Malangke Barat Kab. Luwu Utara.</p>
+                        <div className="pembuka"><p>&emsp; &emsp; &emsp;Demikian surat keterangan kematian ini dibuat agar dapat digunakan sebagaimana mestinya.</p>
                         </div>
-                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian surat keterangan ini dibuat dan diberikan pada yang bersangkutan untuk dipergunakan seperlunya.</p></div>
                         <div className="d-flex footer">
                             <span>
-                                <p>Yang bermohon,</p>
-                                <p className="namaUpper"><b>{value.nama}</b></p>
+                                {/* <p>Yang bermohon,</p> */}
+                                {/* <p><b>{value.nama}</b></p> */}
                             </span>
                             <span className="names">
                                 <div >

@@ -63,6 +63,19 @@ export default function BuatSuart() {
         statuskk_pindah: '',
         statustidak_pindah: '',
         shdk: '',
+        usaha: '',
+        ttl_orangtua: '',
+        pekerjaan_orangtua: '',
+        alamat_orangtua: '',
+        terbilang: '',
+        kewarganegaraan: '',
+        anak_ke: '',
+        sebab_kematian: '',
+        keterangan_visum: '',
+        jenis_kelahiran: '',
+        nama_ayah: '',
+        nik_ayah: '',
+        nik_ibu: '',
     });
 
     const router = useRouter();
@@ -120,6 +133,19 @@ export default function BuatSuart() {
                         statuskk_pindah: suratMasuk[0].statuskk_pindah || '',
                         statustidak_pindah: suratMasuk[0].statustidak_pindah || '',
                         shdk: suratMasuk[0].shdk || '',
+                        usaha: suratMasuk[0].usaha || '',
+                        ttl_orangtua: suratMasuk[0].ttl_orangtua || '',
+                        pekerjaan_orangtua: suratMasuk[0].pekerjaan_orangtua || '',
+                        alamat_orangtua: suratMasuk[0].alamat_orangtua || '',
+                        terbilang: suratMasuk[0].terbilang || '',
+                        kewarganegaraan: suratMasuk[0].kewarganegaraan || '',
+                        anak_ke: suratMasuk[0].anak_ke || '',
+                        sebab_kematian: suratMasuk[0].sebab_kematian || '',
+                        keterangan_visum: suratMasuk[0].keterangan_visum || '',
+                        jenis_kelahiran: suratMasuk[0].jenis_kelahiran || '',
+                        nama_ayah: suratMasuk[0].nama_ayah || '',
+                        nik_ayah: suratMasuk[0].nik_ayah || '',
+                        nik_ibu: suratMasuk[0].nik_ibu || '',
                     });
                 }
             }
@@ -207,6 +233,19 @@ export default function BuatSuart() {
             statuskk_pindah: formFields.statuskk_pindah,
             statustidak_pindah: formFields.statustidak_pindah,
             shdk: formFields.shdk,
+            usaha: formFields.usaha,
+            ttl_orangtua: formFields.ttl_orangtua,
+            pekerjaan_orangtua: formFields.pekerjaan_orangtua,
+            alamat_orangtua: formFields.alamat_orangtua,
+            terbilang: formFields.terbilang,
+            kewarganegaraan: formFields.kewarganegaraan,
+            anak_ke: formFields.anak_ke,
+            sebab_kematian: formFields.sebab_kematian,
+            keterangan_visum: formFields.keterangan_visum,
+            jenis_kelahiran: formFields.jenis_kelahiran,
+            nama_ayah: formFields.nama_ayah,
+            nik_ayah: formFields.nik_ayah,
+            nik_ibu: formFields.nik_ibu,
         };
 
         try {
@@ -234,13 +273,13 @@ export default function BuatSuart() {
             case "Surat Keteranagan Usaha":
                 visibleSku = true;
                 break;
-            case "Surat Tugas":
+            case "Surat Keterangan Penghasilan":
                 visibleSt = true;
                 break;
-            case "Surat Keterangan Tidak Mampu":
+            case "Surat Keterangan Kematian":
                 visibleSktm = true;
                 break;
-            case "Surat Keterangan Domisili":
+            case "Surat Keterangan Kelahiran":
                 visibleSkd = true;
                 break;
             case "Surat Keterangan Pindah":
@@ -354,29 +393,36 @@ export default function BuatSuart() {
                     <div>
                         {visibleSt && (
                             <div className="p-2">
-                                <h1 className="p-3">Form Pengisian Surat Tugas</h1>
+                                <h1 className="p-3">Form Pengisian Surat Penghasilan</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
                                         <div className="inputanUsers">
                                             <span>
                                                 <p>No Surat</p>
                                                 <p>Nama Pemberi Izin</p>
-                                                <p>Nip Pemberi Izin</p>
                                                 <p>Jabatan Pemberi Izin</p>
+                                                <p>Alamat Pemberi Izin</p>
                                                 <p>Nama Penerima</p>
-                                                <p>Jabatan Penerima</p>
-                                                <p>Nip Penerima</p>
-                                                <p>Nama Desa</p>
-                                                <p>Isi surat</p>
-                                                <p>Penutup Surat</p>
+                                                <p>Tempat/tgl lahir</p>
+                                                <p>Pekerjaan</p>
+                                                <p>Alamat</p>
+                                                <p>Nama Orang Tua</p>
+                                                <p>Tempat Tanggal Lahir Orang Tua</p>
+                                                <p>Pekerjaan Orang Tua</p>
+                                                <p>Alamat Orang Tua</p>
+                                                <p>Pengahasilan</p>
+                                                <p>Terbilang</p>
+                                                <p>Kelurahan</p>
+                                                <p>Kecamatan</p>
+                                                <p>Kabupaten / Kota</p>
+                                                <p>No. Hp</p>
                                                 <p>Tanggal Surat</p>
                                             </span>
                                             <span>
-                                                <input type="text" value={value.no_surat} />
+                                                <input type="text" value={formFields.no_surat}
+                                                    onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
                                                 <input type="text" value={formFields.namaKades}
                                                     onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                                <input type="number" value={formFields.nip_penanggungJawab}
-                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
                                                 <select
                                                     value={formFields.jabatanKades}
                                                     onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
@@ -391,17 +437,32 @@ export default function BuatSuart() {
                                                     <option value="Kepala Seksi Kesejahteraan">Kepala Seksi Kesejahteraan</option>
                                                     <option value="Kepala Seksi Pelayanan">Kepala Seksi Pelayanan</option>
                                                 </select>
+                                                <input type="text" value={formFields.nip_penanggungJawab}
+                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
                                                 <input type="text" value={value.nama} />
-                                                <input type="text" value={formFields.jabatan_penerima}
-                                                    onChange={(e) => handleFieldChange('jabatan_penerima', e.target.value)} />
-                                                <input type="text" value={formFields.nip_penerima}
-                                                    onChange={(e) => handleFieldChange('nip_penerima', e.target.value)} />
-                                                <input type="text" value={formFields.nama_desa}
-                                                    onChange={(e) => handleFieldChange('nama_desa', e.target.value)} />
-                                                <textarea value={formFields.isi_surat}
-                                                    onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
-                                                <textarea value={formFields.penutup_surat}
-                                                    onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} />
+                                                <input type="text" value={formFields.ttl}
+                                                    onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                                <input type="text" value={formFields.pekerjaan}
+                                                    onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                                <input type="text" value={value.alamat} />
+                                                <input type="text" value={value.namaOrangTua} />
+                                                <input type="text" value={formFields.ttl_orangtua}
+                                                    onChange={(e) => handleFieldChange('ttl_orangtua', e.target.value)} />
+                                                <input type="text" value={formFields.pekerjaan_orangtua}
+                                                    onChange={(e) => handleFieldChange('pekerjaan_orangtua', e.target.value)} />
+                                                <input type="text" value={formFields.alamat_orangtua}
+                                                    onChange={(e) => handleFieldChange('alamat_orangtua', e.target.value)} />
+                                                <input type="text" value={formFields.penghasilan}
+                                                    onChange={(e) => handleFieldChange('penghasilan', e.target.value)} />
+                                                <input type="text" value={formFields.terbilang}
+                                                    onChange={(e) => handleFieldChange('terbilang', e.target.value)} />
+                                                <input type="text" value={formFields.kelurahan}
+                                                    onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
+                                                <input type="text" value={formFields.kecamatan}
+                                                    onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                                <input type="text" value={formFields.kabupaten}
+                                                    onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
+                                                <input type="text" value={value.no_wa} />
                                                 <input type="date" value={value.tanggal_surat} />
                                             </span>
                                         </div>
@@ -412,7 +473,7 @@ export default function BuatSuart() {
                                             </Link>
                                             <Link
                                                 href={{
-                                                    pathname: '/sekretaris/surat-tugas',
+                                                    pathname: '/sekretaris/surat-keterangan-penghasilan',
                                                     query: { id: id },
                                                 }} >
                                                 <button>Cetak surat</button>
@@ -426,25 +487,35 @@ export default function BuatSuart() {
                     <div>
                         {visibleSktm && (
                             <div className="p-3">
-                                <h1 className="p-3">Form Pengisian Surat Keterangan Usaha</h1>
+                                <h1 className="p-3">Form Pengisian Surat Keterangan Kematian</h1>
                                 {dataSuratMasuk.map((value) => (
                                     <form onSubmit={handleSubmit} method="post" action="">
                                         <div className="inputanUsers">
                                             <span>
                                                 <p>No Surat</p>
                                                 <p>Nama Pemberi Izin</p>
-                                                <p>Nip Pemberi Izin</p>
                                                 <p>Jabatan Pemberi Izin</p>
                                                 <p>Nama Penerima</p>
                                                 <p>Nik</p>
+                                                <p>Nomor KK</p>
                                                 <p>Tempat/Tanggal Lahir</p>
                                                 <p>Jenis Kelamin</p>
-                                                <p>Status perkawinan</p>
+                                                <p>Kewarganegaraan</p>
                                                 <p>Agama</p>
+                                                <p>Status perkawinan</p>
                                                 <p>Pekerjaan</p>
                                                 <p>Alamat</p>
-                                                <p>Isi surat</p>
-                                                {/* <p>Penutup Surat</p> */}
+                                                <p>Anak Ke</p>
+                                                <h6 style={{ textAlign: 'left' }}>Telah Meninggal Pada</h6>
+                                                <p>Hari/Tanggal</p>
+                                                <p>Tempat Kematian</p>
+                                                <p>Kelurahan</p>
+                                                <p>Kecamatan</p>
+                                                <p>Kabupaten</p>
+                                                <p>Povinsi</p>
+                                                <p>Sebab Kematian</p>
+                                                <p>Yang Menentukan</p>
+                                                <p>Keterangan Visum</p>
                                                 <p>Tanggal Surat</p>
                                             </span>
                                             <span>
@@ -452,8 +523,6 @@ export default function BuatSuart() {
                                                     onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
                                                 <input type="text" value={formFields.namaKades}
                                                     onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                                <input type="number" value={formFields.nip_penanggungJawab}
-                                                    onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
                                                 <select
                                                     value={formFields.jabatanKades}
                                                     onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
@@ -471,6 +540,8 @@ export default function BuatSuart() {
                                                 <input type="text" value={value.nama} />
                                                 <input type="number" value={formFields.nik}
                                                     onChange={(e) => handleFieldChange('nik', e.target.value)} />
+                                                <input type="number" value={formFields.nomor_kk}
+                                                    onChange={(e) => handleFieldChange('nomor_kk', e.target.value)} />
                                                 <input type="text" value={formFields.ttl}
                                                     onChange={(e) => handleFieldChange('ttl', e.target.value)} />
                                                 <select
@@ -480,13 +551,8 @@ export default function BuatSuart() {
                                                     <option value="Laki-laki">Laki-laki</option>
                                                     <option value="Perempuan">Perempuan</option>
                                                 </select>
-                                                <select
-                                                    value={formFields.status_perkawinan}
-                                                    onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
-                                                    <option>Pilih Status Perkawinan</option>
-                                                    <option>Lajang</option>
-                                                    <option>Sudah Menikah</option>
-                                                </select>
+                                                <input type="text" value={formFields.kewarganegaraan}
+                                                    onChange={(e) => handleFieldChange('kewarganegaraan', e.target.value)} />
                                                 <select
                                                     value={formFields.agama}
                                                     onChange={(e) => handleFieldChange('agama', e.target.value)}>
@@ -498,13 +564,37 @@ export default function BuatSuart() {
                                                     <option value="Budha">Budha</option>
                                                     <option value="Konghuchu">Konghuchu</option>
                                                 </select>
+                                                <select
+                                                    value={formFields.status_perkawinan}
+                                                    onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
+                                                    <option>Pilih Status Perkawinan</option>
+                                                    <option>Lajang</option>
+                                                    <option>Sudah Menikah</option>
+                                                </select>
                                                 <input type="text" value={formFields.pekerjaan}
                                                     onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
                                                 <input type="text" value={value.alamat} />
-                                                <textarea value={formFields.isi_surat}
-                                                    onChange={(e) => handleFieldChange('isi_surat', e.target.value)} />
-                                                {/* <textarea value={formFields.penutup_surat}
-                                            onChange={(e) => handleFieldChange('penutup_surat', e.target.value)} /> */}
+                                                <input type="text" value={formFields.anak_ke}
+                                                    onChange={(e) => handleFieldChange('anak_ke', e.target.value)} />
+                                                <p style={{ margin: '0' }}><br /></p>
+                                                <input type="text" value={formFields.ttl_orangtua}
+                                                    onChange={(e) => handleFieldChange('ttl_orangtua', e.target.value)} />
+                                                <input type="text" value={formFields.alamat_tujuan}
+                                                    onChange={(e) => handleFieldChange('alamat_tujuan', e.target.value)} />
+                                                <input type="text" value={formFields.kelurahan}
+                                                    onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
+                                                <input type="text" value={formFields.kecamatan}
+                                                    onChange={(e) => handleFieldChange('kecamatan', e.target.value)} />
+                                                <input type="text" value={formFields.kabupaten}
+                                                    onChange={(e) => handleFieldChange('kabupaten', e.target.value)} />
+                                                <input type="text" value={formFields.provinsi}
+                                                    onChange={(e) => handleFieldChange('provinsi', e.target.value)} />
+                                                <input type="text" value={formFields.sebab_kematian}
+                                                    onChange={(e) => handleFieldChange('sebab_kematian', e.target.value)} />
+                                                <input type="text" value={formFields.jenis_kepindahan}
+                                                    onChange={(e) => handleFieldChange('jenis_kepindahan', e.target.value)} />
+                                                <input type="text" value={formFields.keterangan_visum}
+                                                    onChange={(e) => handleFieldChange('keterangan_visum', e.target.value)} />
                                                 <input type="date" value={value.tanggal_surat} />
                                             </span>
                                         </div>
@@ -515,7 +605,7 @@ export default function BuatSuart() {
                                             </Link>
                                             <Link
                                                 href={{
-                                                    pathname: '/sekretaris/surat-keterangan-tidak-mampu',
+                                                    pathname: '/sekretaris/surat-keterangan-kematian',
                                                     query: { id: id },
                                                 }} >
                                                 <button>Cetak surat</button>
@@ -528,36 +618,38 @@ export default function BuatSuart() {
                     </div>
                     {visibleSkd && (
                         <div className="p-3">
-                            <h1 className="p-3">Form Pengisian Surat Keterangan Domisili</h1>
+                            <h1 className="p-3">Form Pengisian Surat Keterangan Kelahiran</h1>
                             {dataSuratMasuk.map((value) => (
                                 <form onSubmit={handleSubmit} method="post" action="">
                                     <div className="inputanUsers">
                                         <span>
                                             <p>No Surat</p>
                                             <p>Nama Pemberi Izin</p>
-                                            <p>Nip Pemberi Izin</p>
                                             <p>Jabatan Pemberi Izin</p>
-                                            <p>Nama Penerima</p>
+                                            <p>Nama Lengkap Bayi</p>
                                             <p>Nik</p>
-                                            <p>Tempat/Tanggal Lahir</p>
+                                            <p>Nomor KK</p>
                                             <p>Jenis Kelamin</p>
-                                            <p>Status perkawinan</p>
+                                            <p>Tempat/Tanggal Lahir</p>
+                                            <p>Anak ke</p>
+                                            <p>Jenis Kelahiran</p>
+                                            <p>Nama Ayah</p>
+                                            <p>Nik Ayah</p>
+                                            <p>Nama Ibu</p>
+                                            <p>Nik Ibu</p>
                                             <p>Agama</p>
-                                            <p>Pekerjaan</p>
+                                            <p>Kewarganegaraan</p>
                                             <p>Alamat</p>
-                                            <p>RT/RW</p>
                                             <p>Kelurahan</p>
                                             <p>Kecamatan</p>
                                             <p>Kabupaten</p>
-                                            <p>Tanggal Surat</p>
+                                            <p>Tanggal</p>
                                         </span>
                                         <span>
                                             <input type="text" value={formFields.no_surat}
                                                 onChange={(e) => handleFieldChange('no_surat', e.target.value)} />
                                             <input type="text" value={formFields.namaKades}
                                                 onChange={(e) => handleFieldChange('namaKades', e.target.value)} />
-                                            <input type="number" value={formFields.nip_penanggungJawab}
-                                                onChange={(e) => handleFieldChange('nip_penanggungJawab', e.target.value)} />
                                             <select
                                                 value={formFields.jabatanKades}
                                                 onChange={(e) => handleFieldChange('jabatanKades', e.target.value)}>
@@ -575,8 +667,8 @@ export default function BuatSuart() {
                                             <input type="text" value={value.nama} />
                                             <input type="number" value={formFields.nik}
                                                 onChange={(e) => handleFieldChange('nik', e.target.value)} />
-                                            <input type="text" value={formFields.ttl}
-                                                onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                            <input type="number" value={formFields.nomor_kk}
+                                                onChange={(e) => handleFieldChange('nomor_kk', e.target.value)} />
                                             <select
                                                 value={formFields.jenis_kelamin}
                                                 onChange={(e) => handleFieldChange('jenis_kelamin', e.target.value)}>
@@ -584,13 +676,20 @@ export default function BuatSuart() {
                                                 <option value="Laki-laki">Laki-laki</option>
                                                 <option value="Perempuan">Perempuan</option>
                                             </select>
-                                            <select
-                                                value={formFields.status_perkawinan}
-                                                onChange={(e) => handleFieldChange('status_perkawinan', e.target.value)}>
-                                                <option>Pilih Status Perkawinan</option>
-                                                <option>Lajang</option>
-                                                <option>Sudah Menikah</option>
-                                            </select>
+                                            <input type="text" value={formFields.ttl}
+                                                onChange={(e) => handleFieldChange('ttl', e.target.value)} />
+                                            <input type="text" value={formFields.anak_ke}
+                                                onChange={(e) => handleFieldChange('anak_ke', e.target.value)} />
+                                            <input type="text" value={formFields.jenis_kelahiran}
+                                                onChange={(e) => handleFieldChange('jenis_kelahiran', e.target.value)} />
+                                            <input type="text" value={formFields.nama_ayah}
+                                                onChange={(e) => handleFieldChange('nama_ayah', e.target.value)} />
+                                            <input type="text" value={formFields.nik_ayah}
+                                                onChange={(e) => handleFieldChange('nik_ayah', e.target.value)} />
+                                            <input type="text" value={formFields.namaOrangTua}
+                                                onChange={(e) => handleFieldChange('namaOrangTua', e.target.value)} />
+                                            <input type="text" value={formFields.nik_ibu}
+                                                onChange={(e) => handleFieldChange('nik_ibu', e.target.value)} />
                                             <select
                                                 value={formFields.agama}
                                                 onChange={(e) => handleFieldChange('agama', e.target.value)}>
@@ -602,11 +701,9 @@ export default function BuatSuart() {
                                                 <option value="Budha">Budha</option>
                                                 <option value="Konghuchu">Konghuchu</option>
                                             </select>
-                                            <input type="text" value={formFields.pekerjaan}
-                                                onChange={(e) => handleFieldChange('pekerjaan', e.target.value)} />
+                                            <input type="text" value={formFields.kewarganegaraan}
+                                                onChange={(e) => handleFieldChange('kewarganegaraan', e.target.value)} />
                                             <input type="text" value={value.alamat} />
-                                            <input type="text" value={formFields.rtRw}
-                                                onChange={(e) => handleFieldChange('rtRw', e.target.value)} />
                                             <input type="text" value={formFields.kelurahan}
                                                 onChange={(e) => handleFieldChange('kelurahan', e.target.value)} />
                                             <input type="text" value={formFields.kecamatan}
@@ -623,7 +720,7 @@ export default function BuatSuart() {
                                         </Link>
                                         <Link
                                             href={{
-                                                pathname: '/sekretaris/surat-keterangan-domisili',
+                                                pathname: '/sekretaris/surat-keterangan-kelahiran',
                                                 query: { id: id },
                                             }} >
                                             <button>Cetak surat</button>

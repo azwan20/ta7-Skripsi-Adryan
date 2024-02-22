@@ -74,59 +74,65 @@ export default function Template() {
                     </div>
                     <div className="">
                         <div className="d-flex title">
-                            <b>SURAT KETERANGAN USAHA</b>
+                            <b>SURAT KETERANGAN KELAHIRAN</b>
                             <div className="hr2" />
                             <p>Nomor : {value.no_surat} </p>
                         </div>
                         <div>
+                            {/* <div className="d-flex">
+                                <span>
+                                    <p>Lampiran Surat</p>
+                                    <p>Tanggal</p>
+                                </span>
+                                <span>
+                                    <p>: {value.prihal} </p>
+                                    <p>: {formatDate(currentDate)}</p>
+                                </span>
+                            </div> */}
                             <div>
-                                <p>Yang bertanda tangan di bawah ini : </p>
+                                <p>Yang bertanda tangan di bawah ini, menerangkan bahwa : </p>
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>
-                                        <p>Nama</p>
-                                        <p>Jabatan</p>
-                                    </span>
-                                    <span style={{ paddingLeft: '120px' }}>
-                                        <p className="namaUpper">: <b>{value.nama_penanggungJawab}</b></p>
-                                        <p>: {value.jabatan_penanggungJawab}</p>
-                                    </span>
-                                </section>
-                                <p>Menerangkan dengan sebenarnya bahwa : </p>
-                            </div>
-                            <div>
-                                <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
-                                    <span>
-                                        <p>Nama</p>
+                                        <p>Nama Lengkap Bayi</p>
+                                        <p>Nomor Induk Kependudukan</p>
+                                        <p>Nomor Kartu Keluarga</p>
                                         <p>Jenis kelamin</p>
-                                        <p>Nik</p>
-                                        <p>Tempat/tgl lahir</p>
-                                        <p>Status perkawinan</p>
+                                        <p>Tempat/Tanggal Lahir</p>
+                                        <p>Anak Ke</p>
+                                        <p>Jenis Kelahiran</p>
+                                        <p>Nama Lengkap Ayah</p>
+                                        <p>Nik Ayah</p>
+                                        <p>Nama Lengkap Ibu</p>
+                                        <p>Nik Ibu</p>
                                         <p>Agama</p>
-                                        <p>Pekerjaan</p>
+                                        <p>Kewarganegaraan</p>
                                         <p>Alamat</p>
                                     </span>
-                                    <span style={{ paddingLeft: '50px' }}>
-                                        <p className="namaUpper">: <b>{value.nama} </b></p>
-                                        <p>: {value.jenis_kelamin} </p>
+                                    <span style={{ paddingLeft: '120px' }}>
+                                        <p className="namaUpper">: <b> {value.nama} </b></p>
                                         <p>: {value.nik} </p>
+                                        <p>: {value.nomor_kk}</p>
+                                        <p>: {value.jenis_kelamin}</p>
                                         <p>: {value.ttl} </p>
-                                        <p>: {value.status_perkawinan} </p>
-                                        <p>: {value.agama} </p>
-                                        <p>: {value.pekerjaan} </p>
+                                        <p>: {value.anak_ke}</p>
+                                        <p>: {value.jenis_kelahiran}</p>
+                                        <p className="namaUpper">: <b>{value.nama_ayah}</b></p>
+                                        <p>: {value.nik_ayah}</p>
+                                        <p className="namaUpper">: <b>{value.namaOrangTua}</b></p>
+                                        <p>: {value.nik_ibu}</p>
+                                        <p>: {value.agama}</p>
+                                        <p>: {value.kewarganegaraan}</p>
                                         <p>: Dusun {value.kelurahan} {value.nama_desa} Kec. {value.kecamatan} </p>
                                         <p style={{ paddingLeft: '7px' }}>{value.kabupaten} </p>
                                     </span>
                                 </section>
+                                <p>Demikian Surat Keterangan Kelahiran ini dibuat agar dapat digunakan sebagaimana mestinya.</p>
                             </div>
                         </div>
-                        <div className="pembuka"><p>&emsp; &emsp; &emsp; Yang tersebut di atas adalah benar penduduk Tetap Desa Pao Kec. Malangke Barat
-                        dan menurut keterangan yang bersangkutan benar sampai saat ini memiliki <b>{value.usaha}</b> yang terletak di Desa Pao Kec. Malangke Barat Kab. Luwu Utara.</p>
-                        </div>
-                        <div className="penutup"><p>&emsp; &emsp; &emsp; Demikian surat keterangan ini dibuat dan diberikan pada yang bersangkutan untuk dipergunakan seperlunya.</p></div>
                         <div className="d-flex footer">
                             <span>
-                                <p>Yang bermohon,</p>
-                                <p className="namaUpper"><b>{value.nama}</b></p>
+                                {/* <p>Yang bermohon,</p>
+                                <p><b>{value.nama}</b></p> */}
                             </span>
                             <span className="names">
                                 <div >

@@ -21,20 +21,20 @@ export default function Aside({ isSku, isSt, isSktm, isSkd, isSkp, islainnya, ha
                         </section>
                         <section style={{ height: '75%', paddingTop: '30px' }}>
                             <span style={{ width: '90%' }}>
+                                <button className={isSku ? "active" : ""} onClick={() => handleButtonClick("sku")}>
+                                    Surat Keteranagan Usaha
+                                </button>
                                 <button className={isSkp ? "active" : ""} onClick={() => handleButtonClick("skp")}>
                                     Surat Keterangan Pindah
                                 </button>
                                 <button className={isSt ? "active" : ""} onClick={() => handleButtonClick("st")}>
-                                    Surat Tugas
-                                </button>
-                                <button className={isSktm ? "active" : ""} onClick={() => handleButtonClick("sktm")}>
-                                    Surat Keterangan Tidak Mampu
+                                    Surat keterangan Penghasilan
                                 </button>
                                 <button className={isSkd ? "active" : ""} onClick={() => handleButtonClick("skd")}>
-                                    Surat Keterangan Domisili
+                                    Surat Keterangan Kelahiran
                                 </button>
-                                <button className={isSku ? "active" : ""} onClick={() => handleButtonClick("sku")}>
-                                    Surat Keteranagan Usaha
+                                <button className={isSktm ? "active" : ""} onClick={() => handleButtonClick("sktm")}>
+                                    Surat Keterangan Kematian
                                 </button>
                                 <button className={islainnya ? "active" : ""} onClick={() => handleButtonClick("lainnya")}>
                                     Lainnya
