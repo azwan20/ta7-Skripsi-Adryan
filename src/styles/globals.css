@@ -58,6 +58,33 @@
   text-decoration: none;
 }
 
+.login .forgetSandi {
+  padding: 20px;
+  background-color: #900000;
+  color: #fff;
+  width: 30%;
+  border-radius: 10px;
+  position: fixed;
+  top: 35%;
+  left: 35%;
+  z-index: 99;
+}
+
+.login .forgetSandi span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.login .forgetSandi button {
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+  width: 45%;
+  margin-top: 20px;
+}
+
 aside {
   width: 15%;
   height: 100%;
@@ -66,6 +93,10 @@ aside {
 
 .tambah-arsip aside {
   width: 100%;
+}
+
+#sekretarisAdd aside {
+  width: 15%;
 }
 
 aside section {
@@ -523,7 +554,7 @@ td {
   margin: 0;
 }
 
-.template .namaUpper{
+.template .namaUpper {
   text-transform: uppercase;
 }
 
