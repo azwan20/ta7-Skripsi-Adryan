@@ -265,55 +265,55 @@ export default function SuratMasuk() {
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col"></th>
                                 <th scope="col">No</th>
-                                <th scope="col">File Arsip</th>
+                                <th scope="col">Buat Surat</th>
                                 <th scope="col">Tanggal Masuk</th>
-                                <th style={{ border: '1px solid white' }}  scope="col">Nama Pengirim</th>
-                            <th scope="col">Alamat Pengirim</th>
-                            <th scope="col">No.Surat</th>
-                            <th scope="col">Jenis Surat</th>
-                            <th scope="col">Tanggal Surat</th>
-                            <th scope="col">Sifat Surat</th>
-                            <th scope="col">Perihal Lampiran</th>
-                            <th scope="col">No. WhatsApp</th>
-                        </tr>
-                    </thead>
-                    <tbody style={{ border: '1px solid white' }}>
-                        {dataSuratMasuk.map((value, index) => (
-                            <tr style={{ border: '1px solid white' }} key={value.id}>
-                                <td style={{ display: 'none' }}>{value.id}</td>
-                                <td>
-                                    {isEditMode && (
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedRows.includes(value.id)}
-                                            onChange={() => handleCheckboxChange(value.id)}
-                                            onClick={() => popups(value.id, value.file, value.tanggal_masuk,
-                                                value.alamat, value.no_surat, value.jenis_surat, value.tanggal_surat, value.sifat_surat, value.prihal)}
-                                        />
-                                    )}
-                                </td>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
-                                </td>
-                                <td style={{ border: '1px solid white' }}>{value.tanggal_masuk}</td>
-                                <td>{value.nama}</td>
-                                <td>{value.alamat}</td>
-                                <td>{value.no_surat}</td>
-                                <td><b>{value.jenis_surat}</b></td>
-                                <td>{value.tanggal_surat}</td>
-                                <td>{value.sifat_surat}</td>
-                                <td>{value.prihal}</td>
-                                <td>{value.no_wa}</td>
-
+                                <th style={{ border: '1px solid white' }} scope="col">Nama Pengirim</th>
+                                <th scope="col">Alamat Pengirim</th>
+                                <th scope="col">No.Surat</th>
+                                <th scope="col">Jenis Surat</th>
+                                <th scope="col">Tanggal Surat</th>
+                                <th scope="col">Sifat Surat</th>
+                                <th scope="col">Perihal Lampiran</th>
+                                <th scope="col">No. WhatsApp</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </article>
-            <Navbar isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
-        </div >
-            { isPopupVisible && (
+                        </thead>
+                        <tbody style={{ border: '1px solid white' }}>
+                            {dataSuratMasuk.map((value, index) => (
+                                <tr style={{ border: '1px solid white' }} key={value.id}>
+                                    <td style={{ display: 'none' }}>{value.id}</td>
+                                    <td>
+                                        {isEditMode && (
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedRows.includes(value.id)}
+                                                onChange={() => handleCheckboxChange(value.id)}
+                                                onClick={() => popups(value.id, value.file, value.tanggal_masuk,
+                                                    value.alamat, value.no_surat, value.jenis_surat, value.tanggal_surat, value.sifat_surat, value.prihal)}
+                                            />
+                                        )}
+                                    </td>
+                                    <td>{index + 1}</td>
+                                    <td>
+                                        <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
+                                    </td>
+                                    <td style={{ border: '1px solid white' }}>{value.tanggal_masuk}</td>
+                                    <td>{value.nama}</td>
+                                    <td>{value.alamat}</td>
+                                    <td>{value.no_surat}</td>
+                                    <td><b>{value.jenis_surat}</b></td>
+                                    <td>{value.tanggal_surat}</td>
+                                    <td>{value.sifat_surat}</td>
+                                    <td>{value.prihal}</td>
+                                    <td>{value.no_wa}</td>
+
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </article>
+                <Navbar isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
+            </div >
+            {isPopupVisible && (
                 <div className="popup newPop">
                     <div className="popup-content">
                         <h2>Update Data Berhasil</h2>
@@ -321,102 +321,102 @@ export default function SuratMasuk() {
                     </div>
                 </div>
             )
-}
+            }
 
-{/* Edit Popup */ }
-{
-    isEditMode && editPopupRow && (
-        <div className="popup newPop">
-            <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-                {/* Render the edit form with data from the selected row */}
-                <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
-                <div>
-                    <span>
-                        <p>File Arsip</p>
-                        <input type="text" name="file" value={getEditedFieldValue(editPopupRow, 'file')} readOnly />
-                    </span>
-                    <span>
-                        <p>Tanggal Ajukan</p>
-                        <input type="date"
-                            id="editedTanggal_masuk"
-                            name="editedTanggal_masuk"
-                            value={getEditedFieldValue(editPopupRow, 'tanggal_masuk')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_masuk', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>Alamat Pengiriman</p>
-                        <input type="text"
-                            id="editedAlamat"
-                            name="editedAlamat"
-                            value={getEditedFieldValue(editPopupRow, 'alamat')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'alamat', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>No Surat</p>
-                        <input type="text"
-                            id="editedAlamat"
-                            name="editedAlamat"
-                            value={getEditedFieldValue(editPopupRow, 'no_surat')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'no_surat', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>Jenis Surat</p>
-                        <input type="text"
-                            id="editedJenis_surat"
-                            name="editedJenis_surat"
-                            value={getEditedFieldValue(editPopupRow, 'jenis_surat')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'jenis_surat', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>Tanggal Surat</p>
-                        <input type="date"
-                            id="editedTanggal_surat"
-                            name="editedTanggal_surat"
-                            value={getEditedFieldValue(editPopupRow, 'tanggal_surat')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_surat', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>Sifat Surat</p>
-                        <input type="text"
-                            id="editedSifat_surat"
-                            name="editedSifat_surat"
-                            value={getEditedFieldValue(editPopupRow, 'sifat_surat')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'sifat_surat', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>Perihal Lampiran</p>
-                        <input type="text"
-                            id="editedPerihal"
-                            name="editedPerihal"
-                            value={getEditedFieldValue(editPopupRow, 'prihal')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'perihal', e.target.value)}
-                        />
-                    </span>
-                    <span>
-                        <p>No. WhatsApp</p>
-                        <input type="text"
-                            id="editedNo_wa"
-                            name="editedNo_wa"
-                            value={getEditedFieldValue(editPopupRow, 'no_wa')}
-                            onChange={(e) => handleFieldChange(editPopupRow, 'no_wa', e.target.value)}
-                        />
-                    </span>
-                </div>
-                <span className="d-flex button-edit">
-                    <button onClick={() => handleEdit(idSementara, editedDataForSelectedRows[editPopupRow])} style={{ backgroundColor: 'green' }}>Update</button>
-                    <button onClick={handleDelete}>Delete</button>
-                    <button style={{ backgroundColor: '#27323A' }} onClick={handlePopupClose}>Tutup</button>
-                </span>
-            </div>
-        </div>
-    )
-}
+            {/* Edit Popup */}
+            {
+                isEditMode && editPopupRow && (
+                    <div className="popup newPop">
+                        <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+                            {/* Render the edit form with data from the selected row */}
+                            <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
+                            <div>
+                                <span>
+                                    <p>File Arsip</p>
+                                    <input type="text" name="file" value={getEditedFieldValue(editPopupRow, 'file')} readOnly />
+                                </span>
+                                <span>
+                                    <p>Tanggal Ajukan</p>
+                                    <input type="date"
+                                        id="editedTanggal_masuk"
+                                        name="editedTanggal_masuk"
+                                        value={getEditedFieldValue(editPopupRow, 'tanggal_masuk')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_masuk', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>Alamat Pengiriman</p>
+                                    <input type="text"
+                                        id="editedAlamat"
+                                        name="editedAlamat"
+                                        value={getEditedFieldValue(editPopupRow, 'alamat')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'alamat', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>No Surat</p>
+                                    <input type="text"
+                                        id="editedAlamat"
+                                        name="editedAlamat"
+                                        value={getEditedFieldValue(editPopupRow, 'no_surat')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'no_surat', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>Jenis Surat</p>
+                                    <input type="text"
+                                        id="editedJenis_surat"
+                                        name="editedJenis_surat"
+                                        value={getEditedFieldValue(editPopupRow, 'jenis_surat')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'jenis_surat', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>Tanggal Surat</p>
+                                    <input type="date"
+                                        id="editedTanggal_surat"
+                                        name="editedTanggal_surat"
+                                        value={getEditedFieldValue(editPopupRow, 'tanggal_surat')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'tanggal_surat', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>Sifat Surat</p>
+                                    <input type="text"
+                                        id="editedSifat_surat"
+                                        name="editedSifat_surat"
+                                        value={getEditedFieldValue(editPopupRow, 'sifat_surat')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'sifat_surat', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>Perihal Lampiran</p>
+                                    <input type="text"
+                                        id="editedPerihal"
+                                        name="editedPerihal"
+                                        value={getEditedFieldValue(editPopupRow, 'prihal')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'perihal', e.target.value)}
+                                    />
+                                </span>
+                                <span>
+                                    <p>No. WhatsApp</p>
+                                    <input type="text"
+                                        id="editedNo_wa"
+                                        name="editedNo_wa"
+                                        value={getEditedFieldValue(editPopupRow, 'no_wa')}
+                                        onChange={(e) => handleFieldChange(editPopupRow, 'no_wa', e.target.value)}
+                                    />
+                                </span>
+                            </div>
+                            <span className="d-flex button-edit">
+                                <button onClick={() => handleEdit(idSementara, editedDataForSelectedRows[editPopupRow])} style={{ backgroundColor: 'green' }}>Update</button>
+                                <button onClick={handleDelete}>Delete</button>
+                                <button style={{ backgroundColor: '#27323A' }} onClick={handlePopupClose}>Tutup</button>
+                            </span>
+                        </div>
+                    </div>
+                )
+            }
         </>
     );
 }

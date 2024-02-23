@@ -212,6 +212,7 @@ export default function TambahArsip() {
                 <SekretarisAside isHomeActive={isHomeActive} isMasukActive={isMasukActive} isKeluarActive={isKeluarActive} handleButtonClick={handleButtonClick} />
                 <article className="d-flex flex-column align-items-center justify-content-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                     <form onSubmit={handleSubmit} method="post" action="">
+                        <h1 style={{ margin: '20px auto' }}>Input Arsip Surat</h1>
                         <section>
                             <span>
                                 <p>File Arsip</p>
@@ -239,7 +240,7 @@ export default function TambahArsip() {
                                     value={jenis_surat}
                                     onChange={(e) => setJenis(e.target.value)}
                                     required  // Tambahkan atribut required di sini
-                                >
+>
                                     <option value="" disabled>Pilih Jenis Surat</option>
                                     <option value="surat masuk">Surat Masuk</option>
                                     <option value="surat keluar">Surat Keluar</option>

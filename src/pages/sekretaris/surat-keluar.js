@@ -276,7 +276,7 @@ export default function SuratMasuk() {
                                         )}
                                     </td>
                                     <td scope="row">{index + 1}</td>
-                                    <td>{value.file}</td>
+                                    <td ><Link style={{ width: '40px' }} href={value.file}>{value.file}</Link></td>
                                     <td>{value.tanggal_keluar}</td>
                                     <td>{value.nama}</td>
                                     <td>{value.no_surat}</td>

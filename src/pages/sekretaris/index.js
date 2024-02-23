@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { db } from "../../../public/firebaseConfig";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, getDoc, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
 async function fetchDataLoginFromFirestore() {
@@ -20,25 +20,73 @@ export default function Login() {
     const [dataLoginSekretaris, SetDataLoginSekretaris] = useState([]);
     const [dataLoginKades, SetDataLoginKades] = useState([]);
     const router = useRouter();
+    const [formFields, setFormFields] = useState({
+        password: '',
+    });
 
     useEffect(() => {
         async function fetchData() {
             const data = await fetchDataLoginFromFirestore();
             SetDataLogin(data);
+            setFormFields({
+                password: data[0].password || '',
+            });
         }
         fetchData();
     }, []);
 
+    const handleFieldChange = (fieldName, value) => {
+        setFormFields((prevFields) => ({
+            ...prevFields,
+            [fieldName]: value,
+        }));
+    };
+
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const enteredEmail = emailInput.toLowerCase(); // Ambil email yang diinputkan dan ubah menjadi lowercase
+        const enteredPassword = passwordInput;
+
+        // Validasi apakah email yang diinputkan sesuai dengan salah satu email dalam koleksi
+        const matchingUser = dataLogin.find(user => user.email.toLowerCase() === enteredEmail);
+
+        if (!matchingUser) {
+            alert("Email tidak ditemukan. Silakan masukkan email yang valid.");
+            return;
+        }
+
+        // Validasi apakah password lama sesuai dengan password yang ada dalam koleksi
+        // if (matchingUser.password !== enteredPassword) {
+        //     alert("Password lama tidak sesuai. Silakan masukkan password yang benar.");
+        //     return;
+        // }
+
+        const updatedData = {
+            password: formFields.password,
+        };
+
+        try {
+            // Lakukan pembaruan password pada dokumen dengan email yang sesuai
+            const suratRef = doc(db, 'login', matchingUser.id);
+            await updateDoc(suratRef, updatedData);
+            alert("Password Berhasil di Update");
+            console.log('Document successfully updated!');
+        } catch (error) {
+            console.error('Error updating document: ', error);
+        }
+    };
+
     const handleLogin = () => {
-        if (emailInput === "sekretaris@gmail.com" && passwordInput === "1234567") {
+        if ( emailInput === "sekretaris@gmail.com") {
             alert("Login berhasil");
             // Simpan status login sebagai sekretaris di localStorage
             localStorage.setItem("role", "sekretaris");
             router.push('/sekretaris/home');
-        } else if (emailInput === "kades@gmail.com" && passwordInput === "123") {
+        } else if (emailInput === "kades@gmail.com") {
             alert("Selamat Datang Kepala Desa");
             // Simpan status login sebagai kepala desa di localStorage
             localStorage.setItem("role", "kades");
@@ -47,8 +95,16 @@ export default function Login() {
             alert("Email atau Password Salah!!!");
         }
     };
-    
 
+    const [forgetPass, setForegetPass] = useState(false);
+
+    const handleForget = () => {
+        setForegetPass(true);
+    }
+
+    const HandleCancel = () => {
+        setForegetPass(false);
+    }
 
     return (
         <>
@@ -73,6 +129,7 @@ export default function Login() {
                                 placeholder="Password"
                                 onChange={(e) => setPasswordInput(e.target.value)}
                             />
+                            <Link href="" onClick={handleForget}><p >Forget password</p></Link>
                         </span>
                         <span>
                             <button
@@ -84,6 +141,37 @@ export default function Login() {
                         </span>
                     </div>
                 </div>
+                {forgetPass && (
+                    <form onSubmit={handleSubmit} method="post" action="">
+                        <div className="forgetSandi">
+                            <span>
+                                <p>Masukkan email :</p>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    onChange={(e) => setEmailInput(e.target.value)}
+                                />
+                            </span>
+                            {/* <span>
+                                <p>Password Lama :</p>
+                                <input
+                                    type="password"
+                                    placeholder="Password Lama"
+                                    onChange={(e) => setPasswordInput(e.target.value)}
+                                />
+                            </span> */}
+                            <span>
+                                <p>Password Baru :</p>
+                                <input type="password"
+                                    onChange={(e) => handleFieldChange('password', e.target.value)} />
+                            </span>
+                            <span>
+                                <button type="submit">SIMPAN</button>
+                                <button onClick={HandleCancel}>BATAL</button>
+                            </span>
+                        </div>
+                    </form>
+                )}
             </div>
         </>
     );
