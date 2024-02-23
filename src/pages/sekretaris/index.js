@@ -81,7 +81,7 @@ export default function Login() {
     };
 
     const handleLogin = () => {
-        if ( emailInput === "sekretaris@gmail.com") {
+        if (emailInput === "sekretaris@gmail.com") {
             alert("Login berhasil");
             // Simpan status login sebagai sekretaris di localStorage
             localStorage.setItem("role", "sekretaris");
@@ -108,7 +108,7 @@ export default function Login() {
 
     return (
         <>
-            <div className="login d-flex flex-column">
+            <div className="login">
                 <div
                     className="cards d-flex justify-content-center align-items-center"
                     style={{ height: "100%" }}
@@ -140,16 +140,17 @@ export default function Login() {
                 </div>
                 {forgetPass && (
                     <form onSubmit={handleSubmit} method="post" action="">
-                        <div className="forgetSandi">
-                            <span>
-                                <p>Masukkan email :</p>
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    onChange={(e) => setEmailInput(e.target.value)}
-                                />
-                            </span>
-                            {/* <span>
+                        <div className="forgetKata">
+                            <div className="forgetSandi">
+                                <span>
+                                    <p>Masukkan email :</p>
+                                    <input
+                                        type="email"
+                                        placeholder="Email"
+                                        onChange={(e) => setEmailInput(e.target.value)}
+                                    />
+                                </span>
+                                {/* <span>
                                 <p>Password Lama :</p>
                                 <input
                                     type="password"
@@ -157,15 +158,16 @@ export default function Login() {
                                     onChange={(e) => setPasswordInput(e.target.value)}
                                 />
                             </span> */}
-                            <span>
-                                <p>Password Baru :</p>
-                                <input type="password"
-                                    onChange={(e) => handleFieldChange('password', e.target.value)} />
-                            </span>
-                            <span>
-                                <button type="submit">SIMPAN</button>
-                                <button onClick={HandleCancel}>BATAL</button>
-                            </span>
+                                <span>
+                                    <p>Password Baru :</p>
+                                    <input type="password" placeholder="Password baru"
+                                        onChange={(e) => handleFieldChange('password', e.target.value)} />
+                                </span>
+                                <span>
+                                    <button type="submit" style={{ backgroundColor: "#239843" }}>SIMPAN</button>
+                                    <button onClick={HandleCancel}>BATAL</button>
+                                </span>
+                            </div>
                         </div>
                     </form>
                 )}
