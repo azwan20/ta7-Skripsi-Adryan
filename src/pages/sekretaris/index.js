@@ -109,12 +109,9 @@ export default function Login() {
     return (
         <>
             <div className="login d-flex flex-column">
-                <div className="d-flex " style={{ height: "20%" }}>
-                    <img src="/logo-umi.svg" alt="logo-umi" />
-                </div>
                 <div
                     className="cards d-flex justify-content-center align-items-center"
-                    style={{ height: "80%" }}
+                    style={{ height: "100%" }}
                 >
                     <div className="card justify-content-between align-items-center">
                         <span>
