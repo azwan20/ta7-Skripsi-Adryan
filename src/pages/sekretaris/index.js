@@ -79,6 +79,7 @@ export default function Login() {
             await updateDoc(suratRef, updatedData);
             alert("Password Berhasil di Update");
             console.log('Document successfully updated!');
+            location.reload();
         } catch (error) {
             console.error('Error updating document: ', error);
         }
