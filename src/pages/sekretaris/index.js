@@ -20,6 +20,8 @@ export default function Login() {
     const [dataLoginSekretaris, SetDataLoginSekretaris] = useState([]);
     const [dataLoginKades, SetDataLoginKades] = useState([]);
     const router = useRouter();
+    const [passKades, SetPassKades] = useState("");
+    const [passSekretaris, SetPassSekretaris] = useState("");
     const [formFields, setFormFields] = useState({
         password: '',
     });
@@ -28,6 +30,8 @@ export default function Login() {
         async function fetchData() {
             const data = await fetchDataLoginFromFirestore();
             SetDataLogin(data);
+            SetPassKades(data[0].password);
+            SetPassSekretaris(data[1].password);
             setFormFields({
                 password: data[0].password || '',
             });
@@ -81,12 +85,12 @@ export default function Login() {
     };
 
     const handleLogin = () => {
-        if (emailInput === "sekretaris@gmail.com") {
+        if (emailInput === "sekretaris@gmail.com" && passwordInput === passSekretaris) {
             alert("Login berhasil");
             // Simpan status login sebagai sekretaris di localStorage
             localStorage.setItem("role", "sekretaris");
             router.push('/sekretaris/home');
-        } else if (emailInput === "kades@gmail.com") {
+        } else if (emailInput === "kades@gmail.com" && passwordInput === passKades) {
             alert("Selamat Datang Kepala Desa");
             // Simpan status login sebagai kepala desa di localStorage
             localStorage.setItem("role", "kades");
