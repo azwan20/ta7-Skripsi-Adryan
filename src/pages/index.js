@@ -245,6 +245,8 @@ export default function Home() {
       setVisibleSkpo(false);
       setVisibleLainnya(true);
       newPerihall = "Lainnya";
+    } else {
+      newPerihall = "Surat Keteranagan Usaha";
     }
 
     setPerihal(newPerihall);
