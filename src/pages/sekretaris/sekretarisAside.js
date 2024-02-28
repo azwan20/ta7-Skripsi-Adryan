@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SekretarisAside({ isHomeActive, isMasukActive, isKeluarActive, isBuatActive, handleButtonClick }) {
+export default function SekretarisAside({ isHomeActive, isMasukActive, isKeluarActive, isArsipActive, handleButtonClick }) {
 
 
     return (
@@ -31,11 +31,11 @@ export default function SekretarisAside({ isHomeActive, isMasukActive, isKeluarA
                                 Surat Keluar
                             </button>
                         </Link>
-                        {/* <Link href="/sekretaris/buat-surat">
-                            <button className={isBuatActive ? "active" : ""} onClick={() => handleButtonClick("buat")}>
-                                Buat Surat
+                        <Link href="/sekretaris/arsip">
+                            <button className={isArsipActive ? "active" : ""} onClick={() => handleButtonClick("arsip")}>
+                                Arsip Surat
                             </button>
-                        </Link> */}
+                        </Link>
                     </span>
                     <Link href="/sekretaris" className="d-flex justify-content-center">
                         <span style={{ width: '80%' }}>

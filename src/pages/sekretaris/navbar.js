@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Navbar({ isHomeActive, isMasukActive, isKeluarActive, handleButtonClick }) {
+export default function Navbar({ isHomeActive, isMasukActive, isKeluarActive, isArsipActive, handleButtonClick }) {
 
     return (
         <>
@@ -14,12 +14,17 @@ export default function Navbar({ isHomeActive, isMasukActive, isKeluarActive, ha
                     </Link>
                     <Link href="/sekretaris/surat-masuk">
                         <span className={`mb-0 ${isMasukActive ? "active" : ""}`} onClick={() => handleButtonClick("masuk")}>
-                            <p>Surat Masuk</p>
+                            <p>Masuk</p>
                         </span>
                     </Link>
                     <Link href="/sekretaris/surat-keluar">
                         <span className={`mb-0 ${isKeluarActive ? "active" : ""}`} onClick={() => handleButtonClick("keluar")}>
-                            <p>Surat Keluar</p>
+                            <p>Keluar</p>
+                        </span>
+                    </Link>
+                    <Link href="/sekretaris/arsip">
+                        <span className={`mb-0 ${isArsipActive ? "active" : ""}`} onClick={() => handleButtonClick("arsip")}>
+                            <p>Arsip</p>
                         </span>
                     </Link>
                 </div>

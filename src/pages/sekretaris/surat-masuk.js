@@ -265,16 +265,16 @@ export default function SuratMasuk() {
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col"></th>
                                 <th scope="col">No</th>
-                                <th scope="col">Buat Surat</th>
                                 <th scope="col">Tanggal Masuk</th>
                                 <th style={{ border: '1px solid white' }} scope="col">Nama Pengirim</th>
                                 <th scope="col">Alamat Pengirim</th>
+                                <th scope="col">Tanggal Surat</th>
+                                <th scope="col">Perihal Lampiran</th>
                                 <th scope="col">No.Surat</th>
                                 <th scope="col">Jenis Surat</th>
-                                <th scope="col">Tanggal Surat</th>
                                 <th scope="col">Sifat Surat</th>
-                                <th scope="col">Perihal Lampiran</th>
                                 <th scope="col">No. WhatsApp</th>
+                                <th scope="col">Buat Surat</th>
                             </tr>
                         </thead>
                         <tbody style={{ border: '1px solid white' }}>
@@ -293,19 +293,18 @@ export default function SuratMasuk() {
                                         )}
                                     </td>
                                     <td>{index + 1}</td>
-                                    <td>
-                                        <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
-                                    </td>
                                     <td style={{ border: '1px solid white' }}>{value.tanggal_masuk}</td>
                                     <td>{value.nama}</td>
                                     <td>{value.alamat}</td>
+                                    <td>{value.tanggal_surat}</td>
+                                    <td>{value.prihal}</td>
                                     <td>{value.no_surat}</td>
                                     <td><b>{value.jenis_surat}</b></td>
-                                    <td>{value.tanggal_surat}</td>
                                     <td>{value.sifat_surat}</td>
-                                    <td>{value.prihal}</td>
                                     <td>{value.no_wa}</td>
-
+                                    <td>
+                                        <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

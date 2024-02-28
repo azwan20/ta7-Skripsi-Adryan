@@ -249,15 +249,15 @@ export default function SuratMasuk() {
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col"></th>
                                 <th scope="col">No</th>
-                                <th scope="col">File Arsip</th>
+                                <th scope="col">No.Surat</th>
                                 <th scope="col">Tanggal Keluar</th>
                                 <th scope="col">Nama Penerima</th>
-                                <th scope="col">No.Surat</th>
-                                <th scope="col">Jenis Surat</th>
                                 <th scope="col">Tanggal Surat</th>
-                                <th scope="col">Sifat Surat</th>
                                 <th scope="col">Perihal Lampiran</th>
+                                <th scope="col">Sifat Surat</th>
+                                <th scope="col">Jenis Surat</th>
                                 <th scope="col">No WhatsApp</th>
+                                <th scope="col">File Arsip</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -276,15 +276,15 @@ export default function SuratMasuk() {
                                         )}
                                     </td>
                                     <td scope="row">{index + 1}</td>
-                                    <td ><Link style={{ width: '40px' }} href={value.file}>{value.file}</Link></td>
+                                    <td>{value.no_surat}</td>
                                     <td>{value.tanggal_keluar}</td>
                                     <td>{value.nama}</td>
-                                    <td>{value.no_surat}</td>
-                                    <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.tanggal_surat}</td>
-                                    <td>{value.sifat_surat}</td>
                                     <td>{value.prihal}</td>
+                                    <td>{value.sifat_surat}</td>
+                                    <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.no_wa}</td>
+                                    <td ><Link style={{ width: '40px' }} href={value.file}>{value.file}</Link></td>
                                 </tr>
                             ))}
                         </tbody>
