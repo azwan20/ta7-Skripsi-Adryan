@@ -159,7 +159,7 @@ export default function Home() {
   const [islainnya, setIsLainnya] = useState(false);
 
   const handleButtonClick = (buttonType) => {
-    let newPerihall = "Surat Keteranagan Usaha";
+    let newPerihall;
 
     if (buttonType === "sku") {
       setIsSku(true);
@@ -245,8 +245,6 @@ export default function Home() {
       setVisibleSkpo(false);
       setVisibleLainnya(true);
       newPerihall = "Lainnya";
-    } else {
-      newPerihall = "Surat Keteranagan Usaha";
     }
 
     setPerihal(newPerihall);
