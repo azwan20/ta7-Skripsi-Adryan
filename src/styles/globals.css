@@ -385,7 +385,7 @@ aside a {
 }
 
 .navbars a {
-  width: 33%;
+  width: 20%;
   display: flex;
   text-decoration: none;
   align-items: center;
@@ -401,7 +401,7 @@ aside a {
 }
 
 .navbars p {
-  font-size: 1rem;
+  font-size: 14px;
   margin: auto;
 }
 
