@@ -573,12 +573,12 @@ export default function Home() {
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -658,12 +658,12 @@ export default function Home() {
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -794,12 +794,12 @@ export default function Home() {
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -899,12 +899,12 @@ export default function Home() {
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -1043,12 +1043,12 @@ export default function Home() {
                     <input type="date" name="tanggal_surat" id="nama" required value={tanggal_surat} onChange={(e) => setTanggal_surat(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
@@ -1149,12 +1149,12 @@ export default function Home() {
                     <input type="date" name="tanggal_masuk" id="nama" required value={tanggal_masuk} onChange={(e) => setTanggal_masuk(e.target.value)} />
                   </span>
                   <span>
-                    <p>Jenis Surat</p>
-                    <input value={"surat masuk"} onChange={(e) => setJenis(e.target.value)} readOnly />
-                  </span>
-                  <span>
                     <p>Sifat Surat</p>
-                    <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                    <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                      <option value="" disabled>Pilih Sifat Surat</option>
+                      <option value="Pribadi">Pribadi</option>
+                      <option value="Umum">Umum</option>
+                    </select>
                   </span>
                   <span>
                     <p>Lampiran Surat</p>
