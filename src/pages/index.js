@@ -159,7 +159,7 @@ export default function Home() {
   const [islainnya, setIsLainnya] = useState(false);
 
   const handleButtonClick = (buttonType) => {
-    let newPerihall;
+    let newPerihall = "Surat Keteranagan Usaha";
 
     if (buttonType === "sku") {
       setIsSku(true);
@@ -245,6 +245,8 @@ export default function Home() {
       setVisibleSkpo(false);
       setVisibleLainnya(true);
       newPerihall = "Lainnya";
+    } else {
+      newPerihall = "Surat Keteranagan Usaha";
     }
 
     setPerihal(newPerihall);
@@ -1177,7 +1179,7 @@ export default function Home() {
       {/* Pop-up component */}
       {
         isPopupVisible && (
-          <div className="popup" style={{ backgroundColor: '#009933' }}>
+          <div className="popup popUpUser">
             <div className="popup-content">
               <h2>Data Anda Berhasil Terkirim</h2>
               <button onClick={handlePopupClose}>Tutup</button>
