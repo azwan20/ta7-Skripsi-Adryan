@@ -3,6 +3,7 @@ import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal,
     nama_penanggungJawab,
@@ -75,6 +76,29 @@ export default function TambahArsip() {
     const [isHomeActive, setIsHomeActive] = useState(false);
     const [isMasukActive, setIsMasukActive] = useState(false);
     const [isKeluarActive, setIsKeluarActive] = useState(false);
+    const [Islogin, setIslogin] = useState();
+
+    useEffect(() => {
+        const isLogins = localStorage.getItem('isLogin')
+        if (!isLogins) {
+            router.push('/sekretaris');
+        } else {
+            setIslogin(isLogins);
+        }
+    }, []);
+    
+    if (!Islogin) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
+    }
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {

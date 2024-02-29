@@ -104,7 +104,7 @@ export default function Template() {
                         </div>
                         <div className="suratPindah">
                             <div>
-                                <h6><b>DATA DAERAH ASAL</b></h6>
+                                <h6 style={{ fontSize: '17px', margin: '0' }}><b>DATA DAERAH ASAL</b></h6>
                                 <div className="d-flex">
                                     <section className="d-flex flex-direction-coloumn" style={{ width: '50%' }}>
                                         <span style={{ width: '180px' }}>
@@ -160,7 +160,7 @@ export default function Template() {
                                     </section>
                                 </div>
                             </div>
-                            <h6><b>DATA KEPINDAHAN</b></h6>
+                            <h6 style={{ fontSize: '17px', margin: '10px 0 0' }}><b>DATA KEPINDAHAN</b></h6>
                             <div className="d-flex">
                                 <section className="d-flex flex-direction-coloumn" style={{ width: '50%' }}>
                                     <span style={{ width: '180px' }}>

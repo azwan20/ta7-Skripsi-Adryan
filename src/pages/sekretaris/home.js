@@ -4,6 +4,8 @@ import Navbar from "./navbar";
 import Link from "next/link";
 import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -17,12 +19,23 @@ async function fetchDataFromFirestore() {
 }
 
 export default function Arsip() {
+    const router = useRouter();
     const [isHomeActive, setIsHomeActive] = useState(true);
     const [isMasukActive, setIsMasukActive] = useState(false);
     const [isKeluarActive, setIsKeluarActive] = useState(false);
     const [dataSurat, SetDataSurat] = useState([]);
     const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
     const [dataSuratKeluar, SetDataSuratKeluar] = useState([]);
+    const [Islogin, setIslogin] = useState();
+
+    useEffect(() => {
+        const isLogins = localStorage.getItem('isLogin')
+        if (!isLogins) {
+            router.push('/sekretaris');
+        } else {
+            setIslogin(isLogins);
+        }
+    }, []);
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {
@@ -40,6 +53,9 @@ export default function Arsip() {
         }
     };
 
+    // const [isLogin, setisLogin] = useState(false);
+
+
     useEffect(() => {
         async function fetchData() {
             const data = await fetchDataFromFirestore();
@@ -56,6 +72,19 @@ export default function Arsip() {
 
         fetchData();
     }, []);
+
+    if (!Islogin) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
+    }
 
     return (
         <>

@@ -36,6 +36,8 @@ export default function Login() {
                 password: data[0].password || '',
             });
         }
+
+        // console.log('isLogin', localStorage.getItem('isLogin'));
         fetchData();
     }, []);
 
@@ -78,10 +80,10 @@ export default function Login() {
             const suratRef = doc(db, 'login', matchingUser.id);
             await updateDoc(suratRef, updatedData);
             alert("Password Berhasil di Update");
-            console.log('Document successfully updated!');
+            // console.log('Document successfully updated!');
             location.reload();
         } catch (error) {
-            console.error('Error updating document: ', error);
+            // console.error('Error updating document: ', error);
         }
     };
 
@@ -90,11 +92,13 @@ export default function Login() {
             alert("Login berhasil");
             // Simpan status login sebagai sekretaris di localStorage
             localStorage.setItem("role", "sekretaris");
+            localStorage.setItem("isLogin", true);
             router.push('/sekretaris/home');
         } else if (emailInput === "kades@gmail.com" && passwordInput === passKades) {
             alert("Selamat Datang Kepala Desa");
             // Simpan status login sebagai kepala desa di localStorage
             localStorage.setItem("role", "kades");
+            localStorage.setItem("isLogin", true);
             router.push('/kepala-desa');
         } else {
             alert("Email atau Password Salah!!!");

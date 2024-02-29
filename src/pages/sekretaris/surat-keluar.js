@@ -5,6 +5,7 @@ import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Navbar from "./navbar";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -55,6 +56,16 @@ export default function SuratMasuk() {
     const [isMasukActive, setIsMasukActive] = useState(false);
     const [isKeluarActive, setIsKeluarActive] = useState(true);
     const [isBuatActive, setIsBuatActive] = useState(false);
+    const [Islogin, setIslogin] = useState();
+
+    // useEffect(() => {
+    //     const isLogins = localStorage.getItem('isLogin')
+    //     if (!isLogins) {
+    //         router.push('/sekretaris');
+    //     } else {
+    //         setIslogin(isLogins);
+    //     }
+    // }, []);
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {
@@ -140,6 +151,13 @@ export default function SuratMasuk() {
             SetDataSuratKeluar(suratKeluar);
         }
 
+        const isLogins = localStorage.getItem('isLogin')
+        if (!isLogins) {
+            router.push('/sekretaris');
+        } else {
+            setIslogin(isLogins);
+        }
+
         fetchData();
     }, []);
 
@@ -205,6 +223,20 @@ export default function SuratMasuk() {
             },
         }));
     };
+
+    if (!Islogin) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="surat-masuk d-flex">

@@ -5,6 +5,7 @@ import { db } from "../../../public/firebaseConfig";
 import { getDocs, collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Navbar from "./navbar";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 async function fetchDataFromFirestore() {
     const querySnapshot = await getDocs(collection(db, "surat"));
@@ -21,10 +22,10 @@ async function updateDataInFirebase(id, updatedData) {
     try {
         const suratRef = doc(db, "surat", id);
         await updateDoc(suratRef, updatedData);
-        console.log("Document successfully updated!");
+
         return true;
     } catch (error) {
-        console.error("Error updating document: ", error);
+
         return false;
     }
 }
@@ -33,16 +34,18 @@ async function deleteDataFromFirebase(id) {
     try {
         const suratRef = doc(db, "surat", id);
         await deleteDoc(suratRef);
-        console.log("Document successfully deleted!");
+
         return true;
     } catch (error) {
-        console.error("Error deleting document: ", error);
+
         return false;
     }
 }
 
 
 export default function SuratMasuk() {
+    // const [Islogin, setIslogin] = useState();
+
     const [dataSurat, SetDataSurat] = useState([]);
     const [dataSuratMasuk, SetDataSuratMasuk] = useState([]);
     const [dataSuratKeluar, SetDataSuratKeluar] = useState([]);
@@ -55,6 +58,28 @@ export default function SuratMasuk() {
     const [isHomeActive, setIsHomeActive] = useState(false);
     const [isMasukActive, setIsMasukActive] = useState(true);
     const [isKeluarActive, setIsKeluarActive] = useState(false);
+    const [editedDataForSelectedRows, setEditedDataForSelectedRows] = useState({});
+    // const [isLoading, setIsLoading] = useState(true);
+    const [Islogin, setIslogin] = useState();
+
+
+    // useEffect(() => {
+    //     const checkLoginStatus = () => {
+    //         const isLogin = localStorage.getItem('isLogin');
+    //         if (!isLogin) {
+    //             router.push('/sekretaris');
+    //         } else {
+    //             // Simulate an asynchronous operation (e.g., fetching user data)
+    //             setTimeout(() => {
+    //                 setIsLoading(false);
+    //             }, 1000);
+    //         }
+    //     };
+
+    //     checkLoginStatus();
+    // }, []);
+
+
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {
@@ -95,7 +120,7 @@ export default function SuratMasuk() {
         location.reload();
     };
 
-    const [editedData, setEditedData] = useState({});
+    // const [editedData, setEditedData] = useState({});
 
     const handleCheckboxChange = (id) => {
         const updatedSelectedRows = [...selectedRows];
@@ -121,7 +146,6 @@ export default function SuratMasuk() {
         setEditPopupRow(updatedSelectedRows.length === 1 ? updatedSelectedRows[0] : null);
     };
 
-    const [editedDataForSelectedRows, setEditedDataForSelectedRows] = useState({});
 
     useEffect(() => {
         async function fetchData() {
@@ -135,6 +159,13 @@ export default function SuratMasuk() {
 
             SetDataSuratMasuk(suratMasuk);
             SetDataSuratKeluar(suratKeluar);
+        }
+
+        const isLogins = localStorage.getItem('isLogin')
+        if (!isLogins) {
+            router.push('/sekretaris');
+        } else {
+            setIslogin(isLogins);
         }
 
         fetchData();
@@ -151,7 +182,7 @@ export default function SuratMasuk() {
 
         newData.push(newDatas);
         // Do something with newData, e.g., set it to state or send it to an API
-        console.log("new data templlate", newDatas);
+
     };
 
 
@@ -220,6 +251,19 @@ export default function SuratMasuk() {
         // Redirect to /detail-transaksi/[id]
         router.push(`template-surat/${id}`);
     };
+
+    if (!Islogin) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
+    }
 
     return (
         <>
@@ -422,7 +466,7 @@ export default function SuratMasuk() {
 
 const newData = [];
 
-console.log("new data", newData);
+
 
 export const getNewData = () => {
     return newData;
