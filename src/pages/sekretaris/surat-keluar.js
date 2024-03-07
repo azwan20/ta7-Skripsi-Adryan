@@ -277,7 +277,7 @@ export default function SuratMasuk() {
                     </div>
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr className='text-center align-middle'>
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col"></th>
                                 <th scope="col">No</th>

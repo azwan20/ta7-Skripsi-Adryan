@@ -123,9 +123,9 @@ export default function Arsip() {
                             </button>
                         </Link>
                     </div>
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
-                            <tr>
+                            <tr className='text-center align-middle'>
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col">No</th>
                                 <th scope="col">No.Surat</th>
