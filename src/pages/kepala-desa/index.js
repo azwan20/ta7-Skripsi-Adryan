@@ -87,7 +87,7 @@ export default function Home() {
                     <h1 style={{ textAlign: 'center', margin: '20px' }}>Daftar Arsip Surat Masuk dan Keluar</h1>
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr className='text-center align-middle'>
                                 <th scope="col" style={{ display: 'none' }}>ID</th>
                                 <th scope="col">No</th>
                                 <th scope="col">No.Surat</th>
