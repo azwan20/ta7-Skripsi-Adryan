@@ -78,27 +78,27 @@ export default function TambahArsip() {
     const [isKeluarActive, setIsKeluarActive] = useState(false);
     const [Islogin, setIslogin] = useState();
 
-    useEffect(() => {
-        const isLogins = localStorage.getItem('isLogin')
-        if (!isLogins) {
-            router.push('/sekretaris');
-        } else {
-            setIslogin(isLogins);
-        }
-    }, []);
-    
-    if (!Islogin) {
-        return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-            }}>
-                <CircularProgress />
-            </div>
-        );
-    }
+    // useEffect(() => {
+    //     const isLogins = localStorage.getItem('isLogin')
+    //     if (!isLogins) {
+    //         router.push('/sekretaris');
+    //     } else {
+    //         setIslogin(isLogins);
+    //     }
+    // }, []);
+
+    // if (!Islogin) {
+    //     return (
+    //         <div style={{
+    //             display: 'flex',
+    //             justifyContent: 'center',
+    //             alignItems: 'center',
+    //             height: '100vh',
+    //         }}>
+    //             <CircularProgress />
+    //         </div>
+    //     );
+    // }
 
     const handleButtonClick = (buttonType) => {
         if (buttonType === "home") {
@@ -152,6 +152,13 @@ export default function TambahArsip() {
 
             SetDataSuratMasuk(suratMasuk);
             SetDataSuratKeluar(suratKeluar);
+        }
+
+        const isLogins = localStorage.getItem('isLogin')
+        if (!isLogins) {
+            router.push('/sekretaris');
+        } else {
+            setIslogin(isLogins);
         }
 
         fetchData();
@@ -230,6 +237,19 @@ export default function TambahArsip() {
         }
     }
 
+    if (!Islogin) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="tambah-arsip d-flex" id="sekretarisAdd">
@@ -264,7 +284,7 @@ export default function TambahArsip() {
                                     value={jenis_surat}
                                     onChange={(e) => setJenis(e.target.value)}
                                     required  // Tambahkan atribut required di sini
->
+                                >
                                     <option value="" disabled>Pilih Jenis Surat</option>
                                     <option value="surat masuk">Surat Masuk</option>
                                     <option value="surat keluar">Surat Keluar</option>
@@ -276,7 +296,11 @@ export default function TambahArsip() {
                             </span>
                             <span>
                                 <p>Sifat Surat</p>
-                                <input type="text" name="sifat" id="nama" value={sifat_surat} onChange={(e) => setSifat(e.target.value)} />
+                                <select value={sifat_surat} onChange={(e) => setSifat(e.target.value)}>
+                                    <option value="" disabled>Pilih Sifat Surat</option>
+                                    <option value="Pribadi">Pribadi</option>
+                                    <option value="Umum">Umum</option>
+                                </select>
                             </span>
                             <span>
                                 <p>Perihal Lampiran</p>

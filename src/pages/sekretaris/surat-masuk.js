@@ -315,7 +315,6 @@ export default function SuratMasuk() {
                                 <th scope="col">Tanggal Surat</th>
                                 <th scope="col">Perihal Lampiran</th>
                                 <th scope="col">No.Surat</th>
-                                <th scope="col">Jenis Surat</th>
                                 <th scope="col">Sifat Surat</th>
                                 <th scope="col">No. WhatsApp</th>
                                 <th scope="col">Buat Surat</th>
@@ -343,7 +342,6 @@ export default function SuratMasuk() {
                                     <td>{value.tanggal_surat}</td>
                                     <td>{value.prihal}</td>
                                     <td>{value.no_surat}</td>
-                                    <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.sifat_surat}</td>
                                     <td>{value.no_wa}</td>
                                     <td>
