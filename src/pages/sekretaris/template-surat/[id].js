@@ -88,7 +88,7 @@ export default function BuatSuart() {
 
                 if (data.length > 0) {
                     const sortedData = data.sort((a, b) => new Date(b.tanggal_surat) - new Date(a.tanggal_surat));
-                    const suratMasuk = sortedData.filter((surat) => surat.jenis_surat === "surat masuk");
+                    const suratMasuk = sortedData.filter((surat) => surat.jenis_surat === "surat keluar");
 
                     SetDataSuratMasuk(suratMasuk);
 
@@ -375,7 +375,7 @@ export default function BuatSuart() {
                                     </div>
                                     <span className="d-flex buttonBuatSurat justify-content-center">
                                         <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                        <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                        <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                             <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                         </Link>
                                         <Link
@@ -468,7 +468,7 @@ export default function BuatSuart() {
                                         </div>
                                         <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                                 <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                             </Link>
                                             <Link
@@ -600,7 +600,7 @@ export default function BuatSuart() {
                                         </div>
                                         <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                                 <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                             </Link>
                                             <Link
@@ -715,7 +715,7 @@ export default function BuatSuart() {
                                     </div>
                                     <span className="d-flex buttonBuatSurat justify-content-center">
                                         <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                        <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                        <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                             <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                         </Link>
                                         <Link
@@ -849,7 +849,7 @@ export default function BuatSuart() {
                                         </div>
                                         <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                                 <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                             </Link>
                                             <Link
@@ -970,7 +970,7 @@ export default function BuatSuart() {
                                         </div>
                                         <span className="d-flex buttonBuatSurat justify-content-center">
                                             <button type="submit" style={{ backgroundColor: '#BBA482' }}>Simpan</button>
-                                            <Link href="/sekretaris/surat-masuk" style={{ backgroundColor: '#900000' }}>
+                                            <Link href="/sekretaris/surat-keluar" style={{ backgroundColor: '#900000' }}>
                                                 <button style={{ backgroundColor: '#900000' }}>Batal</button>
                                             </Link>
                                             <Link

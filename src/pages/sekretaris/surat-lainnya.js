@@ -58,7 +58,7 @@ export default function Template() {
 
     return (
         <>
-            {dataSuratMasuk.map((value) => (
+            {dataSuratKeluar.map((value) => (
                 <div className="template">
                     <button className="print-button" onClick={() => window.print()}>Cetak</button>
                     <div className="header">
@@ -79,7 +79,7 @@ export default function Template() {
                             <p>Nomor : {value.no_surat} </p>
                         </div>
                         <div>
-                            <div>   
+                            <div>
                                 <p>Yang bertanda tangan di bawah ini : </p>
                                 <section className="d-flex flex-direction-coloumn" style={{ paddingLeft: '30px' }}>
                                     <span>

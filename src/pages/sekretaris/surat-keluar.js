@@ -145,7 +145,7 @@ export default function SuratMasuk() {
 
             // Pisahkan data berdasarkan jenis surat
             const suratMasuk = sortedData.filter((surat) => surat.jenis_surat === "surat masuk");
-            const suratKeluar = sortedData.filter((surat) => surat.jenis_surat === "surat keluar");
+            const suratKeluar = sortedData.filter((surat) => surat.jenis_surat === "surat keluar" || surat.status === "proses");
 
             SetDataSuratMasuk(suratMasuk);
             SetDataSuratKeluar(suratKeluar);
@@ -224,6 +224,14 @@ export default function SuratMasuk() {
         }));
     };
 
+
+    const filteredByStatus = dataSuratKeluar.filter((product) => product.status === "proses");
+
+    const handleDetailTransaksi = (id) => {
+        // Redirect to /detail-transaksi/[id]
+        router.push(`template-surat/${id}`);
+    };
+
     if (!Islogin) {
         return (
             <div style={{
@@ -270,7 +278,7 @@ export default function SuratMasuk() {
                                         <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
                                         <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
                                     </svg>
-                                    <p style={{ margin: '0' }}>Tambah Arsip</p>
+                                    <p style={{ margin: '0' }}>Arsip Manual</p>
                                 </button>
                             </Link>
                         </div>
@@ -288,6 +296,7 @@ export default function SuratMasuk() {
                                 <th scope="col">Perihal Lampiran</th>
                                 <th scope="col">Sifat Surat</th>
                                 <th scope="col">No WhatsApp</th>
+                                <th scope="col">Buat Surat</th>
                                 <th scope="col">File Arsip</th>
                             </tr>
                         </thead>
@@ -313,8 +322,9 @@ export default function SuratMasuk() {
                                     <td>{value.tanggal_surat}</td>
                                     <td>{value.prihal}</td>
                                     <td>{value.sifat_surat}</td>
-                                    <td>{value.no_wa}</td>
-                                    <td ><Link style={{ width: '40px' }} href={value.file}>{value.file}</Link></td>
+                                    <td><Link href={`https://wa.me/${value.no_wa}`} target="_blank">{value.no_wa}</Link></td>
+                                    <td><button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button></td>
+                                    <td ><Link style={{ width: '40px' }} href={value.file || '#'} target="_blank">{value.file}</Link></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -335,9 +345,9 @@ export default function SuratMasuk() {
             {/* Edit Popup */}
             {isEditMode && editPopupRow && (
                 <div className="popup newPop">
-                    <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+                    <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto', paddingTop: '10px' }}>
                         {/* Render the edit form with data from the selected row */}
-                        <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
+                        <h2>Edit : {getEditedFieldValue(editPopupRow, 'nama')}</h2>
                         <div>
                             <span>
                                 <p>File Arsip</p>

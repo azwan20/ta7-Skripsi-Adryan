@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@mui/material";
 
-async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal,
+async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, tanggal_terima, tanggal_surat, tanggal_keluar, sifat_surat, prihal, no_wa,
     nama_penanggungJawab,
     jabatan_penanggungJawab,
     nip_penanggungJawab,
@@ -33,6 +33,7 @@ async function addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tang
             tanggal_keluar: tanggal_keluar,
             sifat_surat: sifat_surat,
             prihal: prihal,
+            no_wa: no_wa,
             nama_penanggungJawab: nama_penanggungJawab,
             jabatan_penanggungJawab: jabatan_penanggungJawab,
             nip_penanggungJawab: nip_penanggungJawab,
@@ -189,7 +190,7 @@ export default function TambahArsip() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal,
+        const added = await addDataToFirebase(file, nama, alamat, no_surat, jenis_surat, tanggal_masuk, "", tanggal_surat, "", sifat_surat, prihal, no_wa,
             "",
             "",
             "",
@@ -217,6 +218,7 @@ export default function TambahArsip() {
             setPerihal("");
             setSifat("");
             setJenis("");
+            setNo_wa("");
             "";
             "";
             "";
@@ -231,7 +233,6 @@ export default function TambahArsip() {
             "";
             "";
             "";
-            // setNo_wa("");
 
             // alert("Data berhasil di upload");
         }
@@ -304,7 +305,15 @@ export default function TambahArsip() {
                             </span>
                             <span>
                                 <p>Perihal Lampiran</p>
-                                <input type="text" name="perihal" id="nama" required value={prihal} onChange={(e) => setPerihal(e.target.value)} />
+                                <select required value={prihal} onChange={(e) => setPerihal(e.target.value)}>
+                                    <option value="" disabled>Pilih Perihal</option>
+                                    <option value="Surat Keteranagan Usaha">Surat Keteranagan Usaha</option>
+                                    <option value="Surat Keterangan Penghasilan">Surat Keterangan Penghasilan</option>
+                                    <option value="Surat Keterangan Kematian">Surat Keterangan Kematian</option>
+                                    <option value="Surat Keterangan Kelahiran">Surat Keterangan Kelahiran</option>
+                                    <option value="Surat Keterangan Pindah">Surat Keterangan Pindah</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
                             </span>
                             <span>
                                 <p>No. WhatsApp</p>

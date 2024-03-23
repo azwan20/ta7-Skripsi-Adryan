@@ -58,7 +58,7 @@ export default function Template() {
 
     return (
         <>
-            {dataSuratMasuk.map((value) => (
+            {dataSuratKeluar.map((value) => (
                 <div className="template">
                     <button className="print-button" onClick={() => window.print()}>Cetak</button>
                     <div className="header">

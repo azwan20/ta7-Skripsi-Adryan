@@ -30,6 +30,19 @@ async function updateDataInFirebase(id, updatedData) {
     }
 }
 
+async function updateStatusToProses(id) {
+    try {
+        // Mendapatkan dokumen surat dari Firebase berdasarkan ID
+        const suratRef = doc(db, "surat", id);
+        // Memperbarui status menjadi "proses" dan jenis_surat menjadi "surat keluar"
+        await updateDoc(suratRef, { status: "proses", jenis_surat: "surat keluar" });
+        return true; // Berhasil memperbarui status
+    } catch (error) {
+        console.error("Error updating status:", error);
+        return false; // Gagal memperbarui status
+    }
+}
+
 async function deleteDataFromFirebase(id) {
     try {
         const suratRef = doc(db, "surat", id);
@@ -117,7 +130,8 @@ export default function SuratMasuk() {
 
     const handlePopupClose = () => {
         setPopupVisible(false);
-        location.reload();
+        setEditMode(false)
+        // location.reload();
     };
 
     // const [editedData, setEditedData] = useState({});
@@ -203,7 +217,15 @@ export default function SuratMasuk() {
     const handleEdit = async (id, updatedData) => {
         const edited = await updateDataInFirebase(id, updatedData);
         if (edited) {
-            // alert("Data edited in Firebase DB");
+            // const updatedSurat = dataSurat.map(surat => {
+            //     if (surat.id === id) {
+            //         return { ...surat, ...updatedData };
+            //     } else {
+            //         return surat;
+            //     }
+            // });
+            // SetDataSurat(updatedSurat);
+            // setEditMode(false);
             location.reload();
         }
     };
@@ -250,6 +272,26 @@ export default function SuratMasuk() {
     const handleDetailTransaksi = (id) => {
         // Redirect to /detail-transaksi/[id]
         router.push(`template-surat/${id}`);
+    };
+
+    // Fungsi untuk menangani klik tombol "Proses"
+    const handleProsesButtonClick = async (id) => {
+        // Memperbarui status menjadi "proses" dan jenis_surat menjadi "surat keluar" di Firebase
+        const isSuccess = await updateStatusToProses(id);
+        if (isSuccess) {
+            // Jika berhasil, perbarui data surat
+            const updatedDataSurat = dataSurat.map(surat => {
+                if (surat.id === id) {
+                    return { ...surat, status: "proses", jenis_surat: "surat keluar" };
+                }
+                return surat;
+            });
+            SetDataSurat(updatedDataSurat);
+            router.push('/sekretaris/surat-keluar')
+        } else {
+            // Jika gagal, tampilkan pesan kesalahan
+            alert("Gagal memproses surat. Silakan coba lagi.");
+        }
     };
 
     if (!Islogin) {
@@ -317,7 +359,7 @@ export default function SuratMasuk() {
                                 <th scope="col">No.Surat</th>
                                 <th scope="col">Sifat Surat</th>
                                 <th scope="col">No. WhatsApp</th>
-                                <th scope="col">Buat Surat</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody style={{ border: '1px solid white' }}>
@@ -345,7 +387,7 @@ export default function SuratMasuk() {
                                     <td>{value.sifat_surat}</td>
                                     <td>{value.no_wa}</td>
                                     <td>
-                                        <button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button>
+                                        <button className="buatSurat justify-content-center" onClick={() => handleProsesButtonClick(value.id)}>Proses</button>
                                     </td>
                                 </tr>
                             ))}
@@ -370,12 +412,8 @@ export default function SuratMasuk() {
                     <div className="popup newPop">
                         <div className="popup-content" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
                             {/* Render the edit form with data from the selected row */}
-                            <h2>Edit ID: {getEditedFieldValue(editPopupRow, 'nama')}</h2>
+                            <h2>Edit : {getEditedFieldValue(editPopupRow, 'nama')}</h2>
                             <div>
-                                <span>
-                                    <p>File Arsip</p>
-                                    <input type="text" name="file" value={getEditedFieldValue(editPopupRow, 'file')} readOnly />
-                                </span>
                                 <span>
                                     <p>Tanggal Ajukan</p>
                                     <input type="date"
