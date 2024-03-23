@@ -219,6 +219,14 @@ aside a {
   border: none !important;
 }
 
+.surat-masuk table tbody tr {
+  border: 1px solid white !important;
+}
+
+.surat-masuk table tbody td {
+  padding: 10px;
+}
+
 .sekretaris thead th,
 .surat-masuk thead th {
   background-color: #968368;
@@ -344,7 +352,7 @@ aside a {
   text-align: center;
   width: 400px;
   padding: 20px;
-  padding-top: 120px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
