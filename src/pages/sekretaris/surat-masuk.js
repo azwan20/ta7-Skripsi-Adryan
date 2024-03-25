@@ -130,7 +130,8 @@ export default function SuratMasuk() {
 
     const handlePopupClose = () => {
         setPopupVisible(false);
-        setEditMode(false)
+        setEditMode(false);
+        router.reload();
         // location.reload();
     };
 
@@ -158,6 +159,7 @@ export default function SuratMasuk() {
 
         // Remove the line below to allow editing multiple rows
         setEditPopupRow(updatedSelectedRows.length === 1 ? updatedSelectedRows[0] : null);
+        // setEditPopupRow(null); // This line ensures that only one row can be edited at a time
     };
 
 
@@ -217,16 +219,17 @@ export default function SuratMasuk() {
     const handleEdit = async (id, updatedData) => {
         const edited = await updateDataInFirebase(id, updatedData);
         if (edited) {
-            // const updatedSurat = dataSurat.map(surat => {
-            //     if (surat.id === id) {
-            //         return { ...surat, ...updatedData };
-            //     } else {
-            //         return surat;
-            //     }
-            // });
-            // SetDataSurat(updatedSurat);
-            // setEditMode(false);
-            location.reload();
+            // SetDataSuratMasuk((prevData) =>
+            //     prevData.map((item) =>
+            //         item.id === id
+            //             ? {
+            //                 ...item,
+            //                 ...updatedData,
+            //             }
+            //             : item
+            //     )
+            // );
+            router.reload();
         }
     };
 
@@ -340,7 +343,7 @@ export default function SuratMasuk() {
                                         <rect y="6.29016" width="15" height="2.41935" rx="1.20968" fill="white" />
                                         <rect x="6.29016" y="15" width="15" height="2.41935" rx="1.20968" transform="rotate(-90 6.29016 15)" fill="white" />
                                     </svg>
-                                    <p style={{ margin: '0' }}>Tambah Arsip</p>
+                                    <p style={{ margin: '0' }}>Arsip Manual</p>
                                 </button>
                             </Link>
                         </div>

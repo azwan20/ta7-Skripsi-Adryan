@@ -317,7 +317,7 @@ export default function TambahArsip() {
                             </span>
                             <span>
                                 <p>No. WhatsApp</p>
-                                <input type="text" name="no_wa" id="nama" required value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                                <input type="text" name="no_wa" id="nama" required placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                             </span>
                         </section>
                         <section className="d-flex justify-content-between">

@@ -324,7 +324,7 @@ export default function SuratMasuk() {
                                     <td>{value.sifat_surat}</td>
                                     <td><Link href={`https://wa.me/${value.no_wa}`} target="_blank">{value.no_wa}</Link></td>
                                     <td><button className="buatSurat" onClick={() => handleDetailTransaksi(value.id)}>Buat Surat</button></td>
-                                    <td ><Link style={{ width: '40px' }} href={value.file || '#'} target="_blank">{value.file}</Link></td>
+                                    <td>{value.file ? <Link style={{ width: '40px' }} href={value.file} target="_blank">Lihat</Link> : null}</td>
                                 </tr>
                             ))}
                         </tbody>
