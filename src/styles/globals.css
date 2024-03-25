@@ -314,7 +314,6 @@ aside a {
   border: 1px solid #000;
   background-color: transparent;
   padding: 0 15px;
-  display: flex;
 }
 
 .tambah-arsip article span {
@@ -859,7 +858,6 @@ td {
     border: 1px solid #000;
     background-color: transparent;
     padding: 0 15px;
-    display: flex;
   }
 
   .popup {
