@@ -118,7 +118,7 @@ export default function Home() {
                                     <td>{value.sifat_surat}</td>
                                     <td><b>{value.jenis_surat}</b></td>
                                     <td>{value.no_wa}</td>
-                                    <td>{value.file}</td>
+                                    <td>{value.file ? <Link style={{ width: '40px' }} href={value.file} target="_blank">Lihat</Link> : null}</td>
                                 </tr>
                             ))}
                         </tbody>
