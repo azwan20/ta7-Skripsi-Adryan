@@ -582,7 +582,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -667,7 +667,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -803,7 +803,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -908,7 +908,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -1052,7 +1052,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
@@ -1162,7 +1162,7 @@ export default function Home() {
                   </span>
                   <span>
                     <p>No. WhatsApp</p>
-                    <input type="text" name="no_wa" required id="nama" placeholder="Untuk Konfirmasi Data dan Media Pengiriman Surat" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
+                    <input type="text" name="no_wa" required id="nama" placeholder="+62" value={no_wa} onChange={(e) => setNo_wa(e.target.value)} />
                   </span>
                 </section>
                 <section className="d-flex justify-content-between">
